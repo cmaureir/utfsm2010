@@ -1,0 +1,87 @@
+%Representaci\'on matem\'atica y estructura de datos que se usa (arreglos, matrices, etc),
+% por que se usa, la relaci\'on entre la representaci\'on matem\'atica y la estructura.
+A continuación se explica la representación del algoritmo implementado,
+que consiste en un \emph{Algoritmo Evolutivo} con mutación \emph{Simulated
+Annealing (Alguna Mejora)}.
+
+\subsection{Representación Matemática}
+
+La presente representación, tiene un carácter simplista, y toma la esencia del segundo modelo
+matemático señalado en la sección anterior, buscando en éste caso, dar prioridad a la satisfacción
+de la restricciones del problema, de una forma más apropiada.
+
+\begin{itemize}
+	\item Parámetros
+	\begin{itemize}
+		\item $cN$: Número total de autos.
+		\item $oN$: Número total de opciones disponibles.
+		\item $tN$: Número total de tipos/clases de autos.
+	\end{itemize}
+	\item Variables
+	\begin{itemize}
+		\item $nMax_{ij}$: Número máximo de autos con la opción $i$ en una subsecuencia $j$.
+		\item $n_{ij}$: Número de autos con la opción $i$ en una subsecuencia $j$.
+		\item $sMax_{i}$: Tamaño de la subsecuencia $j$ donde deben haber $nMax_{ij}$ autos.
+		\item $q_{k}$: Cantidad de autos del tipo/clase $k$.
+		\item $types_{il}$: Booleano que indica si la opción $i$ está presente en el auto $l$.
+	\end{itemize}
+	\item Función Objetivo
+	$$FO\ :\ Min\ \sum\limits_{i=1}^{oN} \sum\limits_{l=1}^{cN} \sum\limits_{j=0}^{sMax_{i}} types_{il}\cdot (n_{ij} - nMax_{ij}), \forall n_{ij} > nM_{ij}$$
+	\item Restricciones Duras
+	$$\sum\limits_{k=1}^{cN} q_{k} = cN$$
+	\item Restricciones Blandas
+	$$\sum\limits_{i=1}^{oN} \sum\limits_{l=1}^{cN} \sum\limits_{j=0}^{sMax_{i}} types_{il}\cdot n_{ij} \leq nMax_{ij}$$
+\end{itemize}
+\subsection{Representación en Estructuras de datos}
+
+La presente representación, posee una alta similitud con la representación matemática, buscando así presentar un código simple
+con respecto a la satisfacción de restricciones y función objetivo.
+
+\begin{itemize}
+	\item Individuos ($\textbf{struct}\ genotype$):
+				
+		Cada individuo de nuestra población, corresponde a una secuencia de autos, más algunos atributos del mismo, por lo tanto,
+		para representarlo es necesaria una estructura que posee los siguientes atributos:
+		\begin{itemize}
+			\item $\textbf{int}\ gene[VARS]$: Arreglo de enteros que corresponden  a la secuencia de autos, en su respectivo orden.
+			\item $\textbf{int}\ fitness$: Corresponde a la aptitud de cada individuo, la cual tiene un valor correspondiente a las unidades
+				extra por cada opción que sobrepase al máximo de autos permitidos con una cierta opción en una determinada subsecuencia.
+			\item $\textbf{int}\ fail$: Corresponde a la cantidad de restricciones violadas totales.
+			\item $\textbf{double}\ rfitness$: Corresponde a la aptitud relativa de cada individuo, la cual tiene un valor correspondiente
+				a una probabilidad relacionada con su \emph{fitness}, la cual será explicada más adelante cuando se hable de la \emph{Selección de
+				individuos}.
+			\item $\textbf{double}\ cfitness$: Corresponde a la aptitud acumulativa de cada individuo, la cual tiene un valor correspondiente
+				a una secuencia de probabilidades relacionadas con su \emph{fitness}, la cual será explicada más adelante cuando se hable de la \emph{Selección
+				de individuos}.
+		\end{itemize}
+
+	\item Mejor Solución del SA ($\textbf{int}\ saBestSol[VARS]$):
+
+		Corresponde a un arreglo de enteros, que almacena la mejor solución en la ejecución del algoritmo \emph{Simulated Annealing}.
+		
+	\item Número máximo de autos por subsecuencia ($\textbf{int}\ numMaxCarOptSeq[N]$):
+	
+		Corresponde a un arreglo de enteros, que representa el número máximo de autos con la opción determinada, en una subsecuencia se nuestro individuo.
+
+
+	\item Tamaño subsecuencia ($\textbf{int}\ sizeMaxCarOptSeq[N]$):
+
+		Corresponde a un arreglo de enteros, que representa el tamaño de la subsecuencia donde debe haber un número máximo de opciones en un auto (numMaxCarOptSeq).
+
+	\item Demandas y descripción de los tipos de autos ($\textbf{int}\ types[N][M]$):
+	
+	Corresponde a un arreglo bidimensional, que posee la siguiente información:
+	\begin{itemize}
+		\item $[N]$ posee sólo el valor del índice de la cantidad de tipos/clases de autos.
+		\item $[M]$ posee el valor del índice anterior para cada tipo/clase , demanda del tipo de auto, y para cada opción si la posee o no (1 o 0).
+	\end{itemize}
+	
+
+\end{itemize}
+\subsection{Relación}
+
+Ambas representaciones poseen una relación directa, ya que las estructuras de datos tratan se asimilan notoriamente a la representación matemática,
+no sólo tanto por la similitud de las variables y parámetros, sino que ambas representaciones nos permiten respetar las restricciones del problema.
+
+Por lo tanto, más que dos representaciones distintas, la representación en estructuras de datos es una adaptación de la representación matemática,
+enfocada obviamente a la programación.

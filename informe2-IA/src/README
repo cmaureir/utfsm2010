@@ -1,0 +1,53 @@
+--------------------------------
+Autor: Cristián Maureira Fredes
+Rol:   2673030-9
+Fecha: 29 Junio, 2010
+--------------------------------
+
+IMPORTANTE
+
+NOTA: Las variables importantes del problema están seteadas
+	  a mano en el archivo include/extra.h por lo tanto antes
+	  de la ejecución de algún archivo se debe cambiar el 
+	  tamaño de la población realizando alguna de las tres
+	  compilaciones señaladas a continuación.
+
+	
+El programa no reconoce por defecto para cuantas variables (VARS)
+se desea compilar, por defecto está programado para compilar para 200 variables.
+
+Si se desea compilar para 200, 300 o 400 variables, porfavor utilizar
+	$ make 200
+	$ make 300
+	$ make 400
+respectivamente.
+
+
+
+Compilacion Normal:
+	(recuerde haber compilado antes para 200, 300 o 400)
+	$ make
+
+clean:
+	(Vuelve a 200 la variable VARS además de eliminar los .o)
+	$ make clean
+
+
+test:
+	(Compila el binario para las diferentes variables y las situa en ProblemDataSet200to400/)
+	$ make test
+
+
+
+Ejecución:
+	(Una vez realizado el 'make test' en el directorio ProblemDataSet200to400 existe un script en python que ejecuta todos los test 100 veces llamado 'run', la cantidad de test a correr se puede modificar a mano)
+	$ python run
+
+Cálculos:
+	(Luego de tener todos los .out, se puede calcular los datos para la tabla)
+	$ python tableValues.py
+
+Gráfico:
+	(Luego de tener todos los .out, se puede realizar el grafico)
+	$ python plotValues.py
+	

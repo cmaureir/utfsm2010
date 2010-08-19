@@ -1,0 +1,57 @@
+%Explicación del problema que se va a estudiar
+%  en que consiste
+%  cuales son sus variables
+%  restricciones
+%  objetivos
+% de manera general.
+%
+%Variantes más conocidas que existen.
+
+El \emph{Car Sequencing Problem} es un problema de satisfacción de restricciones (CSP), posee la
+característica de ser NP-duro~\footnote{
+NP-duro es el conjunto de los problemas de decisión que contiene los problemas H
+tales que todo problema L en NP puede ser transformado polinomialmente en H.
+Esta clase puede ser descrita como conteniendo los problemas de decisión que son
+al menos tan difíciles como un problema de NP.}
+, además corresponde a un tipo de variación del problema NP-completo \emph{Job-Shop Scheduling},
+pero con un uso de razonamiento automatizado, es decir, con un enfoque dedicado a estudiar y comprender
+diferentes características del razonamiento, permitiendo así construir programas que le den la posibilidad
+a los computadores para razonar en forma autónoma.
+ 
+Siguiendo la misma idea, es válido señalar que el \emph{Car Sequencing Problem} es un tipo de problema de planificación
+de tareas en una línea de ensamblaje de autos, donde cada uno es perteneciente a un clase de automóvil, debido al conjunto
+de opciones y accesorios que posee (airo acondicionado, centralizado eléctrico, etc), y cada una de las opciones o
+accesorios se instala en una planta distinta, por lo que el objetivos principal es el poder encontrar el orden en la
+secuencia de los vehículos, preocupándonos de no exceder la capacidad de cada planta de ensamblaje y también cumplir con la demanda.
+
+Por lo tanto, si realizamos una definición más formal de nuestro problema, podríamos decir lo siguiente:
+Teniendo una lista de vehículos dada, cada uno con sus respectivas opciones requeridas,
+necesitamos establecer un orden en la línea de ensamblaje, con el fin de que cada subsecuencia de $q$ vehículos
+tengamos a lo más $p$ que requieren de una determinada opción. Es importante tener en consideración que los
+valores de $p$ y $q$ están asociados a cada opción de los vehículos.
+
+Con respecto a la información que el problema otorga, podemos decir que contamos con:
+\begin{itemize}
+	\item Cantidad de vehículos de cada tipo o clase a producir (demanda)
+	\item Lista de las opciones con la cual se constituye cada tipo o clase de vehículo, la cual puede utilizar una representación
+		booleana para saber si cierto tipo de automóvil posee o no una determinada opción.
+	\item Capacidad de las plantas que se preocupan de instalar la determinada opción.
+\end{itemize}
+
+Nuestro objetivo principal es:
+\begin{itemize}
+	\item Encontrar un orden en nuestra secuencia, que sirva para minimizar el costo por cada restricción insatisfecha.
+\end{itemize}
+
+Con respecto a las restricciones, tenemos que:
+\begin{itemize}
+	\item En cada subsecuencia de los $q$ vehículos, a lo más pueden haber $p$ que requieran de la opción determinada.
+		Donde $p$ y $q$ son valores asociados a cada opción.
+	\item La capacidad de cada planta de ensamblaje no puede ser excedida, es decir, cumplir con la demanda de cada automóvil
+		sin abusar de una planta determinada.
+	\item Por cada tipo de auto, el numero de autos de ese tipo debe ser secuenciado, es decir, todos los automóviles de cada clase
+		deben estar presente en una secuencia determinada.
+\end{itemize}
+
+
+

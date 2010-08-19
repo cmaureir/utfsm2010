@@ -1,0 +1,49 @@
+% Se necesita saber como experimentaron, como definieron par\'ametros,
+%  como los fueron modificando, cuales problemas se trataron, instancias,
+%  por que ocuparon esos problemas.
+
+Los valores iniciales, eran menores a los señalados al final de la presente sección,
+y para poder definirlo se fueron variando por separado.
+
+Primero se fueron variando por separado los parámetros del \emph{algoritmo evolutivo},
+donde se llegó a la conclusión, de que si la cantidad de las generaciones va aumentando,
+y el tamaño de la población es muy grande, aparte de tardar demasiado en converger,
+el desempeño no es bueno.
+
+Luego se estableció la idea de tener poblaciones pequeñas, pero muchas generaciones,
+así obtendremos mejores resultados, pero dependerá netamente, si las soluciones iniciales
+son buenas, aquí el elitismo juega un papel sumamente importante.
+
+En segundo lugar, las pruebas y modificaciones se realizaron con los parámetros de la
+mutación \emph{simulated annealing}, donde se probaron distintos valores, que hicieron
+llegar a la conclusión, de que es más apropiado, poseer un número no tan grande de iteraciones,
+con respecto a la temperatura, pero la temperatura debe ser a lo más 1 orden de magnitud mayor
+que el número de iteraciones.
+
+De la misma forma, la temperatura, no debe tener valores muy elevados, porque no ayuda mucho
+en encontrar mejores individuos, sobre todo en éste caso que era un \emph{simulated annealing}
+con \emph{alguna mejora}.
+
+Las instancias en las que se ejecutó el algoritmo, fueron los \emph{30 problemas difíciles} de
+Caroline Gagne que se encuentran en el sitio de CSPLib~\cite{gagne}, por cada instancia se ejecutó
+el presente algoritmo $100$ veces, para obtener una amplia gama de soluciones a distintas situaciones.
+
+Los experimentos fueron realizados en un computador con las siguientes características:
+\begin{itemize}
+	\item Intel(R) Core(TM)2 Duo CPU 2.66\,[GHz]
+	\item 4 Gigabyte RAM
+	\item Sistema Operativo Fedora 12 para i686
+\end{itemize}
+
+Los parámetros utilizados en los experimentos, no fueron cambiados por cada población,
+lo cual puede significar un desempeño inferior al sintonizarlos por en cada caso.
+
+Los valores son:
+\begin{itemize}
+	\item VARS: 200, 300, 400 (dependiendo de cada caso)
+	\item POP: 12
+	\item GENS: 5000
+	\item PMUT: 0.3
+	\item TMAX: 100
+	\item IMAX: 10
+\end{itemize}
