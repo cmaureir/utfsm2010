@@ -1,0 +1,108 @@
+%Uno o más modelos matemáticos para el problema, idealmente indicando el espacio de búsqueda para cada uno.
+\subsection{Primer modelo}
+El presente modelo, pese a utilizar notaciones matemáticas, trata de dar un enfoque más teórico,
+para una mejor comprensión del problema.
+
+Consideremos el \emph{Car Sequencing Problem} como una tupla $(C,O,p,q,r)$, tal que:
+\begin{itemize}
+	\item $C=\{c_1,\ldots,c_n\}$ es el conjunto de vehículos a producir.
+	\item $O=\{o_1,\ldots,o_m\}$ es el conjunto de distintas opciones.
+	\item $p:O\rightarrow\mathbb{N}$ and $q:O\rightarrow\mathbb{N}$ definen la capacidad de las restricciones,
+		es decir, para cualquier opción $o_i \in O$, cada subsecuencia de $q_i$ vehículos consecutivos en la línea,
+		deben no contener más que $p_i$ vehículos que requieran la opción $o_i$
+	\item $r:C\times O \rightarrow \{0,1\}$ define los requerimientos de las opciones, es decir, para cada vehículo
+		$c_i \in C$ y para cada opción $o_j \in O$, $r_{ij} = 1$ si $o_j$ debe ser instalado en $c_i$ y $r_{ij} = 0$
+		en otro caso.
+\end{itemize}
+
+%Solving a car sequencing problem involves finding an arrangement of the cars
+%in a sequence, defining the order in which they will pass along the assembly
+%line, such that the capacity constraints are met. We shall use the following
+%notations to denote and manipulate sequences:
+
+\begin{itemize}
+	\item Una \emph{secuencia}, definida $\pi =< c_{i_{1}}, c_{i_{2}}, \ldots, c_{i_{k}} >$, es una sucesión de vehículos.
+	\item El conjunto de todas las secuencias que pueden ser construidas con un conjuntos de autos $C$ es denominada $\amalg_{C}$.
+	\item El \emph{largo} de una secuencia $\pi$, denominado $|\pi|$, es el numero de vehículos que contiene.
+	\item La \emph{concatenación} de dos secuencias, $\pi_1$ y $\pi_2$, denominada $\pi_1 \cdot \pi_2$, es una secuencia
+		compuesta de los vehículos de $\pi_1$ seguidos de los vehículos de $\pi_2$.
+	\item Una secuencia $\pi_1$ es una subsecuencia de otra secuencia $\pi_2$ , tomando en cuenta $\pi_1 \subseteq \pi_2$,
+		si existen dos secuencias $\pi_3$ y $\pi_4$, tal que $\pi_2 = \pi_3 \cdot \pi_1 \cdot \pi_4$
+	\item El \emph{cost} de una secuencia $\pi$ es el numero de las restricciones de capacidad que no se cumplen, es decir:
+\end{itemize}
+
+$$costo(\pi) = \sum_{o_{i}\in O} \ \ \ \sum_{\pi_{k}\subseteq \pi\\ \rightarrow |\pi_{k}|=q_i} violaci\acute{o}n(\pi_{k},o_{i})$$
+$$\text{donde}\ violaci\acute{o}n(\pi_{k},o_{i}) = \left\{
+ \begin{array}{l}
+	0\ si\ \sum\limits_{<C_l>\subseteq\pi_k}r_{li}\leq p_i;\\
+	1\ \text{en otro caso}\\
+ \end{array} \right.$$
+
+
+Por lo tanto se puede resolver ahora el ejercicio buscando la secuencia con el \textbf{mínimo costo}, compuesta por todos los autos
+que serán producidos.
+
+%
+
+Respecto al espacio de búsqueda, si tenemos que $\alpha_o$ es la cantidad de vehículos que tienen que ser producidos
+por cada clase/configuración o, con $o\in O$ y sea $n$ la cantidad total de vehículos a producir,
+entonces el espacio de búsqueda está compuesto por todas las posibles permutaciones de los vehículos en $C$ que
+requieren diferentes configuraciones, particionado en los $o$ tipos distintos tipos de vehículos a construir.
+
+Por lo tanto el tamaño de las posibles soluciones sería:
+$$E.B\ =\ \frac{n!}{\prod\limits_{o \in O}\alpha_o}$$
+ 
+Claramente tenemos que darnos cuenta que varias soluciones dentro del presente espacio de búsqueda
+no van a ser posibles, pues debemos aplicar las restricciones.
+
+\subsection{Segundo modelo}
+\textbf{Programación Lineal Entera (ILP)}
+
+Definición de \emph{variables} y \emph{parámetros}:
+\begin{itemize}
+	\item \textbf{$opt$}	    Número total de opciones.
+	\item \textbf{$cl$}	    Número total de tipos/clases de vehículos.
+	\item \textbf{$n_i$}    Número de vehículos en la clase/tipo $i$.
+	\item \textbf{$nc$}	    Número total de vehículos.
+	\item \textbf{$o_{ik}$}	Parámetro \emph{booleano} que representa si los vehículos del tipo/clase $i$ requieren la opción $k$.
+	\item \textbf{$s_k$}    Largo de una secuencia de vehículos consecutiva, donde algunas requieren la opción $k$
+	\item \textbf{$r_k$}    Número máximo de vehículos que pueden tener la opción $k$ en una secuencia consecutiva de $s_k$ vehículos.
+	\item \textbf{$M$}	 	Valor escalar grande que puede ser fijado a $(s_{k} - r_{k})$
+	\item \textbf{$C_{ij}$}	Variable \emph{booleana} que representa si un vehículo del tipo/clase $i$ es asignado a la posición $j$ en la secuencia
+		$(C_{ij} = 1)$
+	\item \textbf{$Y_{kj}$}	Varibale \emph{booleana} que representa si el número de vehículos que requieren la opción $k$ en una secuencia
+		de $s_k$ vehículos, comenzando de la posición $j$ en la secuencia respecto a $r_k$, el máximo permitido $(Y_{kj} = 0)$
+	\item \textbf{$pp$}	    Número de vehículos en el periodo anterior, que permiten establecer la transición $(pp = max(s_{k}-1))$
+	\item \textbf{$cpp_{mk}$}	Variable \emph{booleana} que representa si el vehículo $m$-ésimo del periodo previo tiene la opción $k$.
+	\item \textbf{$Z_{kj}$}	Variable \emph{booleana} que representa si el número de vehículos que necesitan la opción $k$ en una secuencia
+		de $s_k$ vehículos, partiendo en la posición $j$ de la secuencia en el periodo anterior, respetando el máximo $r_k$ permitido $(Z_{kj} = 0)$.
+\end{itemize}
+
+Por lo tanto, el modelo a continuación se establece para minimizar el número de violaciones de las restricciones de capacidad,
+tanto como para opciones de alta prioridad, como de baja.
+
+\textbf{Función objetivo:}
+$$\text{Min} F = \sum\limits_{k=1}^{opt} \sum\limits_{j=1}^{nc-s_{k}+1} Y_{kj} + \sum\limits_{k=1}^{opt} \sum\limits_{j=1}^{s_{k}-11} Z_{kj}$$
+
+\textbf{Restricciones}
+\begin{itemize}
+	\item $\sum\limits_{i=1}^{cl} C_{ij} = 1$, $\forall j = 1,\ldots,nc$
+	\item $\sum\limits_{j=1}^{nc} C_{ij} = n_{i}$, $\forall i = 1,\ldots,cl$
+	\item $\sum\limits_{i=1}^{cl} \sum\limits_{l=j}^{j+s_{k}-1} o_{ik} \cdot
+		C_{il} \leq r_{k} + M\cdot Y_{kj}$,\\ $\forall k = 1,\ldots,opt$ y $\forall j=1,\ldots, nc-s_{k}+1$
+	\item $\sum\limits_{i=1}^{cl} \sum\limits_{l=1}^{j} o_{ik} \cdot
+		C_{il} + \sum\limits_{m=pp-S_{k}+j+1}^{pp} cpp_{mk} \leq r_{k} + M\cdot Z_{kj}$,\\ $\forall k = 1,\ldots,opt$ y $\forall j=1,\ldots, s_{k}-11$
+\end{itemize}
+
+Respecto al espacio de búsqueda, como ésta formulación es ILP igual que el primero modelamiento, sólo sería la permutación de todos
+los vehículos que se necesitan,  particionados por las clases de vehículos que se producirán. Obviamente posicionándonos en el peor de los casos
+donde tenemos que recorrer todo el espacio de búsqueda.
+
+$$E.B\ =\ \frac{nc!}{\prod\limits_{i = 0}^{cl}\alpha_{n_i}}$$
+
+Por ejemplo, si tuvieramos $30$ vehículos a ensamblar, $4$ clases de autos y
+necesitamos $10$ autos de clase $1$, $5$ de clase $2$, $7$ de clase $3$ y $8$ de clase 4.
+
+$$E.B\ =\ \frac{30!}{10\cdot 5\cdot 7\cdot 8}\ =\ 9.473316\times 10^{28}$$
+
+

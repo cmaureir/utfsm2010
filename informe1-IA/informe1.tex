@@ -1,0 +1,64 @@
+\documentclass[letter, 10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[dvips]{graphicx}
+\usepackage{url}
+\usepackage[top=3cm,bottom=3cm,left=3.5cm,right=3.5cm,footskip=1.5cm,headheight=1.5cm,headsep=.5cm,textheight=3cm]{geometry}
+
+
+\begin{document}
+\bibliographystyle{plain}
+\pagestyle{empty}
+
+\title{Inteligencia Artificial \\ \begin{Large}Estado del Arte: ``Car Sequencing Problem''\end{Large}}
+\author{Cristián D. Maureira Fredes.}
+\date{\today}
+\maketitle
+
+
+%--------------------No borrar esta sección--------------------------------%
+\section*{Evaluación}
+
+\begin{tabular}{ll}
+Resumen (5\%): & \underline{\hspace{2cm}} \\
+Introducción (5\%):  & \underline{\hspace{2cm}} \\
+Definición del Problema (10\%):  & \underline{\hspace{2cm}} \\
+Estado del Arte (35\%):  & \underline{\hspace{2cm}} \\
+Modelo Matemático (20\%): &  \underline{\hspace{2cm}}\\
+Conclusiones (20\%): &  \underline{\hspace{2cm}}\\
+Bibliografía (5\%): & \underline{\hspace{2cm}}\\
+ &  \\
+\textbf{Nota Final (100)}:   & \underline{\hspace{2cm}}
+\end{tabular}
+%---------------------------------------------------------------------------%
+
+\begin{abstract}
+\input{src/abstract}
+\end{abstract}
+
+\section{Introducción}
+\label{sec:introduccion}
+\input{src/introduccion}
+
+\section{Definición del Problema}
+\label{sec:definicion}
+\input{src/definicionProblema}
+
+\section{Estado del Arte}
+\label{sec:estado}
+\input{src/estadoArte}
+
+\section{Modelo Matemático}
+\label{sec:modelo}
+\input{src/modelo}
+
+\section{Conclusiones}
+\label{sec:conclusiones}
+\input{src/conclusiones}
+
+\section{Bibliografía}
+\bibliography{informe1}
+
+\end{document} 
