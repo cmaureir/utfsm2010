@@ -1,0 +1,77 @@
+\documentclass[letter, 10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[dvips]{graphicx}
+\usepackage{url}
+\usepackage[top=1cm,bottom=1.5cm,left=2cm,right=2cm,footskip=1.5cm,headheight=1.5cm,headsep=.5cm,textheight=3cm]{geometry}
+\usepackage{fancyhdr}
+
+%\pagestyle{fancyplain}
+%\lhead{Departamento de Informática}
+%\rhead{Universidad Técnica Federico Santa María}
+%\makeatletter
+
+\begin{document}
+\title{\small{Universidad Técnica Federico Santa María\\Departamento de Informática}\\ \vspace{0.5cm}\huge{Diseño de Interfaces Usuarias}\\\Large{\emph{``Escenarios''}}}
+
+\author{
+\begin{tabular}{cc}
+	\begin{tabular}{c}
+		Cristián Maureira Fredes\\
+		\url{cmaureir@inf.utfsm.cl}\\
+		(Alumno)
+	\end{tabular}
+	&
+	\begin{tabular}{c}
+		Lioubov Dombrovskaia\\
+		\url{lioubov.dombrovskaia@usm.cl}\\
+		(Profesora)
+	\end{tabular}
+\end{tabular}}
+\date{\today}
+\maketitle
+
+\section{Tarea}
+Tomando en cuenta la tarea pasada, que constaba en \emph{reservar una cita} en la página~\url{http://www.agendy.com},
+es necesario ahora realizar un escenario de cómo \textbf{deber\'ia} ser el procedimiento para reservar una cita con un consultor.
+
+\subsection{Escenario}
+\begin{enumerate}
+   \item El usuario entra al sitio del consultor \url{http://www.agendy.com/consultor}.
+   \item Una vez la página esté cargada completamente se presiona el botón \emph{reservar}.
+   \item El sistema presenta al usuario un mensaje que dice \emph{``para reservar una cita con el consultor,
+	se debe estar autentificado''}, presentando dos opciones, \emph{Log In} y \emph{Registrar}.
+   \item El usuario \textbf{no} posee una cuenta. (Registrar)
+   \begin{enumerate}
+	\item El sistema despliega una pantalla pidiendo los siguiente datos:
+		\emph{Nombres, Apellidos, Email, Telefono}. El usuario los ingresa mediante el teclado.
+	\item El usuario presiona el botón de \emph{Crear cuenta} a lo que el sistema despliega una nueva pantalla
+		advirtiendo al usuario que se ha enviado un correo electrónico a su \emph{Email} para confirmar
+		la nueva cuenta creada.
+	\item El usuario al leer el correo electrónico, presiona el link que viene adjunto y confirma así su cuenta.
+	\item El sistema autentica al usuario.
+	\item El usuario vuelve a la página del consultor y presiona el botón de reservar. (Continuar con el paso \emph{5.d})
+   \end{enumerate}
+   \item El usuario posee una cuenta. (Log In)
+   \begin{enumerate}
+	\item El usuario selecciona \emph{Log In}.
+	\item El sistema solicita al usuario ingresar su \emph{email} y \emph{contraseña}, el usuario ingresa
+		dichos datos mediante el teclado.
+	\item El sistema autentica al usuario.
+	\item El sistema despliega una lista de los servicios del presente \emph{consultor}, el usuario selecciona
+		el servicio que necesita. 
+	\item El sistema ofrece un calendario para que el usuario seleccione la \emph{fecha} que más le acomode. El usuario
+		selecciona la \emph{fecha} en la que tiene disponibilidad.
+	\item El sistema despliega una lista con los \emph{horarios} disponibles para el día previamente seleccionado. El
+		usuario selecciona la \emph{hora} que le acomoda o puede \emph{volver atrás} si ninguna hora le sirve.
+	\item Al seleccionar la \emph{hora}, el sistema despliega una pantalla advirtiendo al usuario que está reservando
+		una cita con la \emph{fecha} y \emph{hora} seleccionadas anteriormente, para que el usuario pueda \emph{confirmar} la información.
+		El usuario presiona el botón de \emph{confirmar}.
+	\item El sistema despliega una nueva pantalla informando al usuario que se ha realizado la reservación para la cita
+		exitosamente.
+   \end{enumerate}
+\end{enumerate}
+
+\end{document} 
