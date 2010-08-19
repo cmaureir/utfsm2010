@@ -1,0 +1,13 @@
+Tarea 1 SO
+Cristian Maureira Fredes - 2673030-9
+-------------------------------------
+
+El codigo es bien simple y super entendible, pero de todas formas aca vamos...
+
+Existen dos instancias, si hay argumentos que se le entreguen al programa o si no se le entreguen argumentos
+la dinamica de ambas situaciones es similar, con la diferencia que cuando hay argumentos, hacemos un for.
+
+en los dos casos se llama a la funcion que realiza la tarea "setPermisos", este funcion recive un directorio 
+para poder listar sus archivos, con un simple while, vamos leyendo los archivos, y sabiendo su estado, con diferentes
+llamadas a sitemas, podemos saber el tipo de archivo(directorio, link simbolico, archivo regular, etc...) y sus permisos
+para el owner del archivo, el grupo y el resto de los usuarios de la maquina.
