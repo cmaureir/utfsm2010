@@ -1,0 +1,33 @@
+Tarea 2 - SO - 2008
+Cristian Maureira
+2673030-9
+-------------------
+
+(1) : jugoso_principal
+(2) : jugoso_curso
+
+
+El programa (1) crea dos colas de mensajes para poder tener las deviaciones y las medias
+por separado, luego ejecuta el programa (2) por cada archivo que se le entregue como
+argumento.
+El programa (2) hace los calculos para el archivo que se le entrega y guarda los resultados
+en las colas.
+El programa (1) recorre las colas de mensajes y puede hacer el ultimo calculo, la media de las
+medias y la desviacion de las desviaciones.
+Finalmente el programa (1) se encarga de destruir ambas colas de mensajes.
+
+
+
+Consideraciones
+---------------
+si al programa se le entrega como argumento un archivo de notas que este en otro lugar, el archivo .res
+lo creara en el lugar donde esta el archivo que se entrega como parametro, ej:
+
+[user@localhost~/tarea2]./jugoso_principal ../n1.txt
+prom: XXX
+ds: YYY
+[user@localhost~/tarea2]ls
+jugoso_curso.c jugoso_principal.c Makefile jugoso_curso jugoso_principal
+[user@localhost~/tarea2]cd ..
+[user@localhost~/]ls
+n1.txt n1.txt.res
