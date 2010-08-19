@@ -1,0 +1,48 @@
+\frame
+{
+\frametitle{Sistema Utilizado}
+\begin{block}{SA}
+\begin{itemize}
+	\item Procesador: Intel(R) Core(TM)2 Duo CPU 2.66 [GHz]
+	\item RAM: 2GB
+	\item SO: Ubuntu 10.04
+\end{itemize}
+\end{block}
+
+\begin{block}{AE+SA}
+\begin{itemize}
+	\item Procesador: Intel(R) Core(TM)2 Duo CPU 2.66 [GHz]
+	\item RAM: 2GB
+	\item SO: Arch Linux i686
+\end{itemize}
+\end{block}
+}
+
+
+
+\frame
+{
+\frametitle{Contribuciones}
+\framesubtitle{Simulated Annealing}
+\begin{itemize}
+	\item Cambio en el {\bf Recalentamiento} (no es total).
+	\item Generación de solución inicial completamente {\bf aleatoria}.
+	\item Término inmediato de la {\bf exploración} al ser rechazada la solución generada.
+	\item Cuando la solución es rechazada, se {\bf reduce} la temperatura, y no antes.
+\end{itemize}
+}
+\frame
+{
+\frametitle{Contribuciones}
+\framesubtitle{Algoritmo Evolutivo + Simulated Annealing}
+\begin{itemize}
+	\item Satisfacción de Restricciones {\bf Duras}.
+	\item Parámetros:
+	 \begin{itemize}
+	 	\item Tamaño de la Población.
+		\item Cantidad de generaciones.
+	 \end{itemize}
+	\item Probabilidad de la {\bf Mutación}.
+	\item Movimiento utilizado en el {\bf Simulated Annealing}.
+\end{itemize}
+}
