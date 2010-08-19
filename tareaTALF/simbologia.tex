@@ -1,0 +1,136 @@
+\subsection{El Punto ``.''}
+
+El punto es interpretado por el motor de búsqueda como cualquier otro carácter
+excepto los caracteres que representan un salto de línea,
+a menos que se le especifique esto al motor de Expresiones Regulares.
+
+\emph{El punto se utiliza de la siguiente forma:}\\
+Si se le dice al motor de RegEx que busque ``g.t'' en la cadena ``el gato de piedra en la gótica puerta de getisboro goot''
+el motor de búsqueda encontrará ``gat'', ``gót'' y por último ``get''.
+
+Nótese que el motor de búsqueda no encuentra ``goot''; esto es porque el punto representa un solo carácter y únicamente uno.
+
+Aunque el punto es muy útil para encontrar caracteres que no conocemos,
+es necesario recordar que corresponde a cualquier carácter y que muchas veces esto no es lo que se requiere.
+
+Es muy diferente buscar cualquier carácter que buscar cualquier carácter alfanumérico
+o cualquier dígito o cualquier no-dígito o cualquier no-alfanumérico.
+
+\subsection{Los corchetes ``[ ]''}
+
+La función de los corchetes en el lenguaje de las expresiones regulares es representar
+``clases de caracteres'',
+o sea,
+agrupar caracteres en grupos o clases.
+
+Son útiles cuando es necesario buscar uno de un grupo de caracteres.
+
+Dentro de los corchetes es posible utilizar el guión ``-'' para especificar rangos de caracteres.
+Adicionalmente,
+los meta-caracteres pierden su significado y se convierten en literales cuando se encuentran dentro de los corchetes.
+
+Por ejemplo para buscar cualquier carácter que representa un dígito
+o un punto podemos utilizar la expresión regular ``$[\backslash d.]$''.
+
+Los corchetes nos permiten también encontrar palabras aún si están escritas de forma errónea,
+por ejemplo,
+la expresión regular ``expresi$[$oó$]$n'' permite encontrar en un texto la palabra ``expresión'' aunque se haya escrito con o sin tilde.
+
+\subsection{La barra ``$\mid$''}
+
+Sirve para indicar una de varias opciones.
+Por ejemplo,
+la expresión regular ``$a\mid e$'' encontrará cualquier ``$a$'' o ``$e$'' dentro del texto.
+La expresión regular ``este$\mid$oeste$\mid$norte$\mid$sur'' permitirá encontrar cualquiera de los nombres de los puntos cardinales.
+La barra se utiliza comúnmente en conjunto con otros caracteres especiales.
+
+\subsection{El signo peso ``\$''}
+
+Representa el final de la cadena de caracteres o el final de la línea,
+si se utiliza el modo multi-línea.
+No representa un carácter en especial sino una posición.
+Si se utiliza la expresión regular ``$\backslash .$\$'' el motor encontrará todos los lugares donde un punto finalice la línea,
+lo que es útil para avanzar entre párrafos.
+
+\subsection{El acento circunflejo ``$\wedge$''}
+
+Este carácter tiene una doble funcionalidad,
+que difiere cuando se utiliza individualmente y cuando se utiliza en conjunto con otros caracteres especiales.
+
+En primer lugar su funcionalidad como carácter individual:
+el carácter ``$\wedge$'' representa el inicio de la cadena
+(de la misma forma que el signo peso ``\$'' representa el final de la cadena).
+Por tanto,
+si se utiliza la expresión regular ``$\wedge$[a-z]''
+el motor encontrará todos los párrafos que den inicio con una letra minúscula.
+Cuando se utiliza en conjunto con los corchetes de la siguiente forma ``[$\wedge\backslash w$ ]'' permite encontrar cualquier carácter
+que NO se encuentre dentro del grupo indicado.
+La expresión indicada permite encontrar,
+por ejemplo,
+cualquier carácter que no sea alfanumérico o un espacio,
+es decir,
+busca todos los símbolos de puntuación y demás caracteres especiales.
+
+La utilización en conjunto de los caracteres especiales ``$\wedge$'' y ``\$'' permite realizar validaciones en forma sencilla.
+
+Por ejemplo ``$\wedge\backslash d$'' permite asegurar que la cadena a verificar representa un único dígito inicial.
+
+\subsection{Los paréntesis ``()''}
+
+De forma similar que los corchetes,
+los paréntesis sirven para agrupar caracteres,
+sin embargo existen varias diferencias fundamentales entre los grupos
+establecidos por medio de corchetes y los grupos establecidos por paréntesis:
+\begin{itemize}
+	\item Los caracteres especiales conservan su significado dentro de los paréntesis.
+	\item Los grupos establecidos con paréntesis establecen una ``etiqueta''
+	      o ``punto de referencia'' para el motor de búsqueda que puede ser utilizada
+	      posteriormente como se denota más adelante.
+	\item Utilizados en conjunto con la barra ``$\mid$'' permite hacer búsquedas opcionales.
+	      Por ejemplo la expresión regular ``al (este$\mid$oeste$\mid$norte$\mid$sur) de''
+	      permite buscar textos que den indicaciones por medio de puntos cardinales,
+	      mientras que la expresión regular ``este$\mid$oeste$\mid$norte$\mid$sur'' encontraría
+	      ``este'' en la palabra ``esteban'', no pudiendo cumplir con este propósito.
+	\item Utilizado en conjunto con otros caracteres especiales que se detallan posteriormente,
+	      ofrece funcionalidad adicional.
+\end{itemize}
+
+\subsection{El signo de interrogación ``?''}
+
+El signo de pregunta tiene varias funciones dentro del lenguaje de las expresiones regulares.
+La primera de ellas es especificar que una parte de la búsqueda es opcional.
+Por ejemplo,
+la expresión regular ``ob?scuridad'' permite encontrar tanto ``oscuridad'' como ``obscuridad''.
+En conjunto con los parentesis redondos permite especificar que un conjunto mayor de caracteres es opcional;
+por ejemplo ``Nov($\setminus$.$\mid$iembre$\mid$ember)?'' permite encontrar tanto ``Nov'' como ``Nov.'', ``Noviembre'' y ``November''.
+
+\subsection{Las llaves ``$\{\}$''}
+
+Comúnmente las llaves son caracteres literales cuando se utilizan por separado en una expresión regular.
+Para que adquieran su función de metacaracteres
+es necesario que encierren uno o varios números separados por coma
+y que estén colocados a la derecha de otra expresión regular de la siguiente forma:
+``$\backslash d\{2\}$'' Esta expresión le dice al motor de búsqueda que encuentre dos dígitos contiguos.
+Utilizando esta fórmula podríamos convertir el ejemplo ``$\wedge\backslash d\backslash d/\backslash d\backslash d/\backslash d\backslash d\backslash d\backslash d\$$'' que servía para validar un formato de fecha
+en ``$\wedge\backslash d\{2\}/\backslash d\{2\}/\backslash d\{4\}\$$'' para una mayor claridad en la lectura de la expresión.
+
+\subsection{El asterisco ``*''}
+
+El asterisco sirve para encontrar algo que se encuentra repetido 0 o más veces.
+
+Por ejemplo,
+utilizando la expresión ``$[a-zA-Z]\backslash d*$'' será posible encontrar tanto ``H'' como ``H1'', ``H01'', ``H100'' y ``H1000'',
+es decir, una letra seguida de un número indefinido de dígitos.
+
+Es necesario tener cuidado con el comportamiento del asterisco,
+ya que este por defecto
+trata de encontrar la mayor cantidad posible de caracteres que correspondan
+con el patrón que se busca.
+
+\subsection{El signo de suma ``+''}
+
+Se utiliza para encontrar una cadena que se encuentre repetida 1 o más veces.
+
+A diferencia del asterisco,
+la expresión ``$[a-zA-Z]\backslash d+$'' encontrará ``H1'' pero no encontrará ``H''.
+También es posible utilizar este metacaracter en conjunto con el signo de pregunta para limitar hasta donde se efectúa la repetición.

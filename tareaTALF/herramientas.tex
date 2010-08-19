@@ -1,0 +1,108 @@
+\subsection{GREP}
+
+\textbf{Definici\'on}\\
+
+\emph{grep} es una utilidad de la línea de comandos escrita originalmente para ser usada con el sistema operativo Unix.
+Usualmente,
+\emph{grep} toma una expresión regular de la línea de comandos,
+lee la entrada estándar o una lista de archivos,
+e imprime las líneas que contengan coincidencias para la expresión regular.
+
+Su nombre deriva de un comando en el editor de texto \emph{ed} que tiene la siguiente forma:
+\begin{verbatim}
+g/re/p
+global/regular expression/print
+\end{verbatim}
+\textbf{nota:} \emph{se recomienda al lector que posea un sistema operativo,
+basado en UNIX, obtener una documentación más robusta acerca de ``grep'',
+mediante el ``man'', que su sistema operativo posee (man grep)}
+
+\vspace{1cm}
+\textbf{Ejemplos}\\
+
+Acá tenemos algunos ejemplos que intentarán familiarizar al lector,
+con el \emph{útil}, o mas bien, indispensable comando de \emph{UNIX}
+como lo es \emph{grep}.
+
+\begin{enumerate}
+	\item \emph{grep 'hello' archivo}\\
+	Desplegar todas las líneas del archivo que poseen la palabra 'hello'
+	\item \emph{grep -v 'hello' archivo}
+	Desplegar todas las líneas del archivo que NO poseen la palabra 'hello'
+	\item \emph{grep -i 'hello.*world' menu.h main.c}\\
+	Éste comando listará todas las lineas en los archivos \emph{menu.h}  \emph{main.c} que contienen
+	el string \emph{hello} seguido por el string \emph{world};
+	ésto se debe porque \emph{$.*$} encuentra 0 o mas caracteres entre líneas.
+	(La opción ``-i'' provoca que grep ignore mayúsculas y minúsculas, ya las vea todas por igual)
+
+	\item \emph{grep -l 'main' *.c}\\
+	 Imprime o lista, sólo el nombre de los archivos
+	 (que son de la forma \emph{nombre.c} )en que se produce el ``matching'',
+	es decir que poseen la palabra ``main'', en su interior.
+	 
+	\item \emph{grep -r 'hello' /home/user}\\
+	Busca dentro de directorios, es decir, recursivamente,
+	la palabra ``hello'' dentro de los distintos archivos de cada directorio.
+
+	\item \emph{grep -w 'hello' *}\\
+	Buscar una palabra ``completa'', no una parte dentro de una cadena más grande
+
+	\item \emph{grep 'hello$\backslash >$' *}\\
+	Buscar las cadenas de caracteres que terminan con 'hello'.
+
+	\item \emph{grep -C 2 'hello' *}\\
+	Buscamos la palabra 'hello', pero al momento de desplegar dicha información por salida
+	estándar, mostramos 2 lineas de contexto, alrededor de la línea que afirma el \emph{match}
+
+	\item \emph{grep -L 'hello'}\\
+	Imprime o lista, los nombres de todos los archivos que no contienen una línea con la palabra 'hello'
+
+	\item \emph{grep -w -e '$\backslash(.\backslash)\backslash(.\backslash).\backslash2\backslash1$' file}\\
+	Buscamos un palíndromo de 4 caracteres (ej. radar, civic)
+
+\end{enumerate}
+
+Una característica fundamental de \emph{grep} y \emph{UNIX},
+es la capacidad de poder utilizar \emph{pipes} mediante comandos,
+lo cual nos permite ``mezclar'' distintas operaciones.
+
+Un ejemplo simple podría ser,
+desplegar todos archivos PDF en un directorio determinado:
+\begin{verbatim}
+[cmaureir@nexus~]$ ls | grep -i "\.pdf$" 
+\end{verbatim}
+
+Extrapolando ésta funcionalidad,
+nos daremos cuenta que la cantidad de aplicaciones \emph{útiles}
+para \emph{grep} en \emph{UNIX} son casi infinitas.
+
+\subsection{Otros sabores}
+Además las Expresiones Regulares,
+puede ser utilizadas con otros lenguajes u aplicaciones en UNIX,
+como lo son:
+\begin{itemize}
+	\item AWK
+	\item SED
+	\item Bash (que utiliza grep, sed, awk, etc...)
+	\item etc
+\end{itemize}
+
+\textbf{Ejemplos breves:}\\
+\begin{itemize}
+	\item \emph{AWK:}\\
+	Busqueda:
+	\begin{verbatim}
+	awk '/expresion/{ print }' archivo
+	\end{verbatim}
+	\item \emph{SED:}\\
+	Busqueda:
+	\begin{verbatim}
+	sed [opciones] "patrón/acción" archivo
+	\end{verbatim}
+	Sustituciones:
+	\begin{verbatim}
+	sed [opciones] "s/patrón1/patrón2/X" archivo
+	\end{verbatim}
+	(donde X puede ser g, reemplazar en todo; n, reemplazar n veces)
+\end{itemize}
+
