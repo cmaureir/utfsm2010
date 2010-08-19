@@ -1,0 +1,22 @@
+La tarea consiste en crear un programa en Java que pueda atender las solicitudes
+de carne de los clientes en forma consistente, teniendo las siguientes
+consideraciones:
+	-Hay 4 vendedores.
+	-Hay 5 tipos de carne:
+		1. Choclillo.
+		2. Huachalomo.
+		3. Plateada.
+		4. Sobrecostilla.
+		5. Tapapecho.
+	-Cuando llega un cliente, este toma un numero y espera a ser llamado.
+	-Al abrir la carnicera1, cada vendedor espera a que llegue un cliente.
+	-Al llegar un cliente, uno de los vendedores que estaba esperando atiende
+	 al cliente que llego, ocupando la carne que necesita.
+	-Un tipo de carne puede ser ocupado por un solo vendedor a la vez. En caso de que dos o mas vendedores soliciten la misma
+	 carne a la vez, deben esperar a que se desocupe el vendedor que actualmente la este ocupando
+	-Una vez que un vendedor termine de atender a un cliente, revisa si quedan clientes que esten a la espera de ser llamados,
+	 atendiendo al cliente que corresponde al numero que debe ser atendido. Si no hay clientes a la espera, se queda esperando
+ 	 a que llegue un cliente.
+Para la llegada de clientes, se utilizara un archivo de texto, por parametro
+	 
+

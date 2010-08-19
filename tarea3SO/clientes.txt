@@ -1,0 +1,8 @@
+100 500 Choclillo
+200 1000 Huachalomo
+300 250 Choclillo
+450 200 Huachalomo
+550 400 Plateada
+551 700 Sobrecostilla
+1000 300 Tapapecho
+1005 300 Sobrecostilla
