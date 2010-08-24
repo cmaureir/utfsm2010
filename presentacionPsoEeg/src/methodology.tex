@@ -39,7 +39,7 @@
 	\item An algorithm using \emph{Principle Component Analysis (PCA)} is used to extract the \textbf{features} from EEG.
 	\item Other methods:
 	\begin{itemize}
-		\item Fixed autoregressive and Adaptive autorefresive models.
+		\item Fixed autoregressive and Adaptive autoregresive models.
 		\item Time-delay embedding (K-means clustering).
 		\item Common clustering.
 		\item Common spatial patterns and PCA.
@@ -56,7 +56,6 @@
 \framesubtitle{Feature Extraction}
 \begin{itemize}
 	\item The PCA transformation (6 channels) produce a 6x6 \textbf{matrix}.
-%	\item On performing the PCA transform, the windows are dimensionally reduced from 6x125 = 750 down to 6 features per window matrix per task.
 	\item The feature \textbf{extraction algorithm} uses the following procedure.
 	\begin{itemize}
 		\item S = sample data for 10 sec.
@@ -133,7 +132,7 @@
 	\item The algorithm
 	\begin{itemize}
 		\item \textbf{1:} Init swarm $P(t)$, each position $X_{i}(t)$ of each particle $P_{i} \in P(t)$ (random)
-		\item \textbf{2:} Evaluate performance $F(X_{i}(t))$ of each particle (using current position $X_{i}(t)$
+		\item \textbf{2:} Evaluate performance $F(X_{i}(t))$ of each particle (using current position $X_{i}(t)$)
 		\item \textbf{3:} Compare performance of each individual to its best performance $if\ F(X_{i}(t)) < p_{id}\ then$
 		\begin{itemize}
 			\item $p_{id} = F(X_{i}(t))$
