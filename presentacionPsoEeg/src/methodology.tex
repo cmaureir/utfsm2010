@@ -1,0 +1,198 @@
+\section{Methodology}
+\frame
+{
+\frametitle{Methodology}
+\begin{itemize}
+	\item The EEG \textbf{electrodes} were connected thorugh amplifiers band passing \textbf{analog filters} were set a 0.1-100MHz
+	\item The amplified EEF traces were \textbf{sampled and stored} at 250 samples per second.
+	\item The data was obtained from \textbf{two} subjects.
+	\item Each subject (between 21 and 48 years old) execute 5 \textbf{mental tasks} (10 sec).
+	\begin{itemize}
+		\item passive state, with music and light
+	\end{itemize}
+	\item The EEG signals was \textbf{obtained} using 6 electrodes.
+	\item Sampling \textbf{frequency} was 250Hz
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Methodology}
+\framesubtitle{Tasks}
+\begin{enumerate}
+	\item Baseline Measurement (relax state)
+	\item Complex Problem Solving (difficult multiplication)
+	\item Geometric Figure Rotation (3D block rotation)
+	\item Mental Letter Composing (to a friend)
+	\item Visual Counting (numbers sequentially)
+\end{enumerate}
+}
+
+\subsection{Feature Extraction}
+\frame
+{
+\frametitle{Methodology}
+\framesubtitle{Feature Extraction}
+\begin{itemize}
+	\item Each subject execute a \textbf{pair of tasks}.
+	\item A neural network is \textbf{trained to classify} the data.
+	\item An algorithm using \emph{Principle Component Analysis (PCA)} is used to extract the \textbf{features} from EEG.
+	\item Other methods:
+	\begin{itemize}
+		\item Fixed autoregressive and Adaptive autorefresive models.
+		\item Time-delay embedding (K-means clustering).
+		\item Common clustering.
+		\item Common spatial patterns and PCA.
+		\item Wavelets.
+	\end{itemize}
+	\item The PCA methods was used to \textbf{reduce} the data to the $n$ first \emph{eigenvalues}, or reduce the \textbf{channel} numbers.
+	\item \textbf{But} losing essential data is \emph{inevitable}.
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Methodology}
+\framesubtitle{Feature Extraction}
+\begin{itemize}
+	\item The PCA transformation (6 channels) produce a 6x6 \textbf{matrix}.
+%	\item On performing the PCA transform, the windows are dimensionally reduced from 6x125 = 750 down to 6 features per window matrix per task.
+	\item The feature \textbf{extraction algorithm} uses the following procedure.
+	\begin{itemize}
+		\item S = sample data for 10 sec.
+		\item Apply band pass filtering 0.5Hz to 40Hz
+		\item S is partitioned into 0.5 seconds windows.
+		\item Do PCA on each window
+		\item Repeat 1 to 4 for each trial
+	\end{itemize}
+	\item 120 \emph{features are extracted} for each subject per \textbf{task pair} combination per \textbf{trial}.
+	\item The features are extracted for 10 such \textbf{trials} for each \textbf{task} and are used to train and the \emph{neural network}.
+\end{itemize}
+}
+
+\subsection{Particle Swarm Optimization Neural Network}
+\frame
+{
+\frametitle{Methodology}
+\framesubtitle{Particle Swarm Optimization Neural Network}
+\begin{itemize}
+	\item A \emph{Feed Forward Neural Network (FFNN)} multilayer was trained.
+	\item PSO is a population based search algorithm. (social behavior)
+	\item PSO require only simple mathematical operations. (slow cost)
+	\begin{itemize}
+		\item Neighborhood types: star, ring, wheels. 
+	\end{itemize}
+\end{itemize}
+}
+
+\subsection{The Particle Swarm Optimization Algorithm}
+\frame
+{
+\frametitle{Methodology}
+\framesubtitle{The Particle Swarm Optimization Algorithm}
+\begin{itemize}
+	\item Swarm: $n$ particles, representing a potential solution.
+	\item The particles are in the hyperspace, where the position is changed (experience).
+	\item i-Particle in a D-dimensional space:\\
+	$X_{i} = (X_{i1}, X_{i2}, \ldots, X_{iD})$
+	\item Best previous position (of each particle)\\
+	$P_{i} = (P_{i1}, P_{i2}, \ldots, P_{iD})$
+	\item Velocity\\
+	$V_{i} = (V_{i1}, V_{i2}, \ldots, V_{iD})$
+	\item Best particle fitness position (global best)\\
+	$P_{g} = (P_{g1}, P_{g2}, \ldots, P_{gD})$
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Methodology}
+\framesubtitle{The Particle Swarm Optimization Algorithm}
+\begin{itemize}
+	\item Each iteration $\rightarrow$ change the \textbf{velocity} (best solution and best neighbor)
+	\item Each iteration $\rightarrow$ change the \textbf{position} by:
+	\begin{itemize}
+		\item \emph{Cognition component:} position of the velocity adjustment made by the \emph{best position}
+		\item \emph{Social component:} position of the velocity adjustment made by the \emph{global best}
+	\end{itemize}
+	\item The updated PSO equation:
+	\begin{eqnarray*}
+	v_{id}(t+1) &=& wv_{id}(t)\\
+			    & & +\eta_{1} \cdot rand() \cdot  (p_{id}(t) - x_{id}(t))\\
+				& & +\eta_{2} \cdot rand() \cdot (p_{gd}(t) - x_{id}(t))\\
+	x_{id}(t+1) &=& x_{id}(t) + v_{id}(t)
+	\end{eqnarray*}
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Methodology}
+\framesubtitle{The Particle Swarm Optimization Algorithm}
+\begin{itemize}
+	\item The algorithm
+	\begin{itemize}
+		\item \textbf{1:} Init swarm $P(t)$, each position $X_{i}(t)$ of each particle $P_{i} \in P(t)$ (random)
+		\item \textbf{2:} Evaluate performance $F(X_{i}(t))$ of each particle (using current position $X_{i}(t)$
+		\item \textbf{3:} Compare performance of each individual to its best performance $if\ F(X_{i}(t)) < p_{id}\ then$
+		\begin{itemize}
+			\item $p_{id} = F(X_{i}(t))$
+			\item $P_{i} = X_{i}(t)$
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Methodology}
+\framesubtitle{The Particle Swarm Optimization Algorithm}
+	\begin{itemize}
+		\item \textbf{4:} Compare performance of each particle to the global best $if\ F(X_{i}(t)) < p_{gd}\ then$
+		\begin{itemize}
+			\item $p_{gd} = F(X_{i}(t))$
+			\item $P_{g} = X_{i}(t)$
+		\end{itemize}
+		\item \textbf{5:} Change velocity vector:
+			\begin{eqnarray*}
+			v_{id}(t+1) &=& wv_{id}(t)\\
+					    & & +\eta_{1} \cdot rand() \cdot  (p_{id}(t) - x_{id}(t))\\
+						& & +\eta_{2} \cdot rand() \cdot (p_{gd}(t) - x_{id}(t))
+			\end{eqnarray*}
+		\item \textbf{6:}Move each particle:
+		\begin{itemize}
+			\item $x_{id}(t+1) = x_{id}(t) + v_{id}(t)$
+			\item $t = t + 1$
+		\end{itemize}
+		\item \textbf{7:} Go to step 2 and repeat until convergence.
+	\end{itemize}
+}
+
+\subsection{PSO FFNN Training}
+\frame
+{
+\frametitle{Methodology}
+\framesubtitle{PSO FFNN Training}
+\begin{itemize}
+	\item A FFNN was \textbf{training} using PSO to clasify the 5 mental tasks (from the EEG)
+	\item Considered a neural network feed with 120 input neurons and 1 output.
+	\item 5 Hidden neurons (experimentally choosen).
+	\item Thus for a $120-5-1$ NN architecture, requires an \textbf{optimization} of 611 parameters ($121\times 5 + 6\times 1$)
+	\item The problem is approached by using a particle swarm of 611 dimensional spaces.
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Methodology}
+\framesubtitle{PSO FFNN Training}
+\begin{itemize}
+	\item Mean square \textbf{error} is used as a stopping criterion (below $0.05$).
+	\item Maxmimum \textbf{iteration} limit of $10,000$
+	\item 400 data samples are used.
+	\item The NN is \textbf{trained}  with 50\% data set for all 10 combinations pairs.
+	\item Selection of the training data is chosen \textbf{randomly}.
+	\item The NN is \textbf{trained} with 10 data samples for each tasks pairs and \textbf{tested} with 20 data samples per task pair.
+\end{itemize}
+}
+
