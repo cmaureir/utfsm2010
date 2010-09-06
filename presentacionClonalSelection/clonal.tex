@@ -1,0 +1,35 @@
+\documentclass{beamer}
+\usepackage[spanish,activeacute]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{verbatim}
+
+\definecolor{gray2}{rgb}{100,100,100}
+\definecolor{red}{rgb}{255,0,0}
+\usetheme[pageofpages=of,% String used between the current page and the
+                         % total page count.
+          alternativetitlepage=true,% Use the fancy title page.
+          titlepagelogo=img/walle,% Logo for the first page.
+          watermark=,% Watermark used in every page.
+          watermarkheight=50px,% Height of the watermark.
+          watermarkheightmult=4,% The watermark image is 4 times bigger
+                                % than watermarkheight.
+          ]{Torino}
+
+\usecolortheme{nouvelle}
+
+\author{\large Cristián Maureira Fredes}
+\title{\huge Artificial Immune Systems (AIS)}
+\subtitle{\Large \textit{``Clonal Selection based Mobile Robot Path Planning''}}
+\institute{\textbf{Taller de modelos y métodos cuantitativos}\\ Departamento de Informática\\ (UTFSM)}
+\date{\today}
+
+\begin{document}
+\include{src/0-cover}
+\include{src/1-introduction}
+\include{src/2-principleAndAlgorithm}
+\include{src/3-pathPlanningCSA}
+\include{src/4-simulation}
+\include{src/5-conclusions}
+\end{document}
