@@ -1,5 +1,37 @@
-\section{Clonal Selecion Principle and Algorithm}
+\section{Clonal Selection Principle and Algorithm}
 \frame
 {
 \frametitle{Clonal Selection Principle and Algorithm}
+\framesubtitle{A. Clonal Selection Principle}
+\begin{itemize}
+	\item Theory proposed by Burnet in 1978.
+	\item Main features
+	\begin{enumerate}
+		\item The new cells are copies of their parents (clone) subjected to a mutation mechanism with high rates (somatic hyper-mutation).
+		\item Elimination of newly differentiated lymphocytes.
+		\item Proliferation and differentiation on contact of mature cells with antigens.
+		\item The persistence of forbidden clones, resistant to early elimination by self-antigens, as the basis of autoimmune diseases.
+	\end{enumerate}
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Clonal Selection Principle and Algorithm}
+\framesubtitle{B. Clonal Selection Algorithm}
+\begin{itemize}
+	\item[1.] Generate a set (P) of candidate solutions, composed of memory cells (M) added to the remaining (Pr) population (P = Pr + M )
+	\item[2.] Determine the $n$ best individuals (Pn) of the population (P), based on an affinity measure.
+	\item[3.] Clone (reproduce) these $n$ best individuals of the population, giving rise to a temporary population of clones (C).
+\end{itemize}
+}
+\frame
+{
+\frametitle{Clonal Selection Principle and Algorithm}
+\framesubtitle{B. Clonal Selection Algorithm}
+\begin{itemize}
+	\item[4.] Submit the population of clones to a hyper-mutation scheme (proportional to the affinity of the antibody). A maturated antibody population is generated (C*).
+	\item[5.] Re-select the improved individuals from C* to compose the memory set. (Some replaces from C* to P, because the improvement)
+	\item[6.] Replace $d$ low affinity antibodies of the population, maintaining its diversity.
+\end{itemize}
 }
