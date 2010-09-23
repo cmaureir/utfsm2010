@@ -1,0 +1,34 @@
+\documentclass{beamer}
+\usepackage[spanish,activeacute]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{verbatim}
+
+\definecolor{gray2}{rgb}{100,100,100}
+\definecolor{red}{rgb}{255,0,0}
+\usetheme[pageofpages=of,% String used between the current page and the
+                         % total page count.
+          alternativetitlepage=true,% Use the fancy title page.
+          titlepagelogo=img/1,% Logo for the first page.
+          watermark=img/2,% Watermark used in every page.
+          watermarkheight=150px,% Height of the watermark.
+          watermarkheightmult=4,% The watermark image is 4 times bigger
+                                % than watermarkheight.
+          ]{Torino}
+
+\usecolortheme{nouvelle}
+
+\author{\large Cristián D. Maureira Fredes}
+\title{\huge Car Sequencing Problem}
+\subtitle{\Large \textit{``Una aproximación utilizando Selección Clonal''}}
+\institute{\textbf{Taller de Métodos y Modelos Cuantitativos}\\ Departamento de Informática\\ (UTFSM)}
+\date{\today}
+
+\begin{document}
+
+\include{src/cover}
+\include{src/definicion}
+\include{src/estadoArte}
+\include{src/trabajoFuturo}
+\end{document}
