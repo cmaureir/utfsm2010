@@ -1,0 +1,335 @@
+%Debe contener: técnicas usadas en su resolución (en general las que han sido mas
+%efectivas a la fecha), mejores resultados, estrategias mas usadas en su resolución,
+%representacion, movimientos, penalización, etc..
+
+
+El \emph{Car Sequencing Problem}~\cite{parello} es presentado por primera vez en la \emph{Journal of Automated Reasoning},
+del año 1986 en \emph{EEUU}, por \emph{B.D Parello}, \emph{W.C. Kabat} y \emph{L. Wos}, siendo una variación
+del problema ya conocido en el área de la Inteligencia Artificial, como lo es el \emph{Job-Shop scheduling problem},
+pero usando otro tipo de razonamiento, el \emph{Razonamiento automatiza}, de ésta manera logran enfocar su trabajo
+en el problema que ocurre en las líneas de producción de automóviles.
+
+Desde la publicación del presente problema hasta los últimos años, han aparecido en distintas conferencias a lo largo
+del mundo, diferentes formas de atacar el problema, que nos llevan desde  ``programación lineal'', ``Evolutionary Approaches''
+y ``Local search'' con sus variantes.
+
+Las técnicas que han sido utilizadas hasta el momento, no han sido desarrolladas sólo por matemáticos, sino que por una amplia
+gama de investigadores, que van desde científicos del área de la producción, física, biología y gestión.
+
+No obstante, gracias a los avances que ha tenido el campo de la Inteligencia Artificial, han aparecido nuevas metodologías,
+que se relacionan con otras áreas como lo son la computación evolutiva, genética,  redes neuronales, neurofisiología;
+los cuales han realizado contribuciones importantes a los problemas que tienen que ver con la ``planificación'' (scheduling).
+Lo anteriormente señalado afirma el hecho que los problemas relacionados con la ``planificación'' abarcan muchas áreas en el mundo,
+y que los trabajos en dicha área no tienen que ver sólo con científicos computacionales.
+
+A continuación se describen algunos de los métodos más importantes que han sido propuestos desde el año
+en que el \emph{Car Sequencing Problem} fue dado a conocer en el mundo de la investigación científica.
+
+
+\subsection{Acercamientos heurísticos}
+Existen distintos acercamientos que se han propuesto, que tienen como objetivo principal
+encontrar una solución óptima lo más rápido posible.
+Los acercamientos descritos a continuación son \emph{búsqueda local (local search)},
+\emph{greedy approach}, \emph{Ant colony Optimization} y por último, \emph{Algoritmos genéticos}
+
+\subsubsection{Búsqueda Local (Local Search)}
+La \emph{Búsqueda Local} puede ser utilizada en distintos problemas que se formulan
+de una forma determinada para poder encontrar una solución que maximice un criterio alrededor de un número
+de soluciones candidatas
+
+Lo que hace la \emph{Búsqueda Local}, es moverse en su vecindario solución por solución en el espacio previamente establecido
+de las soluciones candidatas, también conocido como espacio de búsqueda, hasta que una solución considerada \emph{óptima}
+es encontrada ó se termina el plazo de tiempo para encontrar la solución, por otra parte, 
+el vecindario va a estar definido netamente con respecto al modelamiento del problema.
+
+Actualmente existen variadas aproximaciones propuestas sobre \emph{Búsqueda Local},
+para resolver el presente problema.
+La diferencia aquí, es que la mayoría de las propuestas son acercamientos más
+genéricos, es decir, se han utilizado varios problemas para aplicar la propuesta
+planteada y entre ellos se encuentra el problema en cuestión, como por ejemplo~\cite{DTWZ94}
+que nos plantea una mejora en el sentido de una \emph{Estrategia de Búsqueda}, considerando
+el conflicto mínimo con respecto a la heurística \emph{hill-climbing}~\footnote{
+Técnica de optimización matemática, puede ser usada para resolver problemas con muchas soluciones.
+Consiste en escoger una solución aleatoria (potencialmente no óptima) y comienza a
+realizar pequeños cambios a dicha solución en cada iteración, en cada momento se va mejorando un poco más.
+}
+y ha propuesto un escape con respecto a los mínimos locales incrementando el peso de las
+restricciones que no se cumplen.
+
+Por otra parte existen otras propuestas que se han enfocado netamente en resolver éste problema,
+como es el caso de ~\cite{PG02}, que considera los algoritmos de \emph{Búsqueda local}
+que se basan en una representación de una permutación y la evaluación de las restricciones que no se
+cumplen utilizando funciones de penalización.
+
+De la misma forma tenemos el caso de lo que plantea Gottlieb et al. en \cite{GPS03}, quien se refiere
+a una parte en especial de nuestro problema, la construcción de la secuencia inicial, por lo tanto
+sabemos que en la mayoría de los casos, la secuencia inicial de vehículos, de donde parte la
+\emph{Búsqueda Local}, es una permutación aleatoria de un conjunto de vehículos para comenzar
+a ensamblarlos, sin embargo la propuesta nos señala el construir ésta secuencia inicial en una forma
+\emph{Voraz (Greedy)}~\footnote{
+se refiere a a realizar una elección del siguiente elemento considerando una función heurística de optimización,
+con la esperanza de llegar a una solución general óptima.
+}
+, lo que queda claramente demostrado en dicha publicación,
+debido a las grandes mejoras en el proceso de solución.
+
+\subsubsection{Acercamiento Voraz (Greedy approaches)}
+Teniendo en consideración el \emph{Car Sequencing Problem}, podemos construir una secuencia
+en una forma \emph{Voraz (Greedy)}, eligiendo el siguiente vehículo de la secuencia
+considerando una función heurística de optimización.
+El primero acercamiento utilizando la forma \emph{Voraz (Greedy)} fue propuesto por
+Hindi and Ploszaski en 1994~\cite{HP94}. Volviendo al procedimiento anteriormente descrito, la idea
+central que nos plantea Gottlieb et al. en \cite{GPS03}. Claramente, ahora la elección que podemos
+realizar en cada paso de nuestro algoritmo, debe ser la más óptima, en otras palabras,
+elegir el vehículo que posea el menor número de restricciones no satisfechas.
+
+Matemáticamente hablando, podríamos decir lo siguiente:
+Dado una secuencia parcial $\pi$, el siguiente vehículo es seleccionado entre los vehículos $c_j$
+que minimice la siguiente función,
+$$newViolations(\pi, c_j) = \sum_{o_{i}\in O}r(c_j,o_i)\cdot violation(lastCars(\pi\cdot <c_j>,q(o_i)),o_i)$$
+donde $o_j$ es una opción del vehículo $c_j$ y donde $lastCars(\pi',k)$ es la secuencia compuesta de los
+últimos $k$ vehículos de $\pi'$, si $|\pi'| \geq k$, en otro caso $lastCars(\pi' , k) = \pi')$.
+
+El problema acá, es que por lo general, el conjunto de vehículos seleccionados que minimizan la función
+$newViolations$, contiene más de un auto, por lo tanto acá viene otra decisión importante. ¿Cuál de esos
+autos elegimos?, por lo que Gottlieb et al.~\cite{GPS03} nos señala que es necesario utilizar otra técnica heurística para 
+romper dicha incertidumbre, de la misma forma propone 6 heurísticas distintas. La heurística que presente
+un mejor desempeño es llamada \emph{``dynamic sum of utilization rates''}, la cual consta en que en cada paso
+añadimos el vehículo que maximiza la suma de las tasas de uso de opciones necesarias, estas tasas de uso se actualizan
+dinámicamente cada vez que añadimos un nuevo auto al final de la secuencia.
+
+\subsubsection{Ant Colony Optimization (ACO)}
+El algoritmo \emph{Ant Colony Optimization (ACO)}, tal como es descrito en \cite{DS05},
+toma su inspiración en el comportamiento de ciertas especies de hormigas. La idea central
+es notar que las hormigas depositan en el suelo una feromona, con el objetivo de marcar
+un camino favorable para que los otros miembros de su colonia puedan seguirlo. Por lo tanto
+\emph{ACO} busca aplicar un mecanismo similar para resolver problemas de optimización.
+
+En otras palabras, \emph{ACO} es una forma de modelar cierto problema de tal forma
+que busquemos siempre el camino con mínimo costo en un grafo determinado, y por supuesto,
+utilizar \emph{hormigas artificiales} para buscar los caminos que más nos pueden favorecer.
+
+
+El primer algoritmo de \emph{ACO} fue propuesto por Christine Solnon~\cite{Sol00},
+y se trata de resolver un problema de satisfacción de restricciones de permutación~\footnote{
+El objetivo principal es poder encontrar la permutación de $n$ valores conocidos,
+para asignarlos a $n$ variables, bajo ciertas restricciones.
+},
+utilizando el concepto de \emph{hormigas artificiales}. Principalmente está diseñado
+para resolver un problema general de combinatoria.
+
+En enfoque que entrega el trabajo previamente señalado~\cite{Sol00} con respecto
+al \emph{Car Sequencing Problem} es el siguiente:
+Recordando nuestro problema principal, sabemos que consiste
+en realizar la óptima planificación de los vehículos en una línea de ensamblaje,
+donde tenemos $n$ vehículos para ser producir, que están agrupados en $k$ tipos
+de autos~\footnote{
+Cada conjunto de autos de un mismo tipo tienen las mismas opciones
+}, y sabemos también que cada opción $i$ está asociada con una restricción de capacidad
+representada por una tasa $p_i/q_i$, que especifica que para cualquier secuencia
+de $q_i$ autos consecutivos en le línea de ensamblaje, tenemos al menos $p_i$ vehículos
+que requieren dicha opción.
+Finalmente el objetivo será encontrar una permutación de $n$ vehículos que satisfacen
+todas las restricciones de capacidad, tomando en consideración que nuestra feromona
+se pondrá sobre las parejas de los vehículos consecutivos con el fin de aprender
+las sub-secuencias de vehículos más prometedoras (óptimas).
+
+No conforme con el desempeño mostrado en el trabajo anterior, Gottlieb et al.~\cite{GPS03}
+proponen un nuevo algoritmo que introduce tres nuevas mejoras:
+\begin{itemize}
+	\item Se utiliza una estrategia elitista, por lo que la feromona es usada para romper el lazo entre los mejores vehículos solamente.
+	\item Se integran mejoras del trabajo ~\cite{Stu}, para favorecer la exploración.
+	\item Se usan funciones heurísticas de tipo \emph{voraz (greedy)} para guiar las hormigas.
+\end{itemize}
+Con las mejoras anteriormente planteadas se logra obtener un resultado mucho más óptimo computacionalmente.
+
+\subsubsection{Algoritmos Genéticos (Genetic Algorithms)}
+Los \emph{Algoritmos Genéticos} son una técnica computacional que tienen como objetivo principal,
+el encontrar una solución exacta o aproximada en problemas de optimización y búsqueda.
+
+En el trabajo de Warwick y Tsang~\cite{WT95} se propone un algoritmo genético especialmente
+para resolver el \emph{Car Sequencing Problem} que se diferencia de los algoritmos genéticos
+tradicionales pues ingresa ciertas características especiales como el \emph{elitismo}~\footnote{
+proceso de seleccionar mejores individuos, seleccionándolos con el fin de obtener una mejor solución
+}, plantillas adaptativas de \emph{crossover}~\footnote{
+operador genético utilizado para variar la programación de uno o varios cromosomas, de una generación  a otra.
+}, \emph{hill-climbing}, entre otras.
+
+El acercamiento que nos ofrece éste mecanismo tiene su origen en una especie de inspiración
+de la evolución natural y trata de introducción computacionalmente los conceptos de \emph{cross over},
+\emph{mutación}, y tomar las secuencias de nuestros problemas, como una \emph{población}.
+
+Por lo tanto, el procedimiento que realiza es que por cada \emph{generación}, las secuencias
+que son seleccionadas se combinan gracias al operador \emph{cross over}, y se obtiene lo
+que se denomina \emph{descendencia} que puede que no satisfaga la restricción global,
+pero se va reparando en cada iteración y luego se le aplica \emph{hill-climbing} mediante
+una función de intercambio.
+
+Lamentablemente el procedimiento anteriormente descrito es bueno para resolver sólo,
+versiones no tan complejas del \emph{Car Sequencing Problem}.
+Debido a lo anterior Cheng et al. \cite{CLP+99} propone un algoritmo para resolver un
+problema práctico, es decir, más realista, con un grado mayor de complejidad.
+Cheng et al. \cite{CLP+99} proponen un operador llamado \emph{cross-switching},
+que genera una descendencia intercambiando los vehículos que aparecen de forma aleatoria
+en la primera secuencia del problema.
+
+\subsubsection{Movimientos}
+
+A continuación se explican brevemente algunos movimientos conocidos que definen el vecindario de 
+una solución, y que de la misma forma, es válido para cualquier acercamiento anteriormente
+mencionado.
+\begin{enumerate}
+	\item \emph{shift}: Puede realizarse con repecto a la izquierda o derecha, y avanzando una cantidad determinada de espacios,
+		es decir, Tomamos nuestra secuencia numérica, y la movemos para alguno de los dos lados. El hecho de que sea a la izquierda
+		o derecha y la cantidad de espacios que se mueve, se puede elegir de manera aleatoria.
+
+		\emph{e.g:} 1 0 1 0 0 1, aplicamos shift-right 2 veces y nos queda 0 1 1 0 1 0.
+	\item \emph{swap}: Este movimiento es muy utilizado, pues ha demostrado tener alta eficiencia al momento de buscar
+		nuevas soluciones, sin romper restricciones. Consiste en tomar dos elementos de nuestra secuencia, que pueden ser escogido
+		de forma aleatoria, e intercambiarlos
+		de lugar.
+
+		\emph{e.g:} 1 0 1 0 0 1, aplicamos swap(1,5) y nos queda 1 1 1 0 0 0.
+	\item \emph{bit-flip}: Éste movimiento consiste en cambiar el valor de un \emph{bit} de nuestra secuencia numérica.
+			Sólo es válida para representaciones binarias (0 o 1). Para escoger que elemento cambiamos, lo podemos hacer de una forma
+			aleatoria.
+		
+		\emph{e.g:} 1 0 1 0 0 1, aplicamios bit-flip(3) y nos queda 1 0 1 1 0 1.
+	\item \emph{Cruzamiento en un punto (Single Point Crossover)}: La presente técnica consiste en tener dos individuos,
+		elegir un punto al azar dentro de la secuencia y cruzarlos, intercambiando su material. También existen otras variaciones
+		de éste movimiento, donde se elige más de un punto para intercambiar el material de los padres.
+
+		\emph{e.g:} 1 0 1 1 y 1 1 0 1, elegimos el punto 2 y nos quedan dos hijos de la forma, 1 0 0 1 y 1 1 1 1.
+				
+	\item \emph{Técnica incompleta}: Es posible utilizar una misma técnica incompleta como \emph{movimiento} para poder generar
+		el vecindario determinado, lo cual en la mayoría de las veces, produce secuencias mucho mejor, pero toma mucho más tiempo
+		que los movimientos descritos anteriormente.
+\end{enumerate}
+
+\subsection{Acercamientos exactos}
+\subsubsection{Integer Lineal Programming}
+En el trabajo de Grevel et al.~\cite{4} se propone un acercamiento utilizando
+\emph{Programación Lineal Entera}, ILP por sus siglas en inglés,  para una variante
+del problema famoso de \emph{Car sequencing problem} pero del concurso ROADEF,
+donde ahí se establece condiciones extras relacionadas a la pintura de los vehículos,
+que éste modelamiento no posee.
+
+Grevel et al.~\cite{4} también nos da a entender que se puede resolver el problema
+de una manera común, con ésto nos referimos a usando un simple \emph{benchmark}
+con aproximadamente unos $200$ vehículos y $5$ componentes, probando así
+lo óptimo que es el método, con un tiempo de respuesta razonable.
+La idea principal que posee éste mecanismo o modelamiento, es poder aplicarla a un
+grupo de vehículos con la misma configuración, con respecto a las opciones,
+evitando así simetrías entre ellos.
+
+Existe otra aproximación relacionada con ILP, presentada por Prandtstetter et al.~\cite{12}
+que es análoga a la formulación realizada por Gravel et al., clasificando los vehículos
+que tienen la misma configuración en grupos, gracias a ésto el tamaño de alguna instancia
+del problema que sea propuesto, está restringido a lo más $300$ vehículos con aproximadamente
+unos $8$ componentes.
+
+\subsubsection{Ramificación y Poda (Branch-and-bound method)}
+
+El presente método es una variación del algoritmo \emph{Backtracking}~\footnote{
+la idea del algoritmo se asemeja a un recorrido en profundidad dentro de un grafo dirigido.
+}
+, pero con bastantes mejoras.
+Por lo general, la idea es interpretar el problema como un árbol de soluciones,
+en el cual las ramas van a ser caminos para una posible solución, pero posterior a la solución
+actual (rama actual).
+La idea central del presente método es que se encarga de encontrar las ramas que no poseen
+una solución óptima en comparación al resto y las \emph{poda} para no utilizar el tiempo
+de búsqueda en alguna rama que no sirva.
+
+En el trabajo de Drexl et al.~\cite{DKM06}, se propone utilizar la misma técnica anteriormente
+descrita.
+
+Primeramente es un poco complicado por imaginarse el problema atacado del punto de vista
+del \emph{Branch-and-bound}, debido a que se toma como un problema de grafos, pero lo que
+Drexl et al.~\cite{DKM06} establece es que el método está basado en un esquema de ramificación
+\emph{(branching)} original, que utiliza el concepto de \emph{Car sequencing state}, 
+refiriéndose así a que cada \emph{Car sequencing state} está asociado a cada nodo del árbol
+que podemos construir para resolver el presente problema.
+
+Para comenzar el \emph{branching}, es necesario construir una secuencia $\delta$
+asignando cada periodo $t\in {1,...,V}$ a una copia de una variante $v$, realizando ésto
+se puede manipular la secuencia $\delta$ de la forma:
+$$\delta : \{1,...,T\}\rightarrow\{1,...,V\}\cup\{0\}$$~\footnote{
+Se agrega el $0$ para evitar las secuencias parciales, asumiendo que ningún periodo no asignado
+está siendo proyectada a una variante vacía. Ésto simplifica las definiciones, sin restringirlas.
+}, con
+\begin{itemize}
+	\item $T:$ volumen total de producción (periodos, ciclos), i.e $T=\sum\limits_{v=1}^{V}D(v)$, índice $t$
+	\item $V:$ número de variantes, índice $v$
+\end{itemize}
+
+La secuencia $\delta$ induce una matriz $O\times T$ que llamaremos $M$,
+la cual está representando los periodos de la planificación de T,
+y cada file de $M$ incide con una opción $j$
+, con
+\begin{itemize}
+	\item $O:$ número de opciones, índice $j$.
+\end{itemize}
+
+La interpretación de la matriz de la matriz $M$ se define a continuación:\\
+
+$m_{j,t} = \left\{ \begin{array}{l}
+\ \ 1,\ \text{si la opción}\ j\ \text{es planificada en el periodo}\ t,\ \text{respetando la restricción}\ H_{j}:H_{j}\\
+\ \ 0,\ \text{si la opción}\ j\ \text{puede ser planificada en el periodo}\ t\\
+-1,\ \text{si la opción}\ j\ \text{no es planificada en el periodo}\ t\text{, si es planificada puede violar}\\
+\ \ \ \ \ \text{la restricción}\ H_{j}:H_{j}\\
+\end{array} \right.$
+
+\subsubsection{Constraint Programming}
+
+El método \emph{Constraint Programming} es una herramienta genérica para poder resolver problemas
+del tipo \emph{Constraint  Sarisfaction Problem (CSP)}~\footnote{No confundir con Car Sequencing Problem},
+por lo tanto cualquier problema de \emph{scheduling} puede ser resuelto mediante ésta forma,
+ya que conjunto de restricciones que debemos satisfacer son una relación entre varias variables desconocidas,
+y otras variables conocidas~\cite{Tsa93}.
+
+%
+Por lo general para obtener una solución óptima, se suelen combinar técnicas heurísticas,
+y otras para deducir restricciones derivadas, como la clausura.
+Como es el caso de Alfonso y Barber~\cite{esp1}, el cual utiliza un método primero de \emph{constraint-posting},
+que significa ir adicionando sucesivamente las restricciones y en cada paso realizar el proceso de clausura,
+en otras palabras incorporan el proceso de clausura que determina el conjunto de las restricciones que pueden
+impedir  en las que ya se han asertado correctamente.
+
+Dejando de lado el trabajo anteriormente mencionado, el método de \emph{Constraing Programming} permite la definición
+y aplicación de nuevas técnicas de heurística, permitiendo así limitar el número de disyunciones
+del conjunto de las restricciones y además permiten dirigir mejor el proceso de búsqueda.
+
+\subsection{Acercamientos híbridos}
+
+Cuando hablamos de acercamiento híbrido, nos referimos a poder combinar las ventajas de varios
+métodos de optimización en un sólo algoritmo.
+Anteriormente vimos que en muchos casos, existe inclusive una \emph{recomendación} para buscar
+una heurística determinada complementando a un método y encontrar una solución óptima.
+
+
+Tomando las palabras del estudio realizado por E.G Talbi~\cite{talbi} los algoritmos híbridos
+se han aplicado satisfactoriamente a variados problemas de optimización combinatorial, como el problema
+del \emph{vendedor-viajero} o simplemente problemas del mundo real.
+
+
+Siguiendo las palabras de Blum, Roli y Alba en ~\cite{blum} podemos aseverar que ésta clase de acercamientos,
+combinando metaheurísticas basadas en  poblaciones con alguna solución metaheurística simple, podemos llegar
+a la conclusión de que es el mejor camino para poder mejorar la calidad de las soluciones que encontramos
+en cualquier problema de optimización.
+
+\subsubsection{Hybrid Integrative Evolutionary Approaches}
+En el trabajo de Zinflou et al. \cite{HYB1} se presentan tres acercamientos para poder
+resolver el presente problema. Los acercamientos están basados en esencia en algoritmos evolutivos
+que incorporan operadores de heurística como los son los \emph{crossover operators} usando
+un modelo simple, es decir basado en  Programación Lineal Entera.
+
+La diferencia que existe entre dos de las aplicaciones de \emph{crossover} combinadas nos muestra que es posible
+obtener valores competitivos, dignos de ofrecer como alternativa a los métodos anteriormente nombrado, debido
+a la calidad de la solución.
+
+Finalmente podemos darnos cuenta que la experiencia numérica de la formulación de éste método, muestra una diferencia
+notoria en el tiempo de ejecución, algoritmicamente hablando.
+Las diferencias indican que puede ser posible de obtener mejoras en la implementación de métodos híbridos para 
+poder obtener una comparación más competitiva. Dichas mejoras significan poder involucrar al desarrollo de nuestro
+algoritmos un enfoque de \emph{Grid computing} u otras técnicas de \emph{high performance computing technologies}.
