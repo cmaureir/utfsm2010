@@ -1,0 +1,15 @@
+#!/bin/env python
+
+import os
+
+threadsPerBlock = os.popen("grep '\ threadsPerBlock\ ' gpu-map.cu | awk '{print $4}' | sed 's/;//g'")
+threadsPerBlock = threadsPerBlock.readline().replace('\n','')
+
+for i in [2,4,8,16,32,128,256]:
+	print "Using "+str(i)+" threads..."
+	os.system("sed s/threadsPerBlock\ =\ "+str(threadsPerBlock)+"/threadsPerBlock\ =\ "+str(i)+"/g -i gpu-map.cu")
+	threadsPerBlock = i
+	os.system("make clean all")
+	for j in range(0,20):
+		print "\tRunning: "+str(j)
+		os.system("./main >> test/block"+str(i))

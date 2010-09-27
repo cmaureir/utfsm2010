@@ -1,0 +1,15 @@
+#!/bin/env python
+
+import os
+
+arraySize = os.popen("grep 'static\ const\ unsigned\ N\ =\ 1\ <<' main.cpp | awk '{print $8}' | sed 's/;//g'")
+arraySize = arraySize.readline().replace('\n','')
+
+for i in [1,5,10,15,20]:
+	print "Using "+str(i)+" size..."
+	os.system("sed 's/static\ const\ unsigned\ N\ =\ 1\ <<\ "+str(arraySize)+"/static\ const\ unsigned\ N\ =\ 1\ <<\ "+str(i)+"/g' -i main.cpp")
+	arraySize = i
+	os.system("make clean all")
+	for j in range(0,20):
+		print "\tRunning: "+str(j)
+		os.system("./main >> test/vector"+str(i))

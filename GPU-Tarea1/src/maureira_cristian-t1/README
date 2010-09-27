@@ -1,0 +1,66 @@
+Author: Cristián D. Maureira Fredes
+Date: Sep 27 2010
+
+Modificaciones
+--------------
+Se señalan a continuación algunos cambios en los archivos.
+
+main.cpp:
+	Se añadio la opción de poder pasar por parámetro de ejecución
+	al programa, el tamaño de la variable M.
+	De no pasar ningún parametro, éste toma el valor por defecto
+	que es 10000.
+	
+	Por lo mismo anteriormente señalado, se le agregó un parámetro a
+	las funciones cpu_map y gpu_map
+
+cpu-map.hpp:
+	Se añadió un parámetro extra a la función cpu_map,
+	el valor de M (int M)
+
+gpu-map.hpp:
+	Se añadió un parámetro extra a la función gpu_map,
+	el valor de M (int M)
+
+cpu-map.cpp:
+	Se añadió un nuevo parámetro a la función cpu_map
+	y por ende también a la función f (int M)
+
+gpu-map.cu:
+	Se añadió un nuevo parámetro al kernel __device__ d_f
+	para el valor de M (int M)
+
+	Se añadió un nuevo parámetro al kernel __global__ map_f
+	para el valor de M (int M)
+
+	Se implementó la función gpu_map,
+	para mayor detalle el código se encuentra comentado.
+
+Creaciones
+--------------
+
+A continuación se detallan los tests.
+
+IMPORTANTE: para poder ejecutar los tests, es necesario
+			comentar y descomentar algunas lineas que
+			están en main.cpp gpu-map.cu y cpu-map.cpp
+			para que los archivos generados tengan un
+			mejor formato para graficar los datos.
+
+test:
+	Directorio que almacena resultado de tests.
+
+testBlock:
+	Ejecuta test con el programa, variando el tamaño de los threads,
+	entre [2,4,8,16,32,128,256], para así modificar el tamaño de
+	los bloques y ver el comportamiento.
+	
+testM:
+	Ejecuta test con el programa, variando el tamaño de M,
+	entre [100,1000,10000,100000,1000000], y viendo como se
+	comporta el cálculo.
+
+testVector:
+	Ejecuta test con el programa, variando el tamaño del vector utilizado,
+	entre 2 elevado a [1,5,10,15,20], viendo así como se comporta
+	el cálculo.
