@@ -5,3 +5,79 @@
 % enfrentamiento
 % modelo que planeo implementar
 % cosas del estado del arte importante (mov, opera, ...)
+
+\frame
+{
+\frametitle{Trabajo Futuro}
+\framesubtitle{Enfrentamiento}
+\begin{itemize}
+	\item Realizar un modelamiento matemático simple,
+		con el fin de poder enfocar la atención en el desempeño
+		más que en la representación más rebuscada.
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Trabajo Futuro}
+\framesubtitle{Modelo}
+\begin{itemize}
+    \item Parámetros
+    \begin{itemize}
+        \item $cN$: Número total de autos.
+        \item $oN$: Número total de opciones disponibles.
+        \item $tN$: Número total de tipos/clases de autos.
+    \end{itemize}
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Trabajo Futuro}
+\framesubtitle{Modelo}
+\begin{itemize}
+   \item Variables
+    \begin{itemize}
+        \item $nMax_{ij}$: Número máximo de autos con la opción $i$ en una subsecuencia $j$.
+        \item $n_{ij}$: Número de autos con la opción $i$ en una subsecuencia $j$.
+        \item $sMax_{i}$: Tamaño de la subsecuencia $j$ donde deben haber $nMax_{ij}$ autos.
+        \item $q_{k}$: Cantidad de autos del tipo/clase $k$.
+        \item $types_{il}$: Booleano que indica si la opción $i$ está presente en el auto $l$.
+    \end{itemize}
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Trabajo Futuro}
+\framesubtitle{Modelo}
+\begin{itemize}
+    \item Función Objetivo
+    $$FO\ :\ Min\ \sum\limits_{i=1}^{oN} \sum\limits_{l=1}^{cN} \sum\limits_{j=0}^{sMax_{i}} types_{il}\cdot (n_{ij} - nMax_{ij}), \forall n_{ij} > nM_{ij}$$
+    \item Restricciones Duras
+    $$\sum\limits_{k=1}^{cN} q_{k} = cN$$
+    \item Restricciones Blandas
+    $$\sum\limits_{i=1}^{oN} \sum\limits_{l=1}^{cN} \sum\limits_{j=0}^{sMax_{i}} types_{il}\cdot n_{ij} \leq nMax_{ij}$$
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Trabajo Futuro}
+\framesubtitle{Ideas del estado del arte}
+\begin{itemize}
+	\item Selección mediante \emph{Roullete Wheel}.
+	\item Infeasibility Degree (IFD) y Excellent Gene Segment Spread (EGSS).
+	\item Realizar un cruzamiento, cuidado las restricciones duras.
+	\item Utilizar un operador de mutación para la hiper-mutación como el NEW (construir con greedy una nueva solución a partir de una existente)
+	\item Quizás Paralelismo! 
+\end{itemize}
+}
+
+\frame
+{
+\vspace{1cm}
+\begin{center}
+	\Huge ¿Preguntas?
+\end{center}
+}
