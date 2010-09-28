@@ -1,14 +1,57 @@
-\subsection{Tamaño del bloque}
-\begin{itemize}
-	\item ...
-\end{itemize}
+\subsection{Sobre el tamaño del bloque}
 
-\subsection{Tamaño del vector}
-\begin{itemize}
-	\item ...
-\end{itemize}
+En éste caso el único impacto que obtuvimos es en la GPU,
+pues el tamaño de los bloques, no afecta el CPU.
+En los test podemos darnos cuenta que a medida que vamos
+trabajando con un bloque más pequeño, el tiempo que demora
+el GPU va disminuyendo, esto se debe a que estamos separando
+la tarea en muchas más subconjuntos, donde un grupo determinado
+de threads va a realizar el trabajo, lo cual nos dice que
+es necesario utilizar todos los bloques posibles en cada GPU,
+para obtener el mejor \emph{throughput}.
+De todas formas, inclusive al utilizar la menor cantidad de bloques
+en nuestros test, la CPU no pude derrotar al desempeño obtenido de la GPU.
 
-\subsection{Tamaño de M}
-\begin{itemize}
-	\item ...
-\end{itemize}
+\subsection{Sobre el tamaño del vector}
+
+El valor del vector de entrada va a determinar la cantidad de elementos
+que vamos a tener que considerar para aplicar la función del trabajo.
+Es acá donde personalmente pienso que se ve el motivo por el cual
+paralelizar un programa y aún mejor, ejecutarlo en la GPU tiene sentido,
+por que nos damos cuenta que aumentando considerablemente la cantidad
+de datos de entrada, la GPU practicamente no se inmuta y los tiempos
+que demora entre una iteración y otra son muy pequeños en comparación
+a los tiempos de la CPU, donde prácticamente demora una eternidad
+al realizar la misma iteración, lo cual tiene sentido al considerar
+que estamos trabajando con una cantidad demasiado superior de hebras
+para ejecutar el programa.
+
+\subsection{Sobre el tamaño de M}
+
+El valor de M está ligado netamente a las iteraciónes de nuestra sumatoria,
+por lo cual los resultados están relacionado con el tiempo en que demoran
+tanto la CPU como GPU es realizar una cierta cantidad de \emph{loops}.
+Al ver los resultados podemos darnos cuenta de que el GPU gana con una
+diferencia notoria y que a medida que aumentamos el valor $M$ y cada
+vez la diferencia es mucho más grande entre ellos.
+Podríamos decir que el \emph{throughput} en el caso de la GPU es mayor
+al del CPU, pues evaluamos los tiempos de la operación completa, no individualmente.
+
+\subsection{Conclusiones generales}
+Tomándo las ideas principales en cada caso, con bloques más pequeños, obtenemos un mejor 
+resultado en la GPU, el tamaño del vector nos va a dar casi lo mismo, pues la GPU
+es capaz de trabajar con grandes cantidades de datos y al momento de realizar iteraciones
+en programas paralelos, la GPU se va a comportar de buena forma, y cuando ya sean demasiadas
+iteraciones se va a comenzar a notar la demora en el cálculo con la GPU. 
+Tenemos que notar que cada hebra ejecutandose en la GPU es mucho mas lenta que una que se
+ejecuta en la CPU, pero el beneficio está en que son demasiados threads que podemos
+ejecutar en un programa determinado que esté paralelizado.
+Otra gran diferencia es que la administración de los threads en el caso del GPU
+no lo está realizando el sistema operativo, sino que hay un bloque de hardware especialmente
+diseñado para realizar ésta tarea.
+Si bien es cierto, que en todos los test la GPU superó a la CPU con gran diferencia,
+tenemos que tener en consideración que la GPU es muy buena sólo para resolver
+que sean paralelos, sobre todo si es que necesitamos realizar varios cálculos utilizando
+los datos, y se tiene que cuidar de no acceder tantas veces a memoria pues puede ser
+una actividad que nos juegue en contra al momento de evaluar el \emph{performance} y
+el \emph{throughput}.
