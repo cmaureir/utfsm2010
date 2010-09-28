@@ -7,7 +7,7 @@
 #include "gpu-map.hpp"
 
 // (1 << n) == (2 elevado a n)
-static const unsigned N = 1 << 25;
+static const unsigned N = 1 << 16;
 static const char *data_file_name = "/home/utfsm/rbonvall/data_2^26";
 int M = 10000;
 
@@ -15,11 +15,7 @@ int main(int argc, char *argv[]) {
 
     // Paso por parametro del valor de M
     if(argc > 1){
-	M = atoi(argv[1]);
-	//printf("Running with M = %d\n", M);
-    }
-    else{
-	//printf("Running with default M = 10000\n");
+		M = atoi(argv[1]);
     }
 
 
