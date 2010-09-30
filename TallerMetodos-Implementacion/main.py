@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 carNumber, optNumber, typeNumber = 0, 0, 0
-types = array([],[])
+types = []
 
 def read_file(filename):
 	i,j,tmp = 0, 0, 0
@@ -23,15 +23,13 @@ def read_file(filename):
 	tmp = f.readline().replace("\n","").split(" ")	
 	sizeMaxCarOptSeq = list(int(a) for a in tmp if a.isdigit())
 
-    #// Resto de lineas
-    #// Tipo de auto - Cantidad de autos que la tienen - Tiene la opcion i (1 o 0)
+    # Resto de lineas
+    # Tipo de auto - Cantidad de autos que la tienen - Tiene la opcion i (1 o 0)
 	for i in range(0,typeNumber):
 		line = f.readline().replace("\n","").split(" ")
-		types[i][0] = line[0]
-		types[i][1] = line[1]
-		for j in range(0,optNumber):
-			types[i][j+2] = line[j+2]
+		types.append(list(int(a) for a in line if a.isdigit()))
+
+	# Cerrar archivo
 	f.close()
-	print types
 
 read_file("input")
