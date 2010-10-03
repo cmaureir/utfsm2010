@@ -1,0 +1,89 @@
+\documentclass[letter, 10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{subfigure}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage[top=2cm,bottom=2cm,left=2.5cm,right=2.5cm,footskip=1.5cm,headheight=1.5cm,headsep=.5cm,textheight=3cm]{geometry}
+
+
+\begin{document}
+\bibliographystyle{plain}
+\pagestyle{plain}
+\addtocounter{page}{-1} 
+
+\title{
+\vspace{-1cm}
+\begin{tabular}{lr}
+	\includegraphics[width=0.2\textwidth]{img/utfsm.pdf}
+	&
+	\hspace{9cm}
+	\includegraphics[width=0.1\textwidth]{img/di.pdf} \\
+\end{tabular}\\
+\vspace{2cm}
+\sc{
+\begin{small}
+	Universidad Técnica Federico Santa María\\\vspace{-0.4cm}
+	Departamento de Informática
+\end{small}\\\vspace{3cm}
+\begin{large}
+	\sc{Bioinformática}\\Seminario de Modelos y Métodos Cuantitativos
+\end{large}\\ 
+\begin{Large}
+	Tarea 1\\
+\end{Large}
+\vspace{2cm}
+}
+\includegraphics[width=0.3\textwidth]{img/hemoglobin1A.png}
+\vspace{1cm}
+}
+
+\author{
+\begin{normalsize}
+\begin{tabular}{rr}
+	\sc{Profesor:} & Andrés E. Moreira Wenzel \\ \vspace{0.5cm}
+				   & \small{\url{amoreira@inf.utfsm.cl}}\\
+	\sc{Alumno:}   & Cristián D. Maureira Fredes \\
+				   & \small{\url{cmaureir@csrg.inf.utfsm.cl}}
+\end{tabular}
+\vspace{3cm}
+\end{normalsize}
+}
+\date{\today}
+\vfill
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+\tableofcontents
+\newpage
+\section{Introducción}
+\label{sec:introduccion}
+\input{src/introduccion}
+\newpage
+
+\section{Mejor Match Obtenido}
+\label{sec:mejor}
+\input{src/mejor}
+\newpage
+
+\section{Siguientes Cinco Matchs}
+\label{sec:cinco}
+\input{src/cinco}
+\newpage
+
+\section{Conclusión}
+\label{sec:conclusion}
+\input{src/conclusion}
+\newpage
+
+\section{Anexo}
+\label{sec:anexo}
+\input{src/anexo}
+
+\section{Bibliografía}
+\bibliography{informe}
+\end{document} 

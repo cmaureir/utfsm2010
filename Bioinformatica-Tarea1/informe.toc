@@ -1,0 +1,15 @@
+\contentsline {section}{\numberline {1}Introducci\IeC {\'o}n}{2}{section.1}
+\contentsline {section}{\numberline {2}Mejor Match Obtenido}{3}{section.2}
+\contentsline {subsection}{\numberline {2.1}Informaci\IeC {\'o}n B\IeC {\'u}squeda}{3}{subsection.2.1}
+\contentsline {subsection}{\numberline {2.2}Dotplot}{3}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Alineamiento}{3}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.4}Informaci\IeC {\'o}n de la prote\IeC {\'\i }na}{3}{subsection.2.4}
+\contentsline {subsection}{\numberline {2.5}Organismo}{4}{subsection.2.5}
+\contentsline {subsection}{\numberline {2.6}Codificaci\IeC {\'o}n}{6}{subsection.2.6}
+\contentsline {subsection}{\numberline {2.7}Origen de datos}{8}{subsection.2.7}
+\contentsline {section}{\numberline {3}Siguientes Cinco Matchs}{9}{section.3}
+\contentsline {subsection}{\numberline {3.1}Organismos}{9}{subsection.3.1}
+\contentsline {subsection}{\numberline {3.2}\IeC {\'A}rbol familiar}{11}{subsection.3.2}
+\contentsline {section}{\numberline {4}Conclusi\IeC {\'o}n}{14}{section.4}
+\contentsline {section}{\numberline {5}Anexo}{15}{section.5}
+\contentsline {section}{\numberline {6}Bibliograf\IeC {\'\i }a}{15}{section.6}
