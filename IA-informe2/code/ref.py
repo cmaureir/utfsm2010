@@ -2,7 +2,7 @@ l = [1,2,3,4,5,6]
 a = [6,1,4,3,2,5]
 
 b = []
-
+print a
 n=0
 for i in a:
 	for j in l:

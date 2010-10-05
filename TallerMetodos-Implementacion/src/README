@@ -1,0 +1,46 @@
+Pseudocodigo
+
+1. Generar repertorio inicial R
+2. Bucle generaciones
+3.		R* = Seleccionar(n,R) //prop. fitness
+4.		C  = Clonacion(B, R*) //prop. fitness
+5.		C* = Hipermutacion(C) //inv prop. fitness
+6.		C* = Evaluacion(C*)
+7.		R* = Seleccion(n,C*) // prop. fitness
+8.		R  = Insercion(R*)
+9.		D  = Generacion(d)
+10.		R = Reemplazo(fitness, D)
+
+-------------------
+Explicación
+
+1. Se genera el repertorio inicial R cuidando de no romper
+	las restricciones duras, generando una lista ordenada
+	con la cantidad de autos de cada tipo necesitado y luego
+	se desordena la lista y se van generando los individuos
+	iniciales.
+
+2. Se itera hasta alcanzar el número máximo de generaciones
+	definidas con anterioridad. ¿?
+
+3. Se seleccionan n elementos de nuestra población inicial R,
+	mediante el método de la ruleta.
+
+4. Se clonan los n elementos previamente seleccionados y se
+	procede a llenar una nueva poblacion de clones,
+	proporcional a la cantidad seleccionada ¿?
+
+5. Se hipermutan todos los clones, produciendo antigenos
+	distintos. ¿Cuantos?
+
+6. Se evaluan todos los clones, actualizando el fitness.
+
+7. Se seleccionan n nuevos elementos de la población de clones
+	mediante la tecnica de la ruleta. ¿o sin tecnica?
+
+8. Se insertan los n elementos previamente seleccionados en nuestra
+	población R. ¿en que posicion?
+
+9. Se genera m nuevos elementos para mantener la diversidad ¿cuantos?
+
+10. Se ingresan los m elementos a la población. ¿posicion?
