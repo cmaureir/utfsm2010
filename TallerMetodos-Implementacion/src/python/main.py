@@ -3,17 +3,17 @@
 
 #from lib.extra import read_file
 #from lib.extra import *
-import lib.extra as lib
 import lib.clonal as clonal
 
-lib.read_file("input")
+clonal.lib.read_file("input")
 
-print lib.carNumber
-print lib.optNumber
-print lib.typeNumber
-print lib.types
+print clonal.lib.carNumber
+print clonal.lib.optNumber
+print clonal.lib.typeNumber
+print clonal.lib.types
 
 
+clonal.population_init()
 #    Generar repertorio inicial R
 #    Bucle generaciones
 #      R* = Seleccionar(n,R) //prop. fitness
