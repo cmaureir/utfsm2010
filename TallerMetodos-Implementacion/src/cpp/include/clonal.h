@@ -4,12 +4,10 @@
 #include "extra.cpp"
 
 // Funcion encargada de la inicializacion de la poblacion
-void initPopulation();
+void initPopulation(bool type);
 
 // Funcion encargada de evaluar la poblacion
-void evaluation();
-
-
+void evaluation(bool type);
 
 // Seleccion de los individuos mediante Ruleta
 // En la FO se minimiza

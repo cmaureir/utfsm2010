@@ -21,6 +21,8 @@ using namespace std;
 #define POP  10    // Tamaño poblacion
 #define GENS 20  // Numero maximo de generaciones
 #define N 128	   // Variable para crear arreglos determinados
+#define clonationRate VARS*0.2
+#define swap VARS*0.3
 
 
 struct genotype {  		// Individuo de la poblacion

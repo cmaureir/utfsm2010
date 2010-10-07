@@ -2,7 +2,11 @@
 
 int main(int argc, const char *argv[])
 {
-	
+	// 'true' satisfaccion restricciones duras
+	// 'false' completamente aleatorias
+	bool type = false;	
+
+
 	timespec ts, te;
 	clock_gettime(CLOCK_REALTIME, &ts);
 	population[POP].fitness = 10000;	
@@ -11,19 +15,20 @@ int main(int argc, const char *argv[])
 	inputReading(argv[1]);
 	generation = 0;
 
-	initPopulation();
-	evaluation(population);
+	initPopulation(type);
+	evaluation(population, type);
 
 	while(generation<GENS){
-		selection(VARS*0.2);
+		selection(clonationRate);
 		clonation();
 		hypermutation();
-		evaluation(mutPop);
+		evaluation(mutPop, type);
 		getchar();
 		cloneSelection(VARS*0.1);
 		cloneInsertion();
 		newGeneration();
 		replace();
+		generation++;
 	}
 	
 	clock_gettime(CLOCK_REALTIME, &te);

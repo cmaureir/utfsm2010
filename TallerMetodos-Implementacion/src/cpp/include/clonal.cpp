@@ -2,45 +2,63 @@
 
 // Inicializacion de la problacion
 // Random.
-void initPopulation(){
+void initPopulation(bool type){
 	int i=0,j=0,k=0,counter=0;
 	int p[VARS];
 	// Inicializacion de la semilla para generar numeros
 	//  pseudo-aleatorios
 	srand(time(0));
 	
-	// Inicializamos en p[] la cantidad requerida por cada tipo
-	//  de autos, satisfaciendo asi las restricciones duras
-	for (j = 0; j < typeNumber; j++){
-		while(k < types[j][1]){
-	        p[i] = j;
-			k++;i++;
+	if(type){
+		// Inicializamos en p[] la cantidad requerida por cada tipo
+		//  de autos, satisfaciendo asi las restricciones duras
+		for (j = 0; j < typeNumber; j++){
+			while(k < types[j][1]){
+		        p[i] = j;
+				k++;i++;
+			}
+			k = 0;
 		}
-		k = 0;
-	}
 
-	// Generamos la poblacion inicial, tomando p[] y comenzando
-	//  a desordenarlos aleatoriamente para generar los individuos
-	for (counter = 0; counter < POP; counter++) {
-			for (i=0; i<(VARS-1); i++) {
-	            int r = i + (rand() % (VARS-i));
-	            int temp = p[i];
-				p[i] = p[r];
-				p[r] = temp;
-	        }
-		// Guardamos nuestros valores en la estructura de
-		//  la poblacion
-	    for (int c=0; c<VARS; c++) {
-	        population[counter].gene[c] = p[c];
-	    }
-		
+		// Generamos la poblacion inicial, tomando p[] y comenzando
+		//  a desordenarlos aleatoriamente para generar los individuos
+		for (counter = 0; counter < POP; counter++) {
+				for (i=0; i<(VARS-1); i++) {
+		            int r = i + (rand() % (VARS-i));
+		            int temp = p[i];
+					p[i] = p[r];
+					p[r] = temp;
+		        }
+				// Guardamos nuestros valores en la estructura de
+				//  la poblacion
+    			for (int c=0; c<VARS; c++) {
+    			    population[counter].gene[c] = p[c];
+    			}
+		}
 	}
+	else{
+		for (counter = 0; counter < POP; counter++) {
+			for (i=0; i<VARS; i++) {
+				int r = i + (rand() % typeNumber);
+				r = r % typeNumber;
+				p[i] = r;
+			}
+
+			// Guardamos nuestros valores en la estructura de
+			//  la poblacion
+	    	for (int c=0; c<VARS; c++) {
+	    	    population[counter].gene[c] = p[c];
+	    	}
+		}
+	}
+	
+	getchar();
 	cout << "Población inicial..." << endl;
 }
 
 // Evaluacion
 // Verificar las restricciones Blandas.
-void evaluation(struct genotype evalPop[POP+1]){
+void evaluation(struct genotype evalPop[POP+1], bool type){
 	int mem, i=0, j=0, m=0, tmp=0, badness=0, failCon = 0;
 
 	for (mem = 0; mem < POP; mem++){
@@ -55,7 +73,7 @@ void evaluation(struct genotype evalPop[POP+1]){
 					// Si nuestra suma es mayor que la cantidad permitida,
 					//  nuestro fitness sera las unidades excedentes por cada restriccion
 					if(tmp > numMaxCarOptSeq[i]){
-						badness += tmp-numMaxCarOptSeq[i];
+						//badness += tmp-numMaxCarOptSeq[i];
 						failCon += 1;
 						tmp = 0;
 					}
@@ -69,32 +87,27 @@ void evaluation(struct genotype evalPop[POP+1]){
 		}
 		evalPop[mem].fitness = badness;
 		evalPop[mem].fail = failCon;
-		// Si encontramos una solucion factible que no viole ninguna
-		//  restriccion blanda, de inmediatos nos quedamos con dicha
-		//  solucion.
-//		if (evalPop[mem].fitness == 0) {
-//			for (i = 0; i < POP; i++) {
-//				for (j = 0; j < VARS; j++) {
-//					clonePop[i].gene[j] = evalPop[mem].gene[j];
-//					clonePop[i].fitness = 0;	
-//				}
-//			}
-//
-//			for (i = 0; i < POP; i++) {
-//				for (j = 0; j < VARS; j++) {
-//					evalPop[i].gene[j] = clonePop[i].gene[j];
-//					evalPop[i].fitness = clonePop[i].fitness;
-//				}
-//			}
-//			generation = GENS;
-//		}
-		
 		badness = 0;
 		failCon = 0;
 	}
-	// PRINT
-//	for (i=0;i<POP;i++)
-//		cout << evalPop[i].fitness << endl;
+	
+	if(!type){
+		int tmpGen[VARS];
+		for (i = 0; i < VARS; i++)
+			tmpGen[i] = 0;
+
+		for (i = 0; i < POP; i++) {
+				for (j = 0; j < VARS; j++) {
+					tmpGen[evalPop[i].gene[j]] += 1;
+
+				}
+				for (j = 0; j < typeNumber; j++){
+					if (types[j][1] != tmpGen[j])
+						evalPop[i].fitness += 10*(abs(types[j][1] -tmpGen[j]));
+					tmpGen[j] = 0;
+				}
+		}
+	}
 
 	// PRINT
 	cout << "Evaluamos..." << endl;
@@ -107,7 +120,7 @@ void evaluation(struct genotype evalPop[POP+1]){
 	}
 
 	cout << endl;
-
+	
 }
 
 //Seleccion de un individuo
@@ -200,9 +213,6 @@ void clonation(){
 		cout << "| " <<clonePop[i].fitness << " ";
 		cout << endl;
 	}
-
-
-
 }
 
 // HyperMutacion
@@ -210,27 +220,36 @@ void hypermutation(){
 	int i,j,sum=0,prom, v = VARS;
 	// TO DO 
 	// mutacion aleatoria
-	int tmp[VARS];
-
-	for (i=0; i < POP; i++){
-		sum += clonePop[i].fitness;
-	}
-	prom = sum/POP;
-	cout << "Prom: " << prom << endl;
+//	int tmp[VARS];
+//
+//	for (i=0; i < POP; i++){
+//		sum += clonePop[i].fitness;
+//	}
+//	prom = sum/POP;
+//	cout << "Prom: " << prom << endl;
 	
 	for (i=0; i < POP; i++){
-		if(clonePop[i].fitness > prom){
-			for (j=0;j<VARS;j++){
-				tmp[v] = clonePop[i].gene[j];
-				v--;
-			}
-			for (j=0;j<VARS;j++)
-				clonePop[i].gene[j] = tmp[j];
-		}
+//		if(clonePop[i].fitness > prom){
+//			for (j=0;j<VARS;j++){
+//				tmp[v] = clonePop[i].gene[j];
+//				v--;
+//			}
+//			for (j=0;j<VARS;j++)
+//				clonePop[i].gene[j] = tmp[j];
+//		}
 		mutPop[i] = clonePop[i];
 	}
 cout << "MUTO" << endl;
 
+	// PRINT
+	for (i=0;i<POP;i++){
+		for (j=0;j<VARS;j++){
+			cout << clonePop[i].gene[j] << " ";
+		}
+		cout << "| " <<clonePop[i].fitness << " ";
+		cout << endl;
+	}
+	getchar();
 }
 
 void cloneSelection(int n){
