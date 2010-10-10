@@ -52,7 +52,6 @@ void initPopulation(bool type){
 		}
 	}
 	
-	getchar();
 	cout << "Población inicial..." << endl;
 }
 

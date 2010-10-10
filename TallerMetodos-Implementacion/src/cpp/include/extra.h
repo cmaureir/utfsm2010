@@ -23,7 +23,7 @@ using namespace std;
 #define N 128	   // Variable para crear arreglos determinados
 #define clonationRate VARS*0.2
 #define swap VARS*0.3
-
+#define clonationFactor 0.5
 
 struct genotype {  		// Individuo de la poblacion
     int gene[VARS];     // Automoviles

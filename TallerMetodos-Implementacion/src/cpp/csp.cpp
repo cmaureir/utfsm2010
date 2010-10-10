@@ -5,9 +5,8 @@ int main(int argc, const char *argv[])
 	// 'true' satisfaccion restricciones duras
 	// 'false' completamente aleatorias
 	bool type = false;	
-
-
 	timespec ts, te;
+
 	clock_gettime(CLOCK_REALTIME, &ts);
 	population[POP].fitness = 10000;	
 	if(!checkFile(argc,argv))
