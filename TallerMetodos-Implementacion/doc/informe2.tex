@@ -15,42 +15,32 @@
 \maketitle
 
 \section{Introducción}
-Una explicación breve de lo que consiste el informe.
+\input{src/1-introduccion.tex}
+\label{sec:introduccion}
 
 \section{Descripción del problema}
-Descripción breve del problema que se va resolver (revisar entrega anterior): Objetivo, restricciones blandas y duras, observaciones especiales. Modelo matem\'atico. Instancias a usar.  
+\input{src/2-descripcionProblema.tex}
+\label{sec:descripcionProblema}
 
 \section{Algoritmo Propuesto}
 
 \subsection{Representación}
-Descripción detallada de la representación elegida.
+\input{src/3-representacion.tex}
+\label{sec:representacion}
 
 \subsection{Técnica}
-\textbf{Breve} descripción de la técnica que utilizará para resolver el problema, descripción del algoritmo base a utilizar.
-.
+\input{src/4-tecnica.tex}
+\label{sec:tecnica}
+
 \subsection{Algoritmo propuesto}
 \subsubsection{Componentes}
-Descripción los componentes que se probaron. Ej. PSO: inercia, velocidad m\'axima, movimientos, funciones objetivos, etc. AIS: Operadores de seleccion, Operadores de clonaci\'on, Operadores de reemplazo, movimientos, funci\'ones objetivos, etc. Resultados de las pruebas realizadas (tablas o gr\'aficos). Ejemplo:
-
-\begin{table}
-\centering
-\begin{tabular}{| l | c | c | c | c |}
-\hline
- fobj & primeros & ruleta & torneo & random \\
-\hline
- instancia 1 & 33000 &  31000 & 30000 & 40000 \\
-\hline
- instancia 2 & 56000 &  45000 & 47000 & 60000 \\
-\hline
-\end{tabular}
-\caption{Resultados pruebas Operadores de selecci\'on}
-\end{table}
-
+\input{src/5-componentes.tex}
+\label{sec:componentes}
 
 \subsubsection{Algoritmo Final}
-Pseudo c\'odigo del algoritmo final (con los componentes elegidos a trav\'es de las pruebas y su criterio). En lo posible adjuntar una tabla de los resultados encontrados por su algoritmo y otros algoritmos de la literatura (no es importante que sean buenos, es solo para comparar en que punto se encuentra). 
+\input{src/6-algoritmo.tex}
+\label{sec:algoritmo}
 
-\section{Bibliograf\'ia}
-Se debe referenciar todo paper citado. En caso de referenciar p\'aginas web, debe incluir fecha.
-
+\section{Bibliografía}
+%\bibliography{informe2}
 \end{document} 

@@ -18,23 +18,24 @@ using namespace std;
 
 
 // Variables Problema
-#define POP  10    // Tamaño poblacion
-#define GENS 20  // Numero maximo de generaciones
+#define POP  12    // Tamaño poblacion
+#define GENS 30  // Numero maximo de generaciones
 #define N 128	   // Variable para crear arreglos determinados
-#define clonationRate VARS*0.2
-#define swap VARS*0.3
+#define clonationRate POP*0.5
+#define selRate POP*0.4
+#define replaceRate POP*0.6
+#define swap VARS*0.4
 #define clonationFactor 0.5
 
 struct genotype {  		// Individuo de la poblacion
     int gene[VARS];     // Automoviles
 	int fitness;		// Valor evaluacion de la FO
-	int fail;			// Cantidad de restricciones insatisfechas
+	int fail;			// Cantidad de restricciones blandas insatisfechas
 	double rfitness;    // Fitness relativo
 	double cfitness;    // Fitness acumulado
 } population[POP+1],    // Poblacion Actual
   clonePop[POP+1],		// Nueva población con los primeros seleccionados y luego los clones
-  mutPop[POP+1],		// Población con los clones mutados
-  tmpPop[POP+1];		// Poblacion Temporal con seleccionados de clones
+  tmpPop[2*(POP+1)];		// Poblacion Temporal con seleccionados de clones
 
 
 // Variables Generales del problema
@@ -47,9 +48,6 @@ int types[N][N];			// Arreglo bidimensional que posee [tipoDeAuto(indice)][N]
 							//  donde N es tipoDeAuto(indice), demandaDeAuto (int), tieneOpcion_i (1 o 0)
 
 int generation; 	    // Numero de generaciones
-int itePop=0; 			// Contador de poblacion
-int worst_mem;		    // Indice del peor individuo de la poblacion
-int best_mem;			// Indice del mejor individuo de la poblacion
 
 // Funcion encargada de la interpretacion del archivo de entreda
 void inputReading(const char name[50]);
