@@ -14,14 +14,14 @@ using namespace std;
 // IMPORTANTE:
 // Variables establecidas a mano
 // cambiar antes de ejecutar cada test
-#define VARS 10    // Numero de autos
+#define VARS 400    // Numero de autos
 
 
 // Variables Problema
-#define POP  12    // Tamaño poblacion
-#define GENS 30  // Numero maximo de generaciones
+#define POP  20    // Tamaño poblacion
+#define GENS 500  // Numero maximo de generaciones
 #define N 128	   // Variable para crear arreglos determinados
-#define clonationRate POP*0.5
+#define clonationRate POP*0.4
 #define selRate POP*0.4
 #define replaceRate POP*0.6
 #define swap VARS*0.4
@@ -30,7 +30,6 @@ using namespace std;
 struct genotype {  		// Individuo de la poblacion
     int gene[VARS];     // Automoviles
 	int fitness;		// Valor evaluacion de la FO
-	int fail;			// Cantidad de restricciones blandas insatisfechas
 	double rfitness;    // Fitness relativo
 	double cfitness;    // Fitness acumulado
 } population[POP+1],    // Poblacion Actual

@@ -9,4 +9,4 @@ clean:
 	rm -rf *.out
 
 run:
-	./csp input.txt
+	./csp input.txt true true true true

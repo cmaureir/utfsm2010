@@ -28,7 +28,7 @@ void cloneSelection(int n, struct genotype popToSel[POP+1], bool clonalSelType);
 void cloneInsertion(int n);
 
 // Creación de nuevos elementos e inserción en los peores lugares de la poblacion
-void newGeneration(int counter);
+void newGeneration(int counter, bool replaceType);
 
 void printPop(struct genotype tmp[POP]);
 void cleanPops();

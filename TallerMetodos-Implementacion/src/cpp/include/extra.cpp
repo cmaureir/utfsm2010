@@ -83,7 +83,7 @@ void printFile(const char c_name[50], int sol[VARS], int failCon, int sec, int n
 }
 
 bool checkFile(int argc, const char *argv[]){
-	if (argc != 2){
+	if (argc != 6){
 		cout << "Cantidad de parametros incorrecto:\n Ejecucion: ./csp archivo.txt" << endl;
 		return false;
 	}

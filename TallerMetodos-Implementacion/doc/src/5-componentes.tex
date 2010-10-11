@@ -18,62 +18,131 @@
 %	\end{tabular}
 %	\caption{Resultados pruebas Operadores de selecci\'on}
 %	\end{table}
+
+Debido a la cantidad de elementos que varían para probar el desempeño
+del algoritmo, se ha establecido un conjunto de parámetros que hacen
+referencia a la ejecución "base" del algoritmo.
+\begin{itemize}
+	\item Repertorio Inicial: Arreglado (Cumpliendo restricciones duras).
+	\item Selección de Clones: Mejores (Considerando la población actual y la de clones).
+	\item Movimiento: Swap al 20\%.
+	\item Reemplazo: Peores.
+	\item Clonación: Mediante fórmula (explicada más adelante).
+\end{itemize}
+
 \begin{enumerate}
+	\item \textbf{Repertorio Inicial}
+
+		El repertorio inicial, se ha generado de dos formas para poder establecer una mejor opción.
+		\begin{itemize}
+			\item \emph{Aleatorio:}
+	
+				Para éste caso, la población se ha generado completamente aleatoria, es decir,
+				se ha creado una secuencia de vehículos considerando los tipos que el problema
+				requiere, pero no se ha verificado que cada tipo de vehículo sea la cantidad
+				necesitada por el problema.
+			\item \emph{Arreglado:} 
+				
+				Se ha generado la población inicial con una lista de vehículos que contiene
+				la cantidad exacta de los tipos necesitados por el problema, los cuales
+				han sido desordenados, para dejar satisfechas en todo momento las restricciones
+				blandas.
+		\end{itemize}
+
 	\item \textbf{Operador de Selección}
 		% 1. Seleccion por ruleta
+		La cantidad de elementos seleccionados corresponde al $selRate$ que consiste en una cantidad que corresponde
+		al $40\%$ de la población.
 
-		Al momento de seleccionar individuos para realizar la clonación, se utilizó la conocida técnica llamada
-		\emph{roulette wheel}, para una Función Objetivo que minimiza.
+		\begin{itemize}
+			\item \emph{Roulette wheel:}
+ 
+				Al momento de seleccionar individuos para realizar la clonación, se utilizó la conocida técnica llamada
+				\emph{roulette wheel}, para una Función Objetivo que minimiza.
+				
+				El procedimiento es bien simple, sólo tenemos que considerar el \emph{fitness} de cada linfocito y calcular un
+				\emph{fitness relativo} de la siguiente forma:
+				
+				$$relativeFitness_{i}\ = \frac{f_{min} + f_{max} - f_{i}}{\sum\limits_{i=0}^{sizePop} (f_{min} + f_{max} - f_{i}}$$
+				
+				Donde $f_{max}$ equivale al \emph{fitness} del mejor linfocito,
+				$f_{min}$ equivale al \emph{fitness} del peor linfocito y
+				$f_{i}$ equivale al \emph{fitness} del i-ésimo linfocito de nuestra población.
+				
+				La suma de todos los \emph{fitness relativo} equivale a $1$.
+					
+				Luego de que cada linfocito posee su \emph{fitness relativo}, se procede a calcular un \emph{fitness acumulativo},
+				es decir, ir sumando las probabilidades para generar un rango entre $0$ y $1$ con todas nuestras probabilidades.
+					
+				Una vez se tiene el \emph{fitness acumulativo} listo, se procede a obtener un número aleatorio entre $0$ y $1$,
+				para que luego sea ubicado en nuestro rango, y así el linfocito que salga escogido con éste número aleatorio, será
+				elegido para pasar ahora a la transformación.
 		
-		El procedimiento es bien simple, sólo tenemos que considerar el \emph{fitness} de cada linfocito y calcular un
-		\emph{fitness relativo} de la siguiente forma:
-		
-		$$relativeFitness_{i}\ = \frac{f_{min} + f_{max} - f_{i}}{\sum\limits_{i=0}^{sizePop} (f_{min} + f_{max} - f_{i}}$$
-		
-		Donde $f_{max}$ equivale al \emph{fitness} del mejor linfocito,
-		$f_{min}$ equivale al \emph{fitness} del peor linfocito y
-		$f_{i}$ equivale al \emph{fitness} del i-ésimo linfocito de nuestra población.
-		
-		La suma de todos los \emph{fitness relativo} equivale a $1$.
-			
-		Luego de que cada linfocito posee su \emph{fitness relativo}, se procede a calcular un \emph{fitness acumulativo},
-		es decir, ir sumando las probabilidades para generar un rango entre $0$ y $1$ con todas nuestras probabilidades.
-			
-		Una vez se tiene el \emph{fitness acumulativo} listo, se procede a obtener un número aleatorio entre $0$ y $1$,
-		para que luego sea ubicado en nuestro rango, y así el linfocito que salga escogido con éste número aleatorio, será
-		elegido para pasar ahora a la transformación.
-
-		% 2. Seleccionar siempre los mejores
-		% Pendiente
+				% 2. Seleccionar siempre los mejores
+				% Pendiente
+			\item \emph{Mejores:}
+				La selección de clones se realiza considerando todos los individuos de la población inicial y también
+				la lista de clones que ya han sido hipermutados, por lo cual detrás del procedimiento está inmerso una
+				escencia de elitismo, pues no estamos perdiendo los buenos elementos que hayan quedado en la población
+				antes de la clonacion e hipermutación.
 
 		% Tabla comparativa
-
+		\end{itemize}
 	\item \textbf{Operador de Clonación}
-		% 1. Clonación una cantidad aleatoria de veces
-		% Pendiente
+		\begin{itemize}
+			% 1. Clonación una cantidad aleatoria de veces
+			% Pendiente
+			\item \emph{Fórmula:}
 
+				Se ha tomado la escencia de la fórmula propuesta por (REFERENCIA CLONALG),
+				en el cual consideramos tres elementos: ``factor de clonación ($\beta$)~\footnote{$clonationRate$
+				corresponde al tamaño del $50\%$ de la población}'', ``Total de anticuerpos($N$)'' y
+				``Afinidad (ranking) ($a$)''.
+				La relación está dada por un número $m$ que equivale a la cantidad de clones que se generarán
+				para cada anticuerpo ordenados por afinidad, partiendo del mejor al peor.
+				$$m\ =\ \lceil\frac{\beta \cdot N}{a}\rceil$$
 
-		% 2. Clonacion por fórmula
-		% Pendiente
+				Con ésto estamos siguiendo la idea central del algoritmo, pues estamos favoreciendo a que se clonen más
+				los mejores elementos de nuestra población.
+				
+			% 2. Clonacion por fórmula
+			% Pendiente
+			\item \emph{Secuencia fija:}
 			
-
+				En éste caso, se considera una cantidad $n$ que consiste al $50\%$ de la diferencia entre el total de la población
+				y los elementos que han sido seleccionados para la clonación (elementos nulos), luego utilizan por cada loop
+				dicha cantidad, pero descontando el $10\%$ del total de la población, por lo que vamos obteniendo una cantidad
+				de clones que va en disminución, dando prioridad a los mejores clones.
+			
+		\end{itemize}
 		% Tabla comparativa
 	\item \textbf{Operador de Reemplazo}
-		% 1. Reemplazo aleatorio
-		% Pendiente
+		Para mantener la diversidad en nuestra población e intentar escapar de los óptimos locales,
+		se utiliza un $replaceRate$ que corresponde a la cantidad del $60\%$ del tamaño de la población.
 
+		Los nuevos elementos son generados cumpliendo las restricciones duras, para obtener nuevos
+		elementos un poco mejores en comparación a la creación aleatoria.
+		\begin{itemize}
+			% 1. Reemplazo aleatorio
+			% Pendiente
+			\item \emph{Aleatorio:}
+ 
+				Se realiza el reemplazo en posiciones aleatorias de la poblacion de los nuevos elementos
+				generados.
 
-		% 2. Reemplazo de los más malos
-		% Pendiente
+			% 2. Reemplazo de los más malos
+			% Pendiente
+			\item \emph{Peores:}
+				Se realiza el reemplazo en los peores elementos de la nueva población a utilizar.
 
-
+		\end{itemize}
 		% Tabla comparativa
 	\item \textbf{Movimiento}
-		% 1. Swap con 10%
-		% 2. Swap con 20%
+		% 1. Swap con 20%
+		% 2. Swap con 40%
 
 		En éste caso se realiza un \emph{swap}, pero como cada individuo es del orden de $200$, $300$ y $400$ autos,
-		se realiza una cantidad de \emph{swap} equivalente al $10\%$ y $20\%$ de la cantidad de autos.
+		se realiza una cantidad de \emph{swap} equivalente al $20\%$ y $40\%$ de la cantidad de autos.
 	
 		Para ver que elementos hacen el \emph{swap}, se eligen aleatoriamente dos elementos para intercambiar.~\footnote{
 		Éste proceso se podría mejorar, estudiando a fondo que swaps nos convienen más, para obtener siempre mejores
