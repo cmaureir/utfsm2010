@@ -1,0 +1,84 @@
+% Descripción los componentes que se probaron.
+% Ej. AIS: Operadores de seleccion,
+%		   Operadores de clonacion,
+%		   Operadores de reemplazo,
+%		   Movimientos,
+%		   Funciones objetivos, etc.
+% Resultados de las pruebas realizadas (tablas o gráficos). Ejemplo:
+%	\begin{table}
+%	\centering
+%	\begin{tabular}{| l | c | c | c | c |}
+%	\hline
+%	 fobj & primeros & ruleta & torneo & random \\
+%	\hline
+%	 instancia 1 & 33000 &  31000 & 30000 & 40000 \\
+%	\hline
+%	 instancia 2 & 56000 &  45000 & 47000 & 60000 \\
+%	\hline
+%	\end{tabular}
+%	\caption{Resultados pruebas Operadores de selecci\'on}
+%	\end{table}
+\begin{enumerate}
+	\item \textbf{Operador de Selección}
+		% 1. Seleccion por ruleta
+
+		Al momento de seleccionar individuos para realizar la clonación, se utilizó la conocida técnica llamada
+		\emph{roulette wheel}, para una Función Objetivo que minimiza.
+		
+		El procedimiento es bien simple, sólo tenemos que considerar el \emph{fitness} de cada linfocito y calcular un
+		\emph{fitness relativo} de la siguiente forma:
+		
+		$$relativeFitness_{i}\ = \frac{f_{min} + f_{max} - f_{i}}{\sum\limits_{i=0}^{sizePop} (f_{min} + f_{max} - f_{i}}$$
+		
+		Donde $f_{max}$ equivale al \emph{fitness} del mejor linfocito,
+		$f_{min}$ equivale al \emph{fitness} del peor linfocito y
+		$f_{i}$ equivale al \emph{fitness} del i-ésimo linfocito de nuestra población.
+		
+		La suma de todos los \emph{fitness relativo} equivale a $1$.
+			
+		Luego de que cada linfocito posee su \emph{fitness relativo}, se procede a calcular un \emph{fitness acumulativo},
+		es decir, ir sumando las probabilidades para generar un rango entre $0$ y $1$ con todas nuestras probabilidades.
+			
+		Una vez se tiene el \emph{fitness acumulativo} listo, se procede a obtener un número aleatorio entre $0$ y $1$,
+		para que luego sea ubicado en nuestro rango, y así el linfocito que salga escogido con éste número aleatorio, será
+		elegido para pasar ahora a la transformación.
+
+		% 2. Seleccionar siempre los mejores
+		% Pendiente
+
+		% Tabla comparativa
+
+	\item \textbf{Operador de Clonación}
+		% 1. Clonación una cantidad aleatoria de veces
+		% Pendiente
+
+
+		% 2. Clonacion por fórmula
+		% Pendiente
+			
+
+		% Tabla comparativa
+	\item \textbf{Operador de Reemplazo}
+		% 1. Reemplazo aleatorio
+		% Pendiente
+
+
+		% 2. Reemplazo de los más malos
+		% Pendiente
+
+
+		% Tabla comparativa
+	\item \textbf{Movimiento}
+		% 1. Swap con 10%
+		% 2. Swap con 20%
+
+		En éste caso se realiza un \emph{swap}, pero como cada individuo es del orden de $200$, $300$ y $400$ autos,
+		se realiza una cantidad de \emph{swap} equivalente al $10\%$ y $20\%$ de la cantidad de autos.
+	
+		Para ver que elementos hacen el \emph{swap}, se eligen aleatoriamente dos elementos para intercambiar.~\footnote{
+		Éste proceso se podría mejorar, estudiando a fondo que swaps nos convienen más, para obtener siempre mejores
+		resultados}
+
+
+		% Tabla comparativa
+\end{enumerate}
