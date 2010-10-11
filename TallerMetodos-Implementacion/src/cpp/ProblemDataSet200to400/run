@@ -1,0 +1,21 @@
+#!/usr/bin/python
+
+import os
+test=['200','300','400']
+t=['01','02','03','04','05','06','07','08','09','10']
+options=['true true true true','false true true true','true false true true','true true false true','true true true false']
+
+counter=0
+
+for i in test:
+	print "==="+i+"==="
+	for j in t:
+		for l in options:
+			print "Using: "+l
+			for k in range(0,20):
+				print i+"_"+j
+				os.system("./csp"+i+" pb_"+i+"_"+j+".txt "+l)
+				os.system("echo >> pb_"+i+"_"+j+".out")
+			os.system("mv pb_"+i+"_"+j+".out pb_"+i+"_"+j+".out-"+str(counter))
+			counter = counter + 1
+		counter = 0
