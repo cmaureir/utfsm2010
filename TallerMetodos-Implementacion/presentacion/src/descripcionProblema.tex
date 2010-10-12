@@ -1,0 +1,50 @@
+\frame
+{
+\frametitle{Descripción del Problema}
+\framesubtitle{Información}
+
+Con respecto a la información que el problema otorga, podemos decir que contamos con:
+\begin{itemize}
+    \item \green{Cantidad} de vehículos de cada \blue{tipo} o clase a producir (demanda)
+    \item Lista de las \green{opciones} con la cual se \blue{constituye cada tipo} o clase
+		de vehículo.
+    \item Capacidad de las plantas que se preocupan de instalar la determinada opción.
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Descripción del Problema}
+\framesubtitle{Objetivo Principal}
+\begin{itemize}
+    \item Encontrar un \red{orden} en nuestra secuencia,
+		que sirva para \blue{minimizar} el costo por cada \green{restricción} insatisfecha.
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Descripción del Problema}
+\framesubtitle{Objetivo Principal}
+Con respecto a las restricciones, tenemos que:
+\begin{itemize}
+    \item En cada subsecuencia de los $q$ vehículos,
+		\blue{a lo más} pueden haber $p$ que \red{requieran de la opción} determinada.
+		(por cada opción).
+    \item La \red{capacidad} de cada \blue{planta de ensamblaje} no puede ser excedida.
+    \item Por cada \red{tipo} de auto, el numero de autos de ese tipo debe ser
+		\blue{secuenciado} (restricción dura).
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Descripción del Problema}
+\framesubtitle{Objetivo Principal}
+Las instancias utilizadas son las de entregadas por la \red{CSPlib}.
+\begin{itemize}
+    \item 10 instancias para \blue{200} vehículos.
+    \item 10 instancias para \blue{300} vehículos.
+    \item 10 instancias para \blue{400} vehículos.
+\end{itemize}
+}
