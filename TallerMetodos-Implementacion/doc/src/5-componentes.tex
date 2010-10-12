@@ -25,7 +25,7 @@ referencia a la ejecución "base" del algoritmo.
 \begin{itemize}
 	\item Repertorio Inicial: Arreglado (Cumpliendo restricciones duras).
 	\item Selección de Clones: Mejores (Considerando la población actual y la de clones).
-	\item Movimiento: Swap al 20\%.
+	\item Movimiento: Swap al 40\%.
 	\item Reemplazo: Peores.
 	\item Clonación: Mediante fórmula (explicada más adelante).
 \end{itemize}
@@ -83,8 +83,8 @@ referencia a la ejecución "base" del algoritmo.
 			\item \emph{Mejores:}
 				La selección de clones se realiza considerando todos los individuos de la población inicial y también
 				la lista de clones que ya han sido hipermutados, por lo cual detrás del procedimiento está inmerso una
-				escencia de elitismo, pues no estamos perdiendo los buenos elementos que hayan quedado en la población
-				antes de la clonacion e hipermutación.
+				esencia de elitismo, pues no estamos perdiendo los buenos elementos que hayan quedado en la población
+				antes de la clonación e hipermutación.
 
 		% Tabla comparativa
 		\end{itemize}
@@ -94,9 +94,9 @@ referencia a la ejecución "base" del algoritmo.
 			% Pendiente
 			\item \emph{Fórmula:}
 
-				Se ha tomado la escencia de la fórmula propuesta por (REFERENCIA CLONALG),
+				Se ha tomado la esencia de la fórmula propuesta por De Castro~\cite{decastro},
 				en el cual consideramos tres elementos: ``factor de clonación ($\beta$)~\footnote{$clonationRate$
-				corresponde al tamaño del $50\%$ de la población}'', ``Total de anticuerpos($N$)'' y
+				corresponde al tamaño del $40\%$ de la población}'', ``Total de anticuerpos($N$)'' y
 				``Afinidad (ranking) ($a$)''.
 				La relación está dada por un número $m$ que equivale a la cantidad de clones que se generarán
 				para cada anticuerpo ordenados por afinidad, partiendo del mejor al peor.
@@ -127,7 +127,7 @@ referencia a la ejecución "base" del algoritmo.
 			% Pendiente
 			\item \emph{Aleatorio:}
  
-				Se realiza el reemplazo en posiciones aleatorias de la poblacion de los nuevos elementos
+				Se realiza el reemplazo en posiciones aleatorias de la población de los nuevos elementos
 				generados.
 
 			% 2. Reemplazo de los más malos
@@ -138,16 +138,66 @@ referencia a la ejecución "base" del algoritmo.
 		\end{itemize}
 		% Tabla comparativa
 	\item \textbf{Movimiento}
-		% 1. Swap con 20%
-		% 2. Swap con 40%
-
 		En éste caso se realiza un \emph{swap}, pero como cada individuo es del orden de $200$, $300$ y $400$ autos,
-		se realiza una cantidad de \emph{swap} equivalente al $20\%$ y $40\%$ de la cantidad de autos.
+		se realiza una cantidad de \emph{swap} equivalente al $40\%$ de la cantidad de autos.
 	
 		Para ver que elementos hacen el \emph{swap}, se eligen aleatoriamente dos elementos para intercambiar.~\footnote{
 		Éste proceso se podría mejorar, estudiando a fondo que swaps nos convienen más, para obtener siempre mejores
 		resultados}
-
-
-		% Tabla comparativa
 \end{enumerate}
+
+
+Respecto a los gráficos comparativos de cada situación,
+se ha realizado 5 configuraciones distintas, para ver la diferencia en el rendimiento:
+\begin{enumerate}
+	\item Normal:
+
+		\begin{itemize}
+			\item Generación de población: Cumpliendo restricciones duras.
+			\item Selección de clones: Selección de los mejores.
+			\item Reemplazo al término de iteración:  Se reemplazan los peores.
+			\item Tipo de clonación: Mediante fórmula.
+		\end{itemize}
+	\item Población aleatoria:
+
+		\begin{itemize}
+			\item Generación de población: \textbf{Rompiendo restricciones duras}.
+			\item Selección de clones: Selección de los mejores.
+			\item Reemplazo al término de iteración:  Se reemplazan los peores.
+			\item Tipo de clonación: Mediante fórmula.
+		\end{itemize}
+
+	\item Población aleatoria:
+
+		\begin{itemize}
+			\item Generación de población: Cumpliendo restricciones duras.
+			\item Selección de clones: \textbf{Selección mediante ruleta}.
+			\item Reemplazo al término de iteración:  Se reemplazan los peores.
+			\item Tipo de clonación: Mediante fórmula.
+		\end{itemize}
+
+	\item Población aleatoria:
+
+		\begin{itemize}
+			\item Generación de población: Cumpliendo restricciones duras.
+			\item Selección de clones: Selección de los mejores.
+			\item Reemplazo al término de iteración:  \textbf{Se reemplazan aleatoriamente}.
+			\item Tipo de clonación: Mediante fórmula.
+		\end{itemize}
+
+	\item Población aleatoria:
+
+		\begin{itemize}
+			\item Generación de población: Cumpliendo restricciones duras.
+			\item Selección de clones: Selección de los mejores.
+			\item Reemplazo al término de iteración:  Se reemplazan los peores.
+			\item Tipo de clonación: \textbf{Secuencia fija}.
+		\end{itemize}
+
+\end{enumerate}
+
+Los resultados obtenidos y graficados corresponden al \emph{promedio}, \emph{desviación estándar},
+\emph{valores mínimos}, \emph{valores máximos} y \emph{tiempo de ejecución}.
+
+
+Ver anexo~\ref{sec:anexo}.

@@ -3,3 +3,31 @@
 % En lo posible adjuntar una tabla de los resultados encontrados por
 %  su algoritmo y otros algoritmos de la literatura
 %  (no es importante que sean buenos, es solo para comparar en que punto se encuentra). 
+
+Las opciones utilizadas en el algoritmo, son las que conforman la configuración \emph{Normal}
+previamente señalada.
+
+\begin{verbatim}
+    Inicio
+    g <- 0 // numero de generaciones
+    Leer datos de entrada
+    Población <- Generar población inicial
+    Evaluar población
+
+    Mientras g < GENS
+        Limpiar poblaciones
+        Seleccionar individuos a clonal (ruleta)
+        Clonación (fórmula)
+        Hipermutación mediante Swap
+        Evaluar población mutada
+        Selección de clones (Mejores)
+        Inserción de clones en nueva población
+        Generar elementos nuevos aleatorios
+        Inserción de elementos nuevos al población
+        g <- g + 1
+    Fin Mientras
+
+    Imprimir resultados
+    Fin
+\end{verbatim}
+

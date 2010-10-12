@@ -3,12 +3,18 @@
 \usepackage[spanish]{babel}
 \usepackage{amsfonts}
 \usepackage{amsmath}
-\usepackage[dvips]{graphicx}
+\usepackage{graphicx}
 \usepackage{url}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{verbatim}
 \usepackage[top=3cm,bottom=3cm,left=3.5cm,right=3.5cm,footskip=1.5cm,headheight=1.5cm,headsep=.5cm,textheight=3cm]{geometry}
 
 
 \begin{document}
+\bibliographystyle{plain}
+\pagestyle{empty}
+
 \title{Taller de Modelos y Métodos Cuantitativos \\ \begin{Large}Implementación: Algoritmo \emph{Clonal Selection} para el problema \emph{Car Sequencing Problem}\end{Large}}
 \author{Cristián D. Maureira Fredes.}
 \date{\today}
@@ -41,6 +47,13 @@
 \input{src/6-algoritmo.tex}
 \label{sec:algoritmo}
 
+\newpage
 \section{Bibliografía}
-%\bibliography{informe2}
+\bibliography{informe2}
+\newpage
+
+\section{Anexo}
+\input{src/7-anexo.tex}
+\label{sec:anexo}
+
 \end{document} 

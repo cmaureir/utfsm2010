@@ -56,7 +56,7 @@ void initPopulation(bool type){
 //	printPop(population);
 }
 
-bool isNull(struct genotype p){
+bool isNull(struct cell p){
 	int i=0,j=0;
 	for (i = 0; i < VARS; i++) {
 		if(p.gene[i] == 0)
@@ -72,7 +72,7 @@ bool isNull(struct genotype p){
 
 // Evaluacion
 // Verificar las restricciones Blandas.
-void evaluation(struct genotype evalPop[POP+1], bool type){
+void evaluation(struct cell evalPop[POP+1], bool type){
 	int mem, i=0, j=0, m=0, tmp=0, badness=0, failCon = 0;
 
 //	cout << "--Evaluamos--" << endl;
@@ -129,7 +129,7 @@ void evaluation(struct genotype evalPop[POP+1], bool type){
 
 //Seleccion de un individuo
 //	Ruleta para una FO que minimiza
-void selection(int n, struct genotype popToSel[POP+1]){
+void selection(int n, struct cell popToSel[POP+1]){
 	int mem, i, best, worst, den=0, selected = 0;
 	double sum = 0;
 	double p;
@@ -195,9 +195,9 @@ void selection(int n, struct genotype popToSel[POP+1]){
 
 }
 
-void sortPop(struct genotype p[POP+1]){
+void sortPop(struct cell p[POP+1]){
 	int i,j;
-	struct genotype tmp;
+	struct cell tmp;
 	//Bubble Sort
 //	cout << "--Sort Pop--" << endl;
 	for (i = 0; i < POP; i++) {
@@ -213,7 +213,7 @@ void sortPop(struct genotype p[POP+1]){
 }
 
 //void clonation(){
-void clonation(struct genotype clone[POP+1], bool type){
+void clonation(struct cell clone[POP+1], bool type){
 	int i=0,j=0,n=0, counter[POP], k=0,var=0;
 	double m[POP+1], intPart, decPart;
 //	cout << "--Clonacion--" << endl;
@@ -305,7 +305,7 @@ void hypermutation(){
 //	printPop(clonePop);
 }
 
-void cloneSelection(int n, struct genotype popToSel[POP+1], bool type){
+void cloneSelection(int n, struct cell popToSel[POP+1], bool type){
 	int i,j;
 //	cout << "--Clone Selection--" << endl;
 	if(type){
@@ -323,7 +323,7 @@ void cloneSelection(int n, struct genotype popToSel[POP+1], bool type){
 				change = true;
 			}	
 		}
-		struct genotype tmp;
+		struct cell tmp;
 		    //Bubble Sort
 		    for (i = 0; i < 2*(POP+1); i++) {
 		        for (j = i+1; j < 2*(POP+1); j++) {
@@ -395,7 +395,7 @@ void newGeneration(int counter, bool type){
 //	printPop(population);
 }
 
-void printPop(struct genotype tmp[POP+1]){
+void printPop(struct cell tmp[POP+1]){
 	int i,j;
 	for (i=0;i<POP;i++){
 		for (j=0;j<VARS;j++){

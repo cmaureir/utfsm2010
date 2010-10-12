@@ -21,20 +21,20 @@ using namespace std;
 #define POP  20    // Tamaño poblacion
 #define GENS 500  // Numero maximo de generaciones
 #define N 128	   // Variable para crear arreglos determinados
-#define clonationRate POP*0.4
-#define selRate POP*0.4
-#define replaceRate POP*0.6
-#define swap VARS*0.4
-#define clonationFactor 0.5
+#define clonationRate POP*0.4 // Tasa para realizar la clonación
+#define selRate POP*0.4  // Tasa para la cantidad de elementos seleccionados
+#define replaceRate POP*0.6  // Tasa para la cantidad de elementos reemplazados
+#define swap VARS*0.4 // Cantidad de swap realizados en el movimiento
+#define clonationFactor 0.5 // Factor para calcular individuos clonados
 
-struct genotype {  		// Individuo de la poblacion
+struct cell {  		// Individuo de la poblacion
     int gene[VARS];     // Automoviles
 	int fitness;		// Valor evaluacion de la FO
 	double rfitness;    // Fitness relativo
 	double cfitness;    // Fitness acumulado
 } population[POP+1],    // Poblacion Actual
   clonePop[POP+1],		// Nueva población con los primeros seleccionados y luego los clones
-  tmpPop[2*(POP+1)];		// Poblacion Temporal con seleccionados de clones
+  tmpPop[2*(POP+1)];	// Poblacion Temporal
 
 
 // Variables Generales del problema
