@@ -14,7 +14,7 @@ using namespace std;
 // IMPORTANTE:
 // Variables establecidas a mano
 // cambiar antes de ejecutar cada test
-#define VARS 400    // Numero de autos
+#define VARS 200    // Numero de autos
 
 
 // Variables Problema
@@ -26,6 +26,7 @@ using namespace std;
 #define replaceRate POP*0.6  // Tasa para la cantidad de elementos reemplazados
 #define swap VARS*0.4 // Cantidad de swap realizados en el movimiento
 #define clonationFactor 0.5 // Factor para calcular individuos clonados
+#define mutRate POP*0.02
 
 struct cell {  		// Individuo de la poblacion
     int gene[VARS];     // Automoviles

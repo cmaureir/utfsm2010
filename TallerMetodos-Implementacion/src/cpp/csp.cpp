@@ -49,8 +49,8 @@ int main(int argc, const char *argv[])
 	
 	clock_gettime(CLOCK_REALTIME, &te);
 
-	printFile(argv[1],population[0].gene,population[0].fitness,(te.tv_sec-ts.tv_sec), (te.tv_nsec-ts.tv_nsec));
-//	cout << "FITNESS: " << population[0].fitness << endl;
+//	printFile(argv[1],population[0].gene,population[0].fitness,(te.tv_sec-ts.tv_sec), (te.tv_nsec-ts.tv_nsec));
+	cout << "FITNESS: " << population[0].fitness << endl;
 
 	return 0;
 }

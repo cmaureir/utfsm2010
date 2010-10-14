@@ -122,9 +122,6 @@ void evaluation(struct cell evalPop[POP+1], bool type){
 		}
 	}
 
-//	printPop(evalPop);
-
-
 }
 
 //Seleccion de un individuo
@@ -288,9 +285,15 @@ void clonation(struct cell clone[POP+1], bool type){
 void hypermutation(){
 	int i, j, random_1, random_2, tmp;
 
+//CAMBIAR!
+//Hipermutamos poco a los mejores y mucho a los peores
 //	cout << "--Mutacion--" << endl;
+//
+	sortPop(clonePop);
 	for(i=0;i<POP;i++){
-	    for(j=0;j<clonationRate;j++){
+		if(!isNull(clonePop[i])){
+			//POP*0.4
+			for(j=0;j<round(mutRate * clonePop[i].fitness);j++){
 	        // Generamos dos numeros para intercambiar los valores
 	        //  de nuestra solucion
 	        random_1 = (1+(int)((rand()/(RAND_MAX + 1.0))*(VARS+1)))%VARS;
@@ -299,10 +302,9 @@ void hypermutation(){
 	        tmp = clonePop[i].gene[random_1];
 	        clonePop[i].gene[random_1] = clonePop[i].gene[random_2];
 	        clonePop[i].gene[random_2] = tmp;
-	    }
+			}
+		}
 	}
-
-//	printPop(clonePop);
 }
 
 void cloneSelection(int n, struct cell popToSel[POP+1], bool type){
