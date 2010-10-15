@@ -1,0 +1,35 @@
+\documentclass{beamer}
+\usepackage[spanish,activeacute]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{verbatim}
+
+\definecolor{gray2}{rgb}{100,100,100}
+\definecolor{red}{rgb}{255,0,0}
+\usetheme[pageofpages=of,% String used between the current page and the
+                         % total page count.
+          alternativetitlepage=true,% Use the fancy title page.
+          titlepagelogo=img/mutation,% Logo for the first page.
+          watermark=img/mutation-off,% Watermark used in every page.
+          watermarkheight=50px,% Height of the watermark.
+          watermarkheightmult=4,% The watermark image is 4 times bigger
+                                % than watermarkheight.
+          ]{Torino}
+
+\usecolortheme{nouvelle}
+
+\author{\large Cristián D. Maureira Fredes \\ \normalsize \texttt{cmaureir@csrg.inf.utfsm.cl}}
+\title{\huge GPU Paper overview}
+\subtitle{\Large \textit{``Parallel Genetic Algorithms on Programmable Graphics Hardware''}}
+\institute{\textbf{Computación de Alto Desempeño en GPU}\\ Departamento de Informática\\ (UTFSM)}
+\date{\today}
+
+\begin{document}
+\include{src/0-cover}
+\include{src/1-introduction}
+\include{src/2-background}
+\include{src/3-real-coded}
+\include{src/4-experimental}
+\include{src/5-conclusions}
+\end{document}
