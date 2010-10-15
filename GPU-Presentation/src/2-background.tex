@@ -5,10 +5,10 @@
 \frametitle{Background}
 \framesubtitle{Genetic Algorithm}
 \begin{enumerate}
-	\item Generate an initial population.
-	\item Select pair of individuals based on the fitness function.
-	\item Produce next generation from the selected pairs by applying pre-selected genetic operators.
-	\item If the termination condition (\# gens, converges sol) is satisfied stop, else go to step 2.
+	\item \blue{Generate} an initial population.
+	\item \blue{Select} pair of individuals based on the fitness function.
+	\item Produce \blue{next generation} from the selected pairs by applying pre-selected genetic operators.
+	\item If the termination \blue{condition} (\# gens, converges sol) is satisfied stop, else go to step 2.
 \end{enumerate}
 }
 
@@ -17,14 +17,14 @@
 \frametitle{Background}
 \framesubtitle{Genetic Algorithm}
 \begin{itemize}
-	\item A solution is represented as a vector of real-parameter decision variable.
+	\item A solution is \red{represented} as a vector of real-parameter decision variable.
 	\item Three main type of PGA:
 	\begin{itemize}
-		\item \emph{Master-slave}:
+		\item \blue{Master-slave}:
 			single population, evaluation of fitness is distributed (several processors).
-		\item \emph{Coarse-grained}:
+		\item \blue{Coarse-grained}:
 			Population divided (sub-populations), occasional exchanges of individuals.
-		\item \emph{Fine-grained}:
+		\item \blue{Fine-grained}:
 			Individuals are commonly mapped onto a 2D lattice, with one individual per node.
 			selection and crossover restricted (neighborhood).
 	\end{itemize}
