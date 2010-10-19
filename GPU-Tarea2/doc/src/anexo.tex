@@ -1,0 +1,42 @@
+	\begin{table}[h!]
+		\begin{center}
+		\begin{tabular}{|l|c|c|}
+			\hline	
+			\textbf{Dato} & \textbf{Paralelizado} & \textbf{No paralelizado} \\\hline
+			Result    & 4.1542 & 4.1271 \\
+			Real time & 0.443 [s] & 6.100 [s] \\
+			User time & 6.889 [s] & 6.094 [s] \\
+			Sys  time & 0.004 [s] & 0.003 [s] \\\hline
+		\end{tabular}
+		\label{tab:1}
+		\caption{Tiempos y Resultados en CPU}
+		\end{center}
+	\end{table}
+	
+
+	\begin{table}[h!]
+		\begin{center}
+		\begin{tabular}{|l|c|c|c|c|}
+			\hline	
+			\textbf{Block size} & \textbf{Result}  &\textbf{Real time} &\textbf{User time}	&\textbf{Sys  time}	\\\hline 
+			32  & 4.1545 & 1.585s & 0.010s & 1.384s \\\hline
+			64  & 4.1932 & 1.505s & 0.004s & 1.310s \\\hline
+			96  & 4.8519 & 1.512s & 0.005s & 1.320s \\\hline
+ 			128 & 4.1910 & 1.507s & 0.002s & 1.318s \\\hline
+			160 & 4.1945 & 1.507s & 0.007s & 1.307s \\\hline
+			192 & 4.8159 & 1.506s & 0.006s & 1.312s \\\hline
+			224 & 4.1921 & 1.512s & 0.006s & 1.320s \\\hline
+			256 & 4.1925 & 1.506s & 0.007s & 1.305s \\\hline
+			288 & 4.1810 & 1.507s & 0.011s & 1.308s \\\hline
+			320 & 4.1845 & 1.508s & 0.008s & 1.311s \\\hline
+			352 & 4.1923 & 1.507s & 0.011s & 1.305s \\\hline
+			384 & 4.8593 & 1.506s & 0.010s & 1.306s \\\hline
+			416 & 4.1952 & 1.541s & 0.010s & 1.343s \\\hline
+			448 & 4.1921 & 1.525s & 0.009s & 1.322s \\\hline
+			480 & 4.1554 & 1.506s & 0.011s & 1.307s \\\hline
+			512 & 4.1546 & 1.507s & 0.009s & 1.307s \\\hline
+		\end{tabular}
+		\label{tab:2}
+		\caption{Tiempos y Resultados en GPU}
+		\end{center}
+	\end{table}

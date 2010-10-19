@@ -1,0 +1,47 @@
+\subsection{CPU}
+	Analizando la paralelización en la implementación en la CPU,
+	es decir, utilizando y no utilizando el \emph{pragma}
+	podemos darnos cuenta que el tiempo cambia notoriamente,
+	como se puede ver en \ref{tab:1}, esto es debido a que pasa
+	de utilizar los 8 procesadores a sólo utilizar 1.
+	Además podemos darnos cuentas que al paralelizar,
+	el tiempo \emph{Real} disminuye en casi $\frac{1}{8}$,
+	pues $\frac{6.1}{8} = 0.765$ y nosotros tenemos $0.443$.
+
+	Con respecto a los resultados de la integral, señalados también
+	en \ref{tab:1}, podemos darnos cuentas que son distintos,
+	esto se debe que al paralelizar no tenemos control sobre los
+	8 threads (en éste caso), los cuales van calculando segmentos
+	de la integral de forma independiente, por lo que al momento del cálculo,
+	algunos pueden diferir un poco, ocasionando la leve diferencia.
+
+
+\subsection{GPU}
+
+%Medir cómo influye el tamaño del bloque en el tiempo de ejecución del programa.
+Se realizaron distintas pruebas para ver la diferencia de valores entregados
+por los distintos tamaños de los bloques y el tiempo de ejecución.
+
+Mediante el desarrollo del programa, se encontraron varios comportamientos extraños,
+los valores de \emph{Result} en la tabla~\ref{tab:2} son los obtenidos la noche del Domingo 17 de Octubre,
+los cuales se acercaban al valor entregado por el cálculo en la CPU.
+
+En cambio cuando el programa se comenzó a ejecutar hoy Lunes 18 de Octubre,
+los valores comenzaron a acumularse y llegaron a números de la forma $165.2e26$
+lo cual no está correcto.
+
+Probé utilizando mejor la memoria compartida, asignándole mediante el kernel
+un espacio a la memoria compartida con distintos valores $(512, N, nr\_blocks, etc)$
+sin obtener buenos resultados.
+
+A medida que vamos aumentando el tamaño del bloque podemos hacer distintas apreciaciones
+con respecto al tiempo:
+\begin{itemize}
+	\item Real time: se mantiene cerca de valores como $1.506s$ pero no sigue un patrón.
+	\item User time: pareciera que fuera aumentando pero hay algunos valores que se salen de lo común.
+	\item Sys  time: se ve un parcial aumento, pero en los últimos valores, el tiempo vuelve a ser como el principio.
+\end{itemize}
+
+Finalmente se puede decir que no hay una tendencia a aumentar o disminuir el tiempo bien notorio,
+pero se podría inferir que con algunos valores de bloques el programa se comporta de una manera extraña
+que desordenan un supuesto patrón de aumento de tiempo.

@@ -1,0 +1,12 @@
+Author: Cristián D. Maureira Fredes
+Date: Oct 18 2010
+
+Modificaciones
+----------------
+
+-Se añadieron paréntesis de llaves a los for de la función f() (en CPU y GPU) 
+-Se crearon nuevas funciones __device__ para poder ser utilizado desde el kernel,
+	pero se mantuvieron las funciones en el host, para ejecutarlas desde el main.
+-Los comentarios del método del código implementado están en integral.cu
+-Se agregó una variable de sharedMem para pasarle al kernel el parámetro que indica
+	el tamaño para la memoria compartida.
