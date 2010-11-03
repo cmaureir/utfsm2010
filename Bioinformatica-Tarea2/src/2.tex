@@ -1,0 +1,32 @@
+Programe en su lenguaje favorito. Necesitará (al menos) funciones que hagan lo siguiente:
+Generar una secuencia aleatoria de 200 bases equiprobables e independientes. Nos interesa la
+evolución de una especie alienígena en que las bases del DNA son 6, no 4: {A,C,G,T,B,D}.
+Una función que aplique una mutación a una secuencia; la mutación se escoge entre inserción,
+borrado y reemplazo de manera equiprobable, y su lugar de aplicación se elige al azar a lo largo
+de la secuencia. El borrado borra una letra, la inserción inserta una letra (equiprobable), y el
+reemplazo reemplaza una letra por cualquiera de las otras 5 (de manera equiprobable).
+Una función que calcule la distancia de Levenshtein entre dos secuencias (implementando
+Needleman-Wunsch).
+Con esas funciones, hará lo siguiente:
+
+\begin{enumerate}
+
+\item Generar una secuencia, y aplicar M mutaciones; para M entre 0 y 300, grafique la relación
+entre M y D, donde D es la distancia de Levenshtein entre la secuencia final y la secuencia
+inicial.
+
+
+\item Genere una secuencia, clónela, y a cada copia aplíquele M mutaciones (de modo que tendrá
+dos secuencias crecientemente distintas). Grafique la relación entre M y D’, donde D’ es la
+distancia entre las dos secuencias que están mutando.
+
+
+\item Genere 10.000 pares de secuencias (largo 200 c/u) y evalúe su distancia de Levenshtein; haga
+un histograma de la distribución de estos valores, y calcule media y $\sigma$
+
+
+\item Considerando (b) y (c), ¿por sobre qué valor de M diría usted que el parentesco entre las
+secuencias es indetectable?
+
+
+\end{enumerate}
