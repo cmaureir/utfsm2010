@@ -103,5 +103,5 @@ bool checkFile(int argc, const char *argv[]){
 void changeParam(const char *argv[]){
 
 	clonationFactor = atof(argv[2]); //0.5 // Factor para calcular individuos clonados
-	clonationRate = atoi(argv[3]); //POP*0.4 // Tasa para realizar la clonación
+	clonationRate = atof(argv[3]); //POP*0.4 // Tasa para realizar la clonación
 }
