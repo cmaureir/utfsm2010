@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from numpy import array,split
 
 bases = ["A","C","T","G"]
 
@@ -28,6 +27,5 @@ for i in range(2,len(tmp_sec)-1):
 			if is_palindrome(tmp_sec[j:j+i]):
 				top_ten.append(tmp_sec[j:j+i])	
 
-print top_ten.sort()
-
-# Falta ordenar los 10 más largos
+print top_ten
+print top_ten[::-1][:10]

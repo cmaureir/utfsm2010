@@ -386,9 +386,11 @@ void calcular_H0(void){
 
 void mostrar_resumen_final(void){
   char conv[100];
-  strcpy(conv, "convergencia-");
-  strcat(conv, directorio);
-  strcat(conv, ".conv");
+  //strcpy(conv, "convergencia-");
+  //strcat(conv, directorio);
+  //strcat(conv, ".conv");
+  strcpy(conv, "convergencia-instancias.conv");
+  cout << conv << endl;
   FILE * file_conv;
   if(I==0)//Reiniciar el archivo
     {
@@ -459,7 +461,9 @@ int main (int argc, char *argv[])
       calcular_K();
       sort(conjunto_calibraciones.begin(), conjunto_calibraciones.end());
       mostrar_calibraciones();
+	  cout << "resumen" << endl;
       mostrar_resumen_final();
+	  cout << "fin resumen" << endl;
     }
   sort(conjunto_calibraciones.begin(), conjunto_calibraciones.end());
   mostrar_calibraciones();
