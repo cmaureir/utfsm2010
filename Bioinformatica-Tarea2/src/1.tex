@@ -4,6 +4,21 @@ humano, un choclo y una mosca de la fruta (Drosophila melanogaster)? (Admitiendo
 bases en un mismo byte de 8 bits, pero sin comprimir más allá de eso.) Si sólo nos interesan las
 secuencias que codifican proteínas (“CDS”), ¿cuántos megas necesitaríamos, en el caso humano?
 
+Para responder, solo es necesario conocer el numero de pares de base. Debido a que el código genético
+consta de 4 letras, podemos expresar cada base en 2 bits. Por lo que: \\
+
+$ \lceil \frac{Numero \ de \ pares \ de \ base * 2}{8 * 1024^2} \rceil = megabytes$ \\
+
+\begin{tabular}{|l|l|l|}
+\hline
+ & Numero de pares de base & Bytes \\
+\hline
+Ser humano & 2858015675 & 682 MB\\
+Choclo & & \\
+Mosca de la fruta & & \\
+\hline
+\end{tabular}
+
 
 \item Tenemos un cierto gen (humano) y queremos escoger un trocito de él (un segmento de N bases
 contiguas) que sea único dentro del genoma completo. Suponiendo que las bases del genoma fuesen
@@ -11,11 +26,38 @@ equiprobables e independientes, ¿cuál es el menor valor de N que nos garantiza
 menor a 0.01 de encontrar la misma secuencia en otro punto del genoma? Explique su cálculo y detalle
 cualquier supuesto adicional que haga.
 
+Si el largo del genoma humano es de L = 2858015675, además si el tamaño del trozo es de N, habría que buscar en
+L - N pares de bases, si nuestro trozo se encuentra.\\
+
+\begin{itemize}
+
+\item ¿ Cuántas veces encontraremos nuestro trozo en el resto del genoma (Casos favorables)?
+
+$(L - N) - N + 1$ (posiciones que podemos deslizar un string de largo N, entre L - N espacios, con $L > N$)
+
+\item ¿ Cuántos strings de 4 letras podemos formar con L - N casillas (Casos totales)?
+
+$4^{(L-N)}$
+
+\item ¿ Ecuación?
+
+$\frac{casos \ favorables}{casos \ totales} < 0.01$\\
+$\leftrightarrow \frac{(L - 2N + 1}{4^{(L-N)}} = 0.01$\\
+$\leftrightarrow \frac{(L - 2N + 1}{0.01} = 4^{(L-N)} \ \ \ / log_4$\\
+$\leftrightarrow log_4(L - 2N + 1) - log_4(0.01) = (L-N)$\\
+
+NO CONSIDEREEEE QUE EL STRING FUERA CORTOO Y HUBIERA ESPACIO PARA MAS DE 1 N EN L!!! (CONSULTAR AL PROFE!!)
+
+
+\end{itemize}
+
 
 \item Pequeñas secuencias como la descrita en la parte anterior se usan en al menos dos tecnologías
-importantes, la PCR (reacción en cadena de polimerasa) y los microarrays. Averigüe sobre esas
+importantes, la PCR (reacción en cadena de polimerasa) y los microarrays. Averigue sobre esas
 tecnologías y explique qué tienen que ver con la parte (b); además comente sobre la necesidad (o no) de
 unicidad de la secuencia, en cada una.
 
+%PCR http://es.wikipedia.org/wiki/Reacción_en_cadena_de_la_polimerasa
+%microarrays http://es.wikipedia.org/wiki/Chip_de_ADN
 
 \end{enumerate}
