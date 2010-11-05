@@ -16,11 +16,11 @@ all:
 
 clean:
 	@echo "Limpiando..."
-	@rm -f $(NAME).{aux,toc,log,bbl,blg} portada.aux *~ 
+	@rm -f $(NAME).{aux,toc,log,bbl,blg,out} portada.aux *~ 
 
 distclean:
 	@echo "Limpiando todo!..."
-	@rm -f $(NAME).{pdf,aux,toc,log,bbl,blg} portada.aux 
+	@rm -f $(NAME).{pdf,aux,toc,log,bbl,blg,out} portada.aux 
 
 x:
 	xpdf $(BIN)/$(NAME).pdf &> /dev/null

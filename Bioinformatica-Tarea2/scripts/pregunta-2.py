@@ -41,17 +41,15 @@ def distancia(ini,sec):
 	Distancia de Levenshtein entre la secuencia inicial y la actual
 	(implementando Needleman-Wunsch)
 	'''
-	# Duda: La distancia de LEvenshtein vendría siendo la misma cantidad de  mutaciones.
+	# Duda: La distancia de Levenshtein vendria siendo la misma cantidad de mutaciones?
 	# Duda: Needleman-Wunch me entrega las secuencias para ver que tan iguales son
 	#		Por lo tanto no afectaria en el valor de la distancia
-	#		El algoritmo está como un modulo en  python
+	#		El algoritmo esta como un modulo en  python
 	#			http://pypi.python.org/pypi/nwalign/0.1.3
 	a = 1
 	return a
 
-#Generar una secuencia, y aplicar M mutaciones; para M entre 0 y 300, graﬁque la relacion
-#entre M y D, donde D es la distancia de Levenshtein entre la secuencia ﬁnal y la secuencia
-#inicial.
+# 1
 
 s = generar_secuencia()
 ini = s
@@ -61,19 +59,16 @@ for i in range(300):
 	d.append(distancia(ini,s))
 	
 
-#Genere una secuencia, clonela, y a cada copia apliquele M mutaciones (de modo que
-#tendra dos secuencias crecientemente distintas). Graﬁque la relacion entre M y D’, donde
-#D’ es la distancia entre las dos secuencias que estan mutando.
+# 2
 
 s = generar_secuencia()
 ini = s
-m = 300 # Duda: será 300 o un numero entre 0 y 300?
+m = 300 # Duda: sera 300 o un numero entre 0 y 300?
 s = mutacion(s,m)
 d = distancia(ini,s)
 
 
-#Genere 10.000 pares de secuencias (largo 200 c/u) y evalue su distancia de Levenshtein;
-#haga un histograma de la distribucion de estos valores, y calcule media y desviacion estandar.
+# 3
 
 sec1 = []
 sec2 = []
@@ -86,6 +81,5 @@ for i in range(100):
 distance_mean = array(d).mean()
 distance_standard_deviation = array(d).std()
 
-#Considerando (b) y (c), ¿por sobre que valor de M diria usted que el parentesco entre las
-#secuencias es indetectable?
+# 4
 

@@ -1,17 +1,61 @@
 \begin{enumerate}
-\item Siga programando en su lenguaje favorito. Esta vez, haga un programa que reciba una
-secuencia de DNA y encuentre en ella los 10 palíndromes más largos (un palíndrome, en
-sentido clásico, es una palabra que se lee igual en orden inverso; en el caso de DNA, además se
-complementan las bases, de modo que ACCTGATCAGGT es un palíndrome.).
 
+	\item Siga programando en su lenguaje favorito. Esta vez, haga un programa que reciba una
+		secuencia de DNA y encuentre en ella los 10 palíndromes más largos (un palíndrome, en
+		sentido clásico, es una palabra que se lee igual en orden inverso; en el caso de DNA, además se
+		complementan las bases, de modo que ACCTGATCAGGT es un palíndrome.).
 
-\item Vaya a \url{http://www.ncbi.nlm.nih.gov/genomes/genlist.cgi?taxid=2g\&type=0\&name=Complete\%20Bacteria} y elija un cromosoma de bacteria (en general corresponderán a genomas
-completos de las bacterias), de no menos de 1.000.000 nt. Aplíquele su programa de la parte (a).
-Ojo: aparte de los resultados, especifique bien (con link y código de acceso) la secuencia que
-usó.
+		\blue{Respuesta:}
+		
+		Ver anexo 2~\ref{sec:anexo2}
 
-\item Sugiera una estrategia, basada en Smith-Waterman, para realizar esta tarea si nos interesaran
-palíndromes aproximados, donde se permitan reemplazos o inserciones.
+	\item Vaya a~\footnote{\url{http://www.ncbi.nlm.nih.gov/genomes/genlist.cgi?taxid=2g\&type=0\&name=Complete\%20Bacteria}}
+		y elija un cromosoma de bacteria (en general corresponderán a genomas completos de las bacterias),
+		de no menos de 1.000.000 nt. Aplíquele su programa de la parte (a).
 
+		\textbf{Ojo:} aparte de los resultados, especifique bien (con link y código de acceso) la secuencia que usó.
+
+		\blue{Respuesta:}
+		\begin{itemize}
+			\item Información General
+				\begin{itemize}
+					\item Organism: \emph{Anaplasma centrale str. Israel}~\footnote{\url{http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=574556}}
+					\item Name: \emph{chromosome}
+					\item Accession: \emph{NC\_013532}~\footnote{\url{http://www.ncbi.nlm.nih.gov/sites/entrez?db=genome&cmd=Retrieve&dopt=Overview&list_uids=25444}}
+					\item Lenght: \emph{1206806 nt}
+					\item Proteins:	\emph{923}~\footnote{\url{http://www.ncbi.nlm.nih.gov/sites/entrez?db=genome&cmd=Retrieve&dopt=Protein+Table&list_uids=25444}}
+					\item RNAs: \emph{40}~\footnote{\url{http://www.ncbi.nlm.nih.gov/sites/entrez?db=genome&cmd=Retrieve&dopt=Structural+RNA+Table&list_uids=25444}}
+					\item Genes: \emph{982}~\footnote{\url{http://www.ncbi.nlm.nih.gov/sites/gene?term=NC_013532[accn]}}
+					\item Create date: \emph{Nov 26 2009}
+					\item Update date: \emph{Mar 23 2010}
+				\end{itemize}
+			\item Secuencia
+				\begin{itemize}
+					\item Anaplasma centrale str. Israel, complete genome (NCBI)~\footnote{\url{http://www.ncbi.nlm.nih.gov/nuccore/CP001759}},
+						notar que es necesario habilitar en el panel derecho ``Customize view'' y habilitar ``Show sequence'',
+						la que aparecerá al final de la página.\\
+
+					\texttt{
+					ORIGIN\\ 
+		        1 gtgggggggt ttatgccttt agaacagcag actactgata actccaatcc tgggttgaaa\\
+		      	61 aaaaactcac atgccaaggg cgccagagag ccaaacgatg agcgttggac cacaaacgat\\
+				...\\
+				1206721 cagacctgta taaatccgcc ggggttgatg atgcactgct catcaatcgg ggggatttgt\\
+  				1206781 tcttttttgt cgtatgtatt caaaac\\
+					//
+					}
+				\end{itemize}
+
+			\item Aplicación:
+			
+			 \red{TO DO:} Completa
+		\end{itemize}
+
+	\item Sugiera una estrategia, basada en Smith-Waterman, para realizar esta tarea si nos interesaran
+		palíndromes aproximados, donde se permitan reemplazos o inserciones.
+
+			\blue{Respuesta:}
+
+			\red{TO DO:} Completa
 
 \end{enumerate}
