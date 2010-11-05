@@ -13,12 +13,14 @@ $ \lceil \frac{Numero \ de \ pares \ de \ base * 2}{8 * 1024^2} \rceil = megabyt
 \hline
  & Numero de pares de base & Bytes \\
 \hline
-Ser humano & 2858015675 & 682 MB\\
-Choclo & & \\
-Mosca de la fruta & & \\
+Ser humano        & 2858015675 & 682 MB\\
+Choclo            & 2500000000 & 597 MB\\
+Mosca de la fruta & 165000000  & 40 MB\\
+Solo CDS ser humano *  & 42870235   & 11 MB\\
 \hline
 \end{tabular}
 
+* Secuencias codificadoras de proteínas comprenden menos del 1,5\% del genoma humano
 
 \item Tenemos un cierto gen (humano) y queremos escoger un trocito de él (un segmento de N bases
 contiguas) que sea único dentro del genoma completo. Suponiendo que las bases del genoma fuesen
@@ -41,21 +43,58 @@ $4^{(L-N)}$
 
 \item ¿ Ecuación?
 
-$\frac{casos \ favorables}{casos \ totales} < 0.01$\\
-$\leftrightarrow \frac{(L - 2N + 1}{4^{(L-N)}} = 0.01$\\
-$\leftrightarrow \frac{(L - 2N + 1}{0.01} = 4^{(L-N)} \ \ \ / log_4$\\
-$\leftrightarrow log_4(L - 2N + 1) - log_4(0.01) = (L-N)$\\
+$\frac{encontrar \ al \ menos \ una \ vez \ el \ trozo}{todos \ los \ trozos \ generables} < 0.01$\\
+$\leftrightarrow \frac{\sum_{i=1}^{L- 2N + 1} \frac{1}{L - 2N + 1}}{4^{(L-N)}} < 0.01$\\
+$\leftrightarrow \frac{1}{0.01} < 4^{(L-N)} \ \ \ / log_4$\\
+$\leftrightarrow N < L - log_4(100)$\\
+$\leftrightarrow N < L - 3.3219$
 
-NO CONSIDEREEEE QUE EL STRING FUERA CORTOO Y HUBIERA ESPACIO PARA MAS DE 1 N EN L!!! (CONSULTAR AL PROFE!!)
+\LARGE \textbf{CORROBORAR}
 
 
 \end{itemize}
-
 
 \item Pequeñas secuencias como la descrita en la parte anterior se usan en al menos dos tecnologías
 importantes, la PCR (reacción en cadena de polimerasa) y los microarrays. Averigue sobre esas
 tecnologías y explique qué tienen que ver con la parte (b); además comente sobre la necesidad (o no) de
 unicidad de la secuencia, en cada una.
+
+\begin{itemize}
+\item PCR \\
+
+La reacción en cadena de la polimerasa, conocida como PCR por sus siglas en inglés 
+(Polymerase Chain Reaction), es una técnica de biología molecular desarrollada en 
+1986 por Kary Mullis,1 cuyo objetivo es obtener un gran número de copias de un 
+fragmento de ADN particular, partiendo de un mínimo; en teoría basta partir de 
+una única copia de ese fragmento original, o molde.
+
+Esta técnica sirve para amplificar un fragmento de ADN; su utilidad es que tras 
+la amplificación resulta mucho más fácil identificar con una muy alta probabilidad
+ virus o bacterias causantes de una enfermedad, identificar personas (cadáveres) o
+ hacer investigación científica sobre el ADN amplificado. Estos usos derivados de 
+la amplificación han hecho que se convierta en una técnica muy extendida, con el 
+consiguiente abaratamiento del equipo necesario para llevarla a cabo.
+
+\item Microarrays \\
+
+Un chip de ADN (del inglés DNA microarrays) es una superficie sólida a la cual 
+se unen una serie de fragmentos de ADN. Las superficies empleadas para fijar el 
+ADN son muy variables y pueden ser vidrio, plástico e incluso chips de silicio. 
+Los arreglos de ADN son utilizadas para averiguar la expresión de genes, 
+monitorizándose los niveles de miles de ellos de forma simultanea.
+
+La tecnología del chip de ADN es un desarrollo de una técnica muy usada en biología 
+molecular, el Southern blot. Con esta tecnología podemos observar de forma casi
+ instantánea la presencia de todos los genes del genoma de un organismo. De tal
+ forma que suelen ser utilizados para identificar genes que producen ciertas 
+enfermedades mediante la comparación de los niveles de expresión entre células
+ sanas y células que están desarrollando ciertos tipos de enfermedades
+
+\item Relacion con parte (b) \\
+
+\LARGE \textbf{BUSCAR A UN QUIMICO? TO-DO!}
+
+\end{itemize}
 
 %PCR http://es.wikipedia.org/wiki/Reacción_en_cadena_de_la_polimerasa
 %microarrays http://es.wikipedia.org/wiki/Chip_de_ADN
