@@ -26,17 +26,22 @@ int main(int argc, const char *argv[])
 	generation = 0;
 
 	initPopulation(type);
+	cout << "Poblacion inicial" << endl;
 	evaluation(population, type);
 
 	while(generation<GENS){
 		cleanPops();
 		selection(clonationRate, population);
+		cout <<"MAIN antes clon"<< endl;
+		printPop(tmpPop);
 		clonation(tmpPop, cloneType);
 		hypermutation();
+		cout << "clonePop" << endl;
 		evaluation(clonePop, type);
 		cloneSelection(selRate, clonePop, cloneSelType);
 		cloneInsertion();
 		newGeneration(replaceRate, replaceType);
+		cout << "newPop" << endl;
 		evaluation(population, type);
 		generation++;
 	}

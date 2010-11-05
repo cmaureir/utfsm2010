@@ -9,4 +9,4 @@ clean:
 	rm -rf *.out
 
 run:
-	./csp input.txt true true true true
+	./csp pb_200_01.txt 0.4 0.2

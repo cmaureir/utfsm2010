@@ -121,7 +121,7 @@ void evaluation(struct cell evalPop[POP+1], bool type){
 			}
 		}
 	}
-
+	printPop(evalPop);
 }
 
 //Seleccion de un individuo
@@ -130,9 +130,10 @@ void selection(int n, struct cell popToSel[POP+1]){
 	int mem, i, best, worst, den=0, selected = 0;
 	double sum = 0;
 	double p;
-//	cout << "--Seleccion--" << endl;
+	cout << "--Seleccion--" << endl;
 	// Inicializamos la mejor y peor solucion como la primera
 	//  de nuestra poblacion
+	printPop(popToSel);
 	best = popToSel[0].fitness;
 	worst = popToSel[0].fitness;
 	
@@ -187,8 +188,8 @@ void selection(int n, struct cell popToSel[POP+1]){
 				}
 			}
 	}
-
-//	printPop(tmpPop);
+	cout << "SELECCTION EN FINAL"<< endl;
+	printPop(tmpPop);
 
 }
 
@@ -213,11 +214,11 @@ void sortPop(struct cell p[POP+1]){
 void clonation(struct cell clone[POP+1], bool type){
 	int i=0,j=0,n=0, counter[POP], k=0,var=0;
 	double m[POP+1], intPart, decPart;
-//	cout << "--Clonacion--" << endl;
+	cout << "--Clonacion--" << endl;
 	if (type){
 	//	cout << "Clonamos..." << endl;
 		sortPop(clone);
-	//	printPop(clone);
+		printPop(clone);
 		
 		for (i=0;i<POP;i++){
 			if(isNull(clone[i]))
@@ -277,7 +278,7 @@ void clonation(struct cell clone[POP+1], bool type){
 	for (i = 0; i < POP; i++) {
 		clonePop[i] = clone[i];
 	}
-//	printPop(clonePop);
+	printPop(clonePop);
 
 }
 
@@ -288,7 +289,10 @@ void hypermutation(){
 	sortPop(clonePop);
 	for(i=0;i<POP;i++){
 		if(!isNull(clonePop[i])){
-			for(j=0;j<round(mutRate * clonePop[i].fitness);j++){
+
+			// Cambiar a mutar solo por el indice
+			//for(j=0;j<round(mutRate * clonePop[i].fitness);j++){
+			for(j=0;j<i+1;j++){
 	        // Generamos dos numeros para intercambiar los valores
 	        //  de nuestra solucion
 	        random_1 = (1+(int)((rand()/(RAND_MAX + 1.0))*(VARS+1)))%VARS;

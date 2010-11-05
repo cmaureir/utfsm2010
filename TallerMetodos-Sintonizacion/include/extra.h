@@ -14,7 +14,7 @@ using namespace std;
 // IMPORTANTE:
 // Variables establecidas a mano
 // cambiar antes de ejecutar cada test
-#define VARS 200    // Numero de autos
+#define VARS 10    // Numero de autos
 
 
 // Variables Problema
