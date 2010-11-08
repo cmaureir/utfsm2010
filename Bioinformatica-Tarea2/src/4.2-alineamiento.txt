@@ -1,0 +1,43 @@
+sequence1       ------------------------------------------------------G----- 1
+sequence2       ------------------------------------------------------GY---- 2
+sequence4       ------------------------------------------------------GRN--- 3
+sequence3       ------------------------------------------------------G----- 1
+sequence7       ----------------------------------CIRSEELYRKMRVLVP-LYEGFL--- 22
+sequence5       CSRKLSTVWLECLPCKHNICSTCMEEYKQLPVPVCPAEECSGKTFEADEPNLCDGVCKKH 60
+sequence6       ---------------------------------------------------CLSG----- 4
+                                                                      *     
+
+sequence1       -----------ARIELAMR------A---------------------------------- 10
+sequence2       -------LPAIARIELAMRH-----A---------------------------------- 16
+sequence4       -ALGEIDLDLDSRIELAMRTDEKELA---------------------------------- 28
+sequence3       -------AVAARVIELAMR------A---------------------------------- 14
+sequence7       -TYGGMSVREIEALTVGLDETMDVDMISQGPLFIEYMVNELVKRGVPVITPAGGLGCHID 81
+sequence5       LEEGKYTTTNCCQARICFTCFETIFGRKHLSGTEERCPSTECLRNPDIARCQAGLKCKNL 120
+sequence6       --------PAAGVVGASLVG-----KAASFPNIITYDVGGTSTDVALIANGKPAYSTDRD 51
+                                 :                                          
+
+sequence1       ------------------------------------------------------------
+sequence2       ------------------------------------------------------------
+sequence4       ------------------------------------------------------------
+sequence3       ------------------------------------------------------------
+sequence7       VMRFLPHVPQSQYPAGALASALFIASGIRGMERGSLSEQRNPDGSEVYSNMELLRLAMPR 141
+sequence5       TISGFPSKDECEHAICIQCLEKMIDDCES---VGSLPRCPNESCNALYSTESVIAIRAML 177
+sequence6       VAGYSIRCPMVDVHVIGAGGGSIAWLDDAGGLKVGPQSAAAVPGPAAYGKGGTDATISDA 111
+                                                                            
+
+sequence1       ------------------------------------------------------------
+sequence2       ------------------------------------------------------------
+sequence4       ------------------------------------------------------------
+sequence3       ------------------------------------------------------------
+sequence7       RVFTLSQVKYAIDRIDWLYQNRDLVGGLVFVEEPEILRFFYGRLDPVGDWQQKLA----- 196
+sequence5       PGKSAFFNKLSLDNNYYYMIKDEAITPIKFSTNFKSMQRYFEIDVKLSDGSESKKLSFDR 237
+sequence6       NIVLQRLNPVALLDGAMPVDREAALRAIGAVA---------------------------- 143
+                                                                            
+
+sequence1       -----
+sequence2       -----
+sequence4       -----
+sequence3       -----
+sequence7       -----
+sequence5       IGTIA 242
+sequence6       -----
