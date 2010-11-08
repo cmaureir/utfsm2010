@@ -1,0 +1,233 @@
+CLUSTAL 2.0.12 multiple sequence alignment
+
+
+sequence1       ------------------------------------------------------------
+sequence2       MTTVGAVHATGAASPLQGYAAEAILHEGTMITVRRARRASDGQPVVLKGPSAGRASPRAI 60
+sequence4       ------------------------------------------------------------
+sequence5       ------------------------------------------------------------
+sequence6       ------------------------------------------------------------
+sequence3       ------------------------------------------------------------
+                                                                            
+
+sequence1       ------------------------------------------------------------
+sequence2       ARLRHEQVITREIAHPGVLRVLDVEESDGGPVLVLEDFGGASLDIVLRSERLGLATTLRI 120
+sequence4       ------------------------------------------------------------
+sequence5       ------------------------------------------------------------
+sequence6       ------------------------------------------------------------
+sequence3       ------------------------------------------------------------
+                                                                            
+
+sequence1       ------------------------------------------------------------
+sequence2       GIHVADALAALHHAGIIHKDIKPHNLLVRLDPLVVKLSDFGIATRLSQEAPRAENPDAAE 180
+sequence4       ------------------------------------------------------------
+sequence5       ------------------------------------------------------------
+sequence6       ------------------------------------------------------------
+sequence3       ------------------------------------------------------------
+                                                                            
+
+sequence1       ------------------------------------------------------------
+sequence2       GTLPYMSPEQTGWMNRSLDCRTDLYSLGVTLYELLTGAPPFTAPSAMELVHCHLARTPTP 240
+sequence4       ------------------------------------------------------------
+sequence5       ----------------------------------------------MFLDRGHERQGSGM 14
+sequence6       ------------------------------------------------------------
+sequence3       ------------------------------------------------------------
+                                                                            
+
+sequence1       ------------------------------------------------------------
+sequence2       PHVASAEIPRVVSDLVMKLLSKAAEDRYPCAEALRADLEECLRRYEADGRVDPFPLGERD 300
+sequence4       ------------------------------------------------------------
+sequence5       KPRPQRKDQSIMGNIRVGIDVGGTFTDFTVLDDETGGMRHFKVSSTPHDPSEAIEIGITG 74
+sequence6       ----------MVVKFFGGDTVPLEMHKVRVVQKLTLAPIEDRVKAVAEAGNNTFLLLNRD 50
+sequence3       ----------MNKQNTTLAHFNHLDSPINYQPDPTLLFNHLCQNKPASMLLESAEVTNKA 50
+                                                                            
+
+sequence1       -----------------------------------------MTVTQSAFKA--AVLDPAA 17
+sequence2       AGGRLWLPEKLYGREAETQAVVAACERAAAGAVELFLISGHAGVGKSALVR--EVYKVLA 358
+sequence4       -------------------------------------------MNQICLAS--NCFSIFD 15
+sequence5       FGKRGLQSSDVVHFGHGTTVATNMVIERRGGKTGLLTTEGFRDVLEIGRQTRPDLFDMSV 134
+sequence6       VFMDMLTDSGVNAMSDRQVAAMMVADDSYAG-------SATYERFEAKMREIFGIHWILP 103
+sequence3       NLQSLLIVDSALRIRAFGQRVEIEALTENGQALLPLIQDQLADHMASAEICADHLTVSFS 110
+                                                                            
+
+sequence1       TVPTGIVN---------------------------PDGAAASKRFDVYRNNVAVSLSDAL 50
+sequence2       RRPGYFVSGKFGQLKQRTPYAAIAQAFDELCERMLSEGEESVARWKARLSAALGSIGQVV 418
+sequence4       ENSNRRLN------------------------WKYCESQFCSRKLSTVWLECLPCKHNIC 51
+sequence5       RKPDPLVVR--------------------------PLRLEVAERLGPAGEVIVPLDDAGV 168
+sequence6       THQGRACEN-------------------------ILAQVLVKPGTIVPMNYHFTTTKAHI 138
+sequence3       SPDNQLDEDN----------------------RLKSASCLDVLRALPALAQAYLTKPEML 148
+                                                                            
+
+sequence1       ESAFPVVRKLVG-------------DEFFRAMAGVYLRKHPPKTPLMMFYG--------- 88
+sequence2       VDVIPELERVVGPQPAVQPLGPTESKNRFSVAFQAFVRAVTEEHLLVLFIDDLQWADPAS 478
+sequence4       STCMEEYKQLPVPVCP----AEECSGKTFEADEPNLCDGVCKKHLEEGKYT--------- 98
+sequence5       EAAAKRFKEEGVEAVAIG-----FLHSYRNPAHEQRAAEIIRQHLPDVFIS--------- 214
+sequence6       VLNGGAVEEICHDHALEVTSTRPFKGDMDIGKLKALVATHGADKIAFVRMEAG------- 191
+sequence3       FMGGLFAYDLVANFEALP-------EVKATNQCPDFCFFVAEHYLVIDHQN--------- 192
+                                                          .                 
+
+sequence1       -----------DAMPQFLRRFEPTKSIGYLPAIARIELAMRHAYHAK---------DVAP 128
+sequence2       LKLLELLMTDPDARGMLVIGAYRDQEVDEAHPLARLVGGLRAAGASASEV------WLGP 532
+sequence4       ----------TTNCCQARICFTCFETIFGRKHLSGTEERCPSTECLRNPD------IARC 142
+sequence5       --------LSSDVLPEFREYERISTTVMNAYLMPRMDGYLERFMARS---------RKAG 257
+sequence6       ----------TNLIGGQPISIANMREIRAVCDKHGLTFVLDASLLADN-L------WFNK 234
+sequence3       ----------QAARLKTLMFTHDPATIENIHQRHSQIIALCRPFLPALPLGEKSTFSVTT 242
+                                          :                                 
+
+sequence1       ADAQALTTLASDALMS-----TKLSIAPATQTVTSDFPIHAIYLANT------------- 170
+sequence2       LEIEDIRRLLADTLRCRLEDTDAFAALILERTAGNPFFIHQLLHALAGEGIVRFDPAAGA 592
+sequence4       QAGLKCKNLTISGFPSKDECEHAICIQCLEKMIDDCESVGSLPRCPN------------- 189
+sequence5       VKAKPYTIHSNGGLMSTETARNYPVRTCLSGPAAGVVGASLVGKAAS------------- 304
+sequence6       TREESCKDLSIAEITRQIADLCDVIYFSARKLGCARGGAICIRSEELYR----------- 283
+sequence3       NKEDDEYRTVVNTLKEAIYRGDIFQVVPSRKFSMPCAEPLIAYQKLKAQ----------- 291
+                             :                                              
+
+sequence1       ---------QADAPKPVMQPQAVVITRAG------------------------------- 190
+sequence2       WAWSLERARSAEGAEGVVELMAAKIRRLAPGAQRALRLAACVGHRFDLRTLALVAEQPPG 652
+sequence4       -----ESCNALYSTESVIAIRAMLPGKSAFFN---------------------------- 216
+sequence5       ----FPNIITYDVGGTSTDVALIANGKPAYST---------------------------- 332
+sequence6       -----KMRVLVPLYEGFLTYGGMSVREIEALTVG-------------------------- 312
+sequence3       ----NPSPYMFYMQDNDFTLFGASPESALKYN---------------------------- 319
+                                                                            
+
+sequence1       -----------------FDPQIHLVNAAAATCIEALKK---------------------- 211
+sequence2       EVAAALWEALRAGLVVPLDPEYRLVHAGDAAVAGRLLEDPSFRVSYRFLHDRVQQAAYAL 712
+sequence4       --------------KLSLDNNYYYMIKDEAITPIKFSTN--------------------- 241
+sequence5       ------------------DRDVAGYSIRCPMVDVHVIGAG-------------------- 354
+sequence6       -----------------LDETMDVDMISQGPLFIEYMVN--------------------- 334
+sequence3       ----------------TQTRLVEIYPIAGTRPRGRNALG--------------------- 342
+                                                                            
+
+sequence1       -------------GQSLGQAIATADDTLDLGTVLG-LLLAQGAVTEIY------------ 245
+sequence2       IDEPERKRLHHRIGRLLAASLGEDPSDEDLFVVVGHLNLAAGLIEGAAERGEFVRLNVAA 772
+sequence4       ---------FKSMQRYFEIDVKLSDGSESKKLSFDRIGTIADLVREIRRELNIAP----- 287
+sequence5       ----------GGSIAWLDDAGGLKVGPQSAAAVPGPAAYGKGGTDATISDANIVLQR--- 401
+sequence6       --------------ELVKRGVPVITPAGGLGCHIDVMRFLPHVPQSQYPAGALAS----- 375
+sequence3       ---------EIDLDLDSRIELAMRTDEKELAEHIMLVDLARNDLARICEAGSRYVDN--- 390
+                                                                            
+
+sequence1       ------------------------------------------------------------
+sequence2       GRRAQAATAYDAAFGYLSAAASALGPDPSAGEPGLAFDIFDIFDIYAAKAECAYLSGRCD 832
+sequence4       ------------------------------------------------------------
+sequence5       ------------------------------------------------------------
+sequence6       ------------------------------------------------------------
+sequence3       ------------------------------------------------------------
+                                                                            
+
+sequence1       ------------------------------------------------------------
+sequence2       EAEALFDALLERAASDAERARVYRMRMVLYNAQHRWADSLAVALQGLRLFGMEVPTEGEA 892
+sequence4       ----------------------------------------------------EEKVYGYY 295
+sequence5       -------------------------------------------LNPVALLDGAMPVDREA 418
+sequence6       ---------------------------------------------------------ALF 378
+sequence3       ------------------------------------------------LTKVDRYSFVMH 402
+                                                                            
+
+sequence1       ------------------------------------------------------------
+sequence2       LAAALRAELAEAERGFAARRGEDVGASPELADPHVRIVVEMLGYGSPSAYIINLPLAQLL 952
+sequence4       LTRSLNAEGKLDEDGYSDKPAEKLEFS-----------------------------AESI 326
+sequence5       ALRAIGAVATQIGRSVEDTAWGIIRIAVAN---------------------------MAR 451
+sequence6       IASGIRGMERGSLSEQRNPDGSEVYSNMELLR-------------------------LAM 413
+sequence3       LVSHVVGTLRHDLDVFHAYQACMNMGTLTGAP-----------------------KVKAM 439
+                                                                            
+
+sequence1       ------------------------------------------------------------
+sequence2       AVRMANLSLRHGISPVASVAYALHGFYLAAFWGQPHEGYRIVRMGVALNDRYRVDAIRAK 1012
+sequence4       SETVEKLNLSTAITIVADIAGIVQVKNDKALSDKAI------------------------ 362
+sequence5       AIRAVAMDKGHDLKSFALMAFGGAGPLHSSLVAAETG----------------------- 488
+sequence6       PRRVFTLSQVKYAIDRIDWLYQNRDLVGGLVFVEEPE----------------------- 450
+sequence3       QLIALCEQERRGSYGGAVGYFNGKGDFDTCIVIRSAYVEN-------------------- 479
+                                                                            
+
+sequence1       ------------------------------------------------------------
+sequence2       VDFNYGVVMNHSRPQREALEVLQRARVAGMETGDFMFASAASNIVAQMKLSLEGELRRVR 1072
+sequence4       ------------------------------------------------------------
+sequence5       -----------------LKTVIIPESPGTMCARGVLLSDVTRDFVSTQIKWAQG------ 525
+sequence6       ------------------------------------------------------------
+sequence3       ------------------------------------------------------------
+                                                                            
+
+sequence1       ------------------------------------------------------------
+sequence2       EDVGGFLRFTSRTKDALSTAVQTVARQVIQNLEGRTLDRGTLSDAGFDEDAFVPKLDGMG 1132
+sequence4       ------------------------------------------------------------
+sequence5       ---EAWLDIASALQGLELQAKEWLEAETIPDEKRALQHIAEARYAGQNHEIRVEGILSTA 582
+sequence6       -----ILRFFYGRLDPVGDWQQKLAAKFRVDFGDSL------------------------ 481
+sequence3       ----GVATVQAGGGVVLDSSPQAEADETRNKARAVIRAIAQAHQVEELF----------- 524
+                                                                            
+
+sequence1       ------------------------------------------------------------
+sequence2       FAIVAGFYYTNKLALAYLYGDHEGALRMARRAHERARALTGQYIGIVDLPLYTCLTILAL 1192
+sequence4       ------------------------------------------------------------
+sequence5       EDFTTRFAEAHRVVYGYALENHP-------------------------------VEIVNL 611
+sequence6       ------------------------------------------------------------
+sequence3       ------------------------------------------------------------
+                                                                            
+
+sequence1       ------------------------------------------------------------
+sequence2       GPRASGEEGGALAEMLASSHDKLAVLARDCPELRHLELLVRAERARVAGEALEPILELYQ 1252
+sequence4       ------------------------------------------------------------
+sequence5       RVQAIGHAGRPLQTVDGAAGSMKDAIVGE------------------------------- 640
+sequence6       ------------------------------------------------------------
+sequence3       ------------------------------------------------------------
+                                                                            
+
+sequence1       ------------------------------------------------------------
+sequence2       QASDAAEQAGYVRYRALVSELCGRFLAARRMPWLARSCLVEAYQAYARWGATAKLRQMEE 1312
+sequence4       ------------------------------------------------------------
+sequence5       -----------------------------REVYIDPQAGWQTVPVYKRPAMPQGETFTGP 671
+sequence6       ------------------------------------------------------------
+sequence3       ------------------------------------------------------------
+                                                                            
+
+sequence1       ------------------------------------------------------------
+sequence2       AYVELLPRAAAGQPASTSVLSSLTSVASSTTEAVARRVALLDAAALIRAAQAVAREIDLG 1372
+sequence4       ------------------------------------------------------------
+sequence5       AIVEELTSTTYILPGQSGVVDAYGNIILSFVKDRA------------------------- 706
+sequence6       ------------------------------------------------------------
+sequence3       ------------------------------------------------------------
+                                                                            
+
+sequence1       ------------------------------------------------------------
+sequence2       RVMTRLLRLAIESVGAQRGALILDHEGGPRVEAVAEDGGEVCVGPSTPVRESGAVAARVI 1432
+sequence4       ------------------------------------------------------------
+sequence5       ------------------------------------------------------------
+sequence6       ------------------------------------------------------------
+sequence3       ------------------------------------------------------------
+                                                                            
+
+sequence1       ------------------------------------------------------------
+sequence2       ELAMRAGSAVVVADAAQDGRFDGDPYVAARKPRSVLALPMVSQGEISGVLYLENNAAPEV 1492
+sequence4       ------------------------------------------------------------
+sequence5       ------------------------------------------------------------
+sequence6       ------------------------------------------------------------
+sequence3       ------------------------------------------------------------
+                                                                            
+
+sequence1       ------------------------------------------------------------
+sequence2       FSPARLDVLELVAAQAAIAVKNALLYARVQAASDELRRANDALEAAVAARTAELSAAKVQ 1552
+sequence4       ------------------------------------------------------------
+sequence5       ------------------------------------------------------------
+sequence6       ------------------------------------------------------------
+sequence3       ------------------------------------------------------------
+                                                                            
+
+sequence1       ------------------------------------------------------------
+sequence2       LEAELVERESAERARAALQEDLIRVQRERLAELSTPLIPITDQIMVMPLIGTLDAERADE 1612
+sequence4       ------------------------------------------------------------
+sequence5       ------------------------------------------------------------
+sequence6       ------------------------------------------------------------
+sequence3       ------------------------------------------------------------
+                                                                            
+
+sequence1       ------------------------------------------------------------
+sequence2       ALETALRGVADTSAQVVILDITGVKGVDSSVAATLVRAATALRLLGAEAVITGIRGHVSQ 1672
+sequence4       ------------------------------------------------------------
+sequence5       ------------------------------------------------------------
+sequence6       ------------------------------------------------------------
+sequence3       ------------------------------------------------------------
+                                                                            
+
+sequence1       -----------------------------------------
+sequence2       TLVSLGIDLRETVVQGTLQRGIAYALRKTGQARQLAAMAPR 1713
+sequence4       -----------------------------------------
+sequence5       -----------------------------------------
+sequence6       -----------------------------------------
+sequence3       -----------------------------------------
