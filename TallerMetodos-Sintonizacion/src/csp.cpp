@@ -20,35 +20,34 @@ int main(int argc, const char *argv[])
 
 	changeParam(argv);
 
-	cout << "ClonationFactor: "<<clonationFactor << "\t" << "ClonationRate: " << clonationRate << endl;
+	cout << "ClonationFactor: "<<clonationFactor << endl;
+	cout << "ClonationRate: " << clonationRate << endl;
+	cout << "ReplaceRate: " << replaceRate << endl;
+
 	
 	inputReading(argv[1]);
 	generation = 0;
 
 	initPopulation(type);
-	cout << "Poblacion inicial" << endl;
 	evaluation(population, type);
 
 	while(generation<GENS){
 		cleanPops();
 		selection(clonationRate, population);
-		cout <<"MAIN antes clon"<< endl;
-		printPop(tmpPop);
 		clonation(tmpPop, cloneType);
 		hypermutation();
-		cout << "clonePop" << endl;
 		evaluation(clonePop, type);
 		cloneSelection(selRate, clonePop, cloneSelType);
 		cloneInsertion();
 		newGeneration(replaceRate, replaceType);
-		cout << "newPop" << endl;
 		evaluation(population, type);
 		generation++;
 	}
 	
 	clock_gettime(CLOCK_REALTIME, &te);
 
-	printFile(argv[1],population[0].gene,population[0].fitness,(te.tv_sec-ts.tv_sec), (te.tv_nsec-ts.tv_nsec));
+//	printFile(argv[1],population[0].gene,population[0].fitness,(te.tv_sec-ts.tv_sec), (te.tv_nsec-ts.tv_nsec));
+	printFile(population[0].fitness);
 //	cout << population[0].fitness << endl;
 
 	return 0;

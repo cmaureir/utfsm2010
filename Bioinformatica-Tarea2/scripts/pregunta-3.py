@@ -38,15 +38,15 @@ def generate_subsequences_and_verify(sequence):
 		system("clear")
 		print str(i)+"/"+str(len(sequence)-2)
 		for j in range(len(sequence)-1):
-			if len(sequence[j:j+i]) == i:
+			if len(sequence[j:j+i]) == i and i%2 == 0:
 				if is_palindrome(sequence[j:j+i]):
 					top_ten.append(sequence[j:j+i])
 	print "Ten bigger palindromes:"
 	return top_ten[::-1][:10]
 
 
-#tmp_l = parse_file("secuencia.txt")
-tmp_l = parse_file("sec.txt")
+tmp_l = parse_file("secuencia.txt")
+#tmp_l = parse_file("sec.txt")
 raw_input("Press any key to start the palindrome search...")
 print generate_subsequences_and_verify(tmp_l)
 
