@@ -9,7 +9,6 @@ void initPopulation(bool type){
 	//  pseudo-aleatorios
 	srand(time(0));
 	
-//	cout << "--Población inicial--" << endl;
 	if(type){
 		// Inicializamos en p[] la cantidad requerida por cada tipo
 		//  de autos, satisfaciendo asi las restricciones duras
@@ -52,8 +51,6 @@ void initPopulation(bool type){
 	    	}
 		}
 	}
-	
-//	printPop(population);
 }
 
 bool isNull(struct cell p){
@@ -62,20 +59,19 @@ bool isNull(struct cell p){
 		if(p.gene[i] == 0)
 			j++;	
 	}
+
 	if(j==VARS)
 		return true;
 	else
 		return false;
+
 }
-
-
 
 // Evaluacion
 // Verificar las restricciones Blandas.
 void evaluation(struct cell evalPop[POP+1], bool type){
-	int mem, i=0, j=0, m=0, tmp=0, badness=0, failCon = 0;
+	int mem=0, i=0, j=0, m=0, tmp=0, badness=0 ;
 
-//	cout << "--Evaluamos--" << endl;
 	for (mem = 0; mem < POP; mem++){
 		if(!isNull(evalPop[mem])){
 		for(i = 0; i < optNumber; i++){
@@ -83,6 +79,7 @@ void evaluation(struct cell evalPop[POP+1], bool type){
 				if(m+sizeMaxCarOptSeq[i] <= carNumber){
 					// Sumamos los booleanos de si tiene o no una determinada opcion
 					//  por cada tipo de auto en la secuencia de nuestra poblacion
+					j = 0;
 					for (j = m; j < sizeMaxCarOptSeq[i]+m; j++) {
 						tmp += types[evalPop[mem].gene[j]][i+2];
 					}
@@ -103,37 +100,24 @@ void evaluation(struct cell evalPop[POP+1], bool type){
 		}
 		evalPop[mem].fitness = badness;
 		badness = 0;
-		failCon = 0;
-	}
-	if(!type){
-		int tmpGen[VARS];
-		for (i = 0; i < VARS; i++)
-			tmpGen[i] = 0;
 
-		for (i = 0; i < POP; i++) {
-			for (j = 0; j < VARS; j++) {
-				tmpGen[evalPop[i].gene[j]] += 1;
-			}
-			for (j = 0; j < typeNumber; j++){
-				if (types[j][1] != tmpGen[j])
-					evalPop[i].fitness += 10*(abs(types[j][1] -tmpGen[j]));
-				tmpGen[j] = 0;
-			}
-		}
 	}
-	printPop(evalPop);
+
 }
 
 //Seleccion de un individuo
 //	Ruleta para una FO que minimiza
 void selection(int n, struct cell popToSel[POP+1]){
 	int mem, i, best, worst, den=0, selected = 0;
-	double sum = 0;
 	double p;
-	cout << "--Seleccion--" << endl;
-	// Inicializamos la mejor y peor solucion como la primera
-	//  de nuestra poblacion
-	printPop(popToSel);
+	// weird...
+	int tp = typeNumber;
+	int tps[tp];
+
+	for (int j = 0; j < typeNumber; j++){
+		tps[j] = types[j][1];
+	}
+
 	best = popToSel[0].fitness;
 	worst = popToSel[0].fitness;
 	
@@ -145,23 +129,18 @@ void selection(int n, struct cell popToSel[POP+1]){
 		if(popToSel[mem].fitness < worst && !isNull(popToSel[mem]))
 			best = popToSel[mem].fitness;
 	}
-	// Calculamos nuestra probabilidad por cada individuo,
-	//  a =  (Fitness_min + Fitness_max - Fitness_i)
-	// 	Prob_i = a / Sum(a)
-	
 	// Denominador de la Prob_i
 	for (mem = 0; mem < POP; mem++){
 		if (!isNull(popToSel[mem]))
 			den += (worst + best -popToSel[mem].fitness);
 	}
-	
 	// Fitness relativo a cada individuo
 	for (mem = 0; mem < POP; mem++){
 		if (!isNull(popToSel[mem])){
 			popToSel[mem].rfitness = (double)(worst+best-popToSel[mem].fitness)/den;
-			sum += popToSel[mem].rfitness;
 		}
 	}
+
 	// Fitness acumulativo considerando todos los individuos
 	popToSel[0].cfitness = popToSel[0].rfitness;
     for (mem = 1; mem < POP; mem++){
@@ -175,6 +154,7 @@ void selection(int n, struct cell popToSel[POP+1]){
 			p = rand()%1000/1000.0;
 			for (i = 0; i < POP; i++) {
 				if ( i == 0){
+
 					if (p < popToSel[0].cfitness && !isNull(popToSel[0])){
 						tmpPop[selected] = popToSel[0];
 						selected++;
@@ -188,16 +168,17 @@ void selection(int n, struct cell popToSel[POP+1]){
 				}
 			}
 	}
-	cout << "SELECCTION EN FINAL"<< endl;
-	printPop(tmpPop);
 
+	for (int j = 0; j < tp; j++){
+		types[j][1] = tps[j];
+	}
+	typeNumber = tp;
 }
 
 void sortPop(struct cell p[POP+1]){
 	int i,j;
 	struct cell tmp;
 	//Bubble Sort
-//	cout << "--Sort Pop--" << endl;
 	for (i = 0; i < POP; i++) {
 		for (j = i+1; j < POP; j++) {
 			if (p[i].fitness > p[j].fitness && !isNull(p[i]) &&  !isNull(p[j])){
@@ -207,45 +188,34 @@ void sortPop(struct cell p[POP+1]){
 			}
 		}
 	}
-//	printPop(p);
 }
 
 //void clonation(){
 void clonation(struct cell clone[POP+1], bool type){
 	int i=0,j=0,n=0, counter[POP], k=0,var=0;
 	double m[POP+1], intPart, decPart;
-	cout << "--Clonacion--" << endl;
 	if (type){
-	//	cout << "Clonamos..." << endl;
 		sortPop(clone);
-		printPop(clone);
 		
 		for (i=0;i<POP;i++){
 			if(isNull(clone[i]))
 				break;
 			n++;
 		}
-	//	cout << "El n:" << n << endl;
-	//	getchar();
 		for (i=0;i<n;i++){
 				m[i] = (float)(clonationFactor*n)/(float)(i+1);
-	//			cout << "m["<<i<<"]: "<< m[i] << endl;
 				decPart = modf(m[i],&intPart);
-	//			cout << "decPart:" << decPart << "\t intPart: "<<intPart << endl;
 				if(decPart >= 0.5){
 					counter[i] = (int)(intPart + 1);
 				}
 				else{
 					counter[i] = (int)intPart;
 				}
-//			cout << "counter["<<i<<"]: "<< counter[i]<<endl;
 		}
 		
 		k=n;
 		for(i=0;i<n;i++){
 			for (j=0; j<counter[i]; j++){
-	//			cout <<"n: "<<n<<"  k: "<< k << "  counter["<<i<<"]: " << counter[i] << endl;
-	//			getchar();
 				clone[k] = clone[i];
 				k++;
 				if (k >= POP){
@@ -278,21 +248,19 @@ void clonation(struct cell clone[POP+1], bool type){
 	for (i = 0; i < POP; i++) {
 		clonePop[i] = clone[i];
 	}
-	printPop(clonePop);
-
 }
 
 // HyperMutacion
 void hypermutation(){
 	int i, j, random_1, random_2, tmp;
-
 	sortPop(clonePop);
 	for(i=0;i<POP;i++){
 		if(!isNull(clonePop[i])){
 
 			// Cambiar a mutar solo por el indice
 			//for(j=0;j<round(mutRate * clonePop[i].fitness);j++){
-			for(j=0;j<i+1;j++){
+			//for(j=0;j<(i+1)*VARS*0.2;j++){
+			for(j=0;j<(i+1);j++){
 	        // Generamos dos numeros para intercambiar los valores
 	        //  de nuestra solucion
 	        random_1 = (1+(int)((rand()/(RAND_MAX + 1.0))*(VARS+1)))%VARS;
@@ -308,7 +276,6 @@ void hypermutation(){
 
 void cloneSelection(int n, struct cell popToSel[POP+1], bool type){
 	int i,j;
-//	cout << "--Clone Selection--" << endl;
 	if(type){
 		// Sort population y clonalPop, juntarlos y obtener los mejores
 		bool change = false;
@@ -341,24 +308,20 @@ void cloneSelection(int n, struct cell popToSel[POP+1], bool type){
 		selection(n,popToSel);
 	}
 
-//	printPop(tmpPop);
 
 }
 
 // Insertar los mejores entre population y clonePop
 void cloneInsertion(){
-//	cout << "--Clone Insertion--" << endl;
 	int i;
 	for (i = 0; i < POP; i++) {
 		population[i] = tmpPop[i];
 	}
-//	printPop(population);
 
 }
 
 void newGeneration(int counter, bool type){
-//	cout << "New generation..." << endl;
-    int i=0,j=0,k=0;
+    int i=0,j=0,k=0,c=0,temp=0,r=0;
     int p[VARS];
     srand(time(0));
 	// Inicializamos en p[] la cantidad requerida por cada tipo
@@ -370,30 +333,23 @@ void newGeneration(int counter, bool type){
 	    }
 	    k = 0;
 	}
+	i = 0;
+	temp=0;
+	r=0;
+
 	for (j = 0; j < counter; j++) {
-	        for (i=0; i<(VARS-1); i++) {
-	            int r = i + (rand() % (VARS-i));
-	            int temp = p[i];
+	        for (i=0; i<VARS; i++) {
+	            r = i + (rand() % (VARS-i));
+	            temp = p[i];
 	            p[i] = p[r];
 	            p[r] = temp;
 	        }
 	        // Guardamos nuestros valores en la estructura de   la poblacion
 			// Mas malos reemplazados
-			if (type){
-				for (int c=0; c<VARS; c++) {
-	            	population[POP-1-j].gene[c] = p[c];
-				}
-			}
-			
-			// Aleatorios reemplazados
-			else{
-				for (int c=0; c<VARS; c++) {
-					population[(rand() % (POP-c))].gene[c] = p[c];
-				}
+			for (c=0; c<VARS; c++) {
+	           	population[POP-1-j].gene[c] = p[c];
 			}
 	}
-//	cout << "--New generation--" << endl;
-//	printPop(population);
 }
 
 void printPop(struct cell tmp[POP+1]){

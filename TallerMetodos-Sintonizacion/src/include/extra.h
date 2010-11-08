@@ -14,20 +14,20 @@ using namespace std;
 // IMPORTANTE:
 // Variables establecidas a mano
 // cambiar antes de ejecutar cada test
-#define VARS 10    // Numero de autos
+#define VARS 200    // Numero de autos
 
 
 // Variables Problema
 #define POP  20    // Tamaño poblacion
-#define GENS 500  // Numero maximo de generaciones
+#define GENS 200  // Numero maximo de generaciones
 #define N 128	   // Variable para crear arreglos determinados
 #define selRate POP*0.4  // Tasa para la cantidad de elementos seleccionados
-#define replaceRate POP*0.6  // Tasa para la cantidad de elementos reemplazados
 #define swap VARS*0.4 // Cantidad de swap realizados en el movimiento
 #define mutRate POP*0.02
 
 float clonationFactor = 0.0;//0.5 // Factor para calcular individuos clonados
 float clonationRate = 0.0; //POP*0.4 // Tasa para realizar la clonación
+float replaceRate =  0.0; //POP*0.6  // Tasa para la cantidad de elementos reemplazados
 
 struct cell {  		// Individuo de la poblacion
     int gene[VARS];     // Automoviles
@@ -57,7 +57,8 @@ void inputReading(const char name[50]);
 void showFile(); 
 
 // Funcion encargada de escribir el archivo de salida del programa
-void printFile(const char c_name[50], int sol[512], int failCon, int sec, int nsec);
+//void printFile(const char c_name[50], int sol[512], int failCon, int sec, int nsec);
+void printFile(int failCon);
 
 // Funcion encargada de verificar si el archivo de entrada es correcto
 bool checkFile(int argc, const char *argv[]);

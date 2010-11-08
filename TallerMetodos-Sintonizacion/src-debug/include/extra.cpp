@@ -8,7 +8,6 @@ void inputReading(const char name[50]){
 	// Primera linea
 	// Numero de Autos - Numero de Opciones - Numero de Tipos de Autos.
 	fscanf(in,"%d %d %d\n",&carNumber, &optNumber, &typeNumber);
-	
 	// Segunda linea
 	// cantidad de autos permitidos en la subsecuencia con la opción i
 	for (i = 0; i < optNumber; i++) {
@@ -56,9 +55,10 @@ void showFile(){
 	}
 }
 
-void printFile(const char c_name[50], int sol[VARS], int failCon, int sec, int nsec){
+//void printFile(const char c_name[50], int sol[VARS], int failCon, int sec, int nsec){
+void printFile(int failCon){
 	FILE *out;
-	int i=0;
+//	int i=0;
 
 	// Transformacion del nombre en const char a char
 	//char *_name = const_cast<char*>(c_name);
