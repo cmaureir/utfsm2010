@@ -3,16 +3,14 @@
 %Ej. \textit{Temperatura (Simulated Annealing); [0,1] parámetro que define la probabilidad con la cual se aceptan soluciones de peor calidad en cada iteración. Un valor alto para este parámetro involucra una fuerte e exploración, en cambio valores bajos indican una inclinación a la explotación.} \\
 %Puede incluir diagramas o todo lo que sea necesario para dejar claras las caracteristicas y función que cumple el parámetro en su algoritmo.
 
-\red{To Do:} INCLUIR DIAGRAMAS
-
 \begin{itemize}
-	\item \texttt{POP} \blue{(20)}, Parámetro que define el tamaño de cada población al momento de comenzar
+	\item \texttt{POP} \blue{[10,210]}, Parámetro que define el tamaño de cada población al momento de comenzar
 			las iteraciones a través de la cantidad de generaciones.
 			Este parámetros influye notablemente en el tiempo que demora la ejecución de nuestro algoritmo,
 			pues si tenemos poblaciones muy grandes todo el tratamiento que le damos a los individuos,
 			como la hipermutación y la clonación tomará mucho más tiempo.
 
-	\item \texttt{GENS} \blue{(200)}, Parámetro que define el número total de generaciones en las cuales
+	\item \texttt{GENS} \blue{[10,2000,30]}, Parámetro que define el número total de generaciones en las cuales
 			el algoritmo se mantendrá en ejecución. Este parámetro es la actual condición de término
 			por lo cual es esencial a la hora de obtener buenos o malos resultados, ya que si tenemos
 			muy pocas generaciones, para muchas variables puede que no se alcance a cumplir bien los

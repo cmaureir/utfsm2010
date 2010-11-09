@@ -1,7 +1,43 @@
 \frame
 {
 \frametitle{Sintonización Automática}
+\framesubtitle{REVAC - Parámetros}
 \begin{itemize}
-	\item 
+    \item \texttt{clonationRate} TASA\_CL \blue{[0,1]}
+    \item \texttt{clonationFactor} FACT\_CL \blue{[0,1]}
+    \item \texttt{replaceRate} TASA\_RP \blue{[0,1]}
 \end{itemize}
+}
+
+
+\frame
+{
+\frametitle{Sintonización Automática}
+\framesubtitle{REVAC - Detalles}
+
+\begin{itemize}
+    \item Iteraciones: \blue{200}
+    \item Tamaño de población (M): \blue{18}
+    \item Cantidad de padres (N): \blue{6}
+    \item Intervalo de mutación (H) : \blue{3}
+    \item Tipo de búsqueda: Algoritmo genético.
+\end{itemize}
+
+}
+
+\frame
+{
+\frametitle{Sintonización Automática}
+\framesubtitle{REVAC - Resultados}
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|}
+    \hline
+    \textbf{Instancia} & \textbf{cR} & \textbf{cF} & \textbf{rR} & \textbf{F} & \textbf{T [s]} \\\hline
+    \texttt{pb\_200\_01.txt} & 0.56 & 0.65 & 0.57 & 203 & 161 \\\hline
+    \texttt{pb\_200\_09.txt} & 0.95 & 0.60 & 0.13 & 189 & 195 \\\hline
+    \texttt{pb\_200\_10.txt} & 0.80 & 0.66 & 0.60 & 159 & 169\\\hline
+\end{tabular}
+\end{center}
+
+
 }
