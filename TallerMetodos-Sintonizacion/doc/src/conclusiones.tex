@@ -1,19 +1,81 @@
 %Las conclusiones deberían incluir:
-%
+
+Luego de las dos aproximaciones previas para poder sintonizar nuestro algoritmo,
+en las cuales se obtuvieron bastantes mejoras, es necesario formalizar un poco
+el desempeño de cada forma, lo que puede ser posible comparando tiempos de ejecución,
+\emph{fitness}, etc.
+
 %- Comparación de resultados de la sintonización manual vs sintonización automática.\\
 
+Primero que todo es necesario realizar una pequeña comparación entre los \emph{fitness}
+obtenidos en cada procedimiento por cada instancia.
 
-tabla de ranking con los mejores fitness
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|}
+    \hline
+    \textbf{Instancia} & \textbf{prueba1} & \textbf{prueba2} & \textbf{prueba3} & \textbf{prueba4} & \textbf{prueba5}\\\hline
+    \texttt{pb\_200\_01.txt} & \red{167} & 186 & 200 & 192 & 203\\\hline 
+    \texttt{pb\_200\_09.txt} & \red{152} & 166 & 178 & 180 & 189\\\hline
+    \texttt{pb\_200\_10.txt} & \red{126} & 144 & 164 & 160 & 159\\\hline
+\end{tabular}
+\label{Fitness de cada prueba}
+\end{center}
+
+Podemos notar que los mejores resultados fueron obtenidos al momento de variar el tamaño de la población,
+lo que claramente nos indica lo trascendental de su función dentro del algoritmo, pero de todas formas,
+esto puede ser debido a que la ``configuración base'' que se utilizó ya se encontraba un poco sintonizada
+y el único parámetro que faltaba mejorar era \texttt{POP}.
 
 %- Comparación en términos de tiempo utilizado.\\
 
-tiempos totales por cada instancia en cada sintonizacion y en total
+Luego es necesario tener presente el tiempo en total que demoró cada prueba por cada instancia.
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|}
+    \hline
+    \textbf{Instancia} & \textbf{prueba1} & \textbf{prueba2} & \textbf{prueba3} & \textbf{prueba4} & \textbf{prueba5}\\\hline
+    \texttt{pb\_200\_01.txt} & 1608.853 & 256.177 & 13.246 & 132.608 & 161\\\hline 
+    \texttt{pb\_200\_09.txt} & 1593.739 & 262.906 & 12.027 & 132.068 & 195\\\hline
+    \texttt{pb\_200\_10.txt} & 1662.580 & 256.546 & 12.133 & 132.124 & 169\\\hline
+\end{tabular}
+\label{Tiempo total de cada prueba [s]}
+\end{center}
+
+Nos damos cuenta que claramente al realizar cambios en el tamaño de la población, el tiempo que tomó la prueba fue
+notablemente superior al resto por un un hecho totalmente predecible, ya que si consideramos poblaciones muy grandes
+todo el procedimiento y trabajo que se realiza con ella va a tomar mucho más tiempo.
+
+De la misma forma, hay que notar que el segundo lugar de los mejores \emph{fitness} que lo tenía la \blue{prueba2},
+se demora bastante menos tiempo y los resultados no son tan malos en comparación con el primer lugar, lo que nos podría
+servir de consejo a la hora de buscar rapidez en la ejecución y buenos resultados, sólo cambiando la cantidad de generaciones
+con una población no tan grande.
+
 
 %- Conclusiones con respecto a la utilidad del sintonizador usado, ventajas desventajas.\\
+Una de las ventajas principales al momento de utilizar REVAC es que no necesitamos una configuración inicial,
+sólo necesitamos establecer cuales son los parámetros a sintonizar y cual es el rango de sus valores, lo cual
+facilita mucho a la hora de poder sintonizar cualquier algoritmo, pues no es un gasto de tiempo muy significativo.
 
-ventajas y desventajas de revac
-
+El problema que surge a la hora de seleccionar este sintonizador es su resultado, debido a que no nos entrega
+un valor determinado para cada parámetro, sino que nos entrega un rango de valores en que nuestro algoritmo se comporta mejor,
+pero de la mano de ésto es que REVAC considera que los valores de nuestros parámetros siguen una distribución uniforme
+por lo que las mejores soluciones que nos entrega estaría todas cercanas al vecindario central de dicha distribución.
 
 %- Conclusiones en relación a su algoritmo, características de los parámetros, características de la búsqueda.\\
+Con respecto a la implementación del algoritmo de ``Selección Clonal''~\ref{sec:anexo2}, es correcto apreciar que ha tenido una notable
+evolución respecto a sus origines, pues en el camino se han corregido bastantes errores de implementación y también
+se ha considerado la posibilidad de ir realizando mejoras sustanciales de acuerdo a ciertos procedimiento internos,
+pues como ya bien se sabe, los algoritmos de optimización poseen una estructura ``recomendable'' pero no es una regla
+fundamental, por lo que cada implementación será distinta, y si no es en la estructura, será en la implementación de cada
+paso del algoritmo, por ejemplo en el presente algoritmo se modifico más de tres veces la forma de realizar la hipermutación
+de los individuos seleccionados, pasando de utilizar un factor, una constante hasta la guía actual que posee respecto
+del índice del individuo en la población determinada.
 
+Los parámetros utilizados podrían mejorarse en el sentido de  ampliar o modificar los rangos de sus valores, sobre todo
+en el caso del tamaño de la población y de la cantidad de generaciones debido a que son parámetros esenciales al momento
+de su ejecución. Por otro lado los demás parámetros fueron probado dentro de todo su rango posible, por lo que no sería
+necesario poder variarlos un poco.
+
+Un problema que posee la implementación actual, es que indirectamente efectúa un \emph{elitismo} muy fuerte, lo que se ha
+podido mejorar respecto a las implementaciones pasadas, pero que es un factor importante que se podría seguir trabajando a futuro.
 

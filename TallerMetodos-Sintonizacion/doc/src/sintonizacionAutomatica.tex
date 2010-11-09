@@ -6,13 +6,13 @@ a la hora de buscar los valores adecuados para los parámetros utilizados.
 
 En la presente sección, utilizaremos un algoritmo sintonizador basado en búsqueda,
 muy similar a un algoritmo genético, nos referimos a REVAC~\cite{REVAC},
-el cual fué propuesto por Eiben y Nannen hace 3 años. (véase pseudocódigo en Anexo I~\ref{sec:anexo1})
+el cual fue propuesto por Eiben y Nannen hace 3 años. (véase pseudocódigo en Anexo I~\ref{sec:anexo1})
 
 La idea principal de REVAC es que nos entrega una herramienta de estimación
 de distribución, la cual va a requerir un rango determinado de valores para
-cada parametro que deseemos sintonizar
+cada parámetro que deseemos sintonizar
 
-Su parentezco con los algoritmos genéticos es que al comienzo utiliza un
+Su parentesco con los algoritmos genéticos es que al comienzo utiliza un
 conjunto de configuraciones de parámetros como población, la cual es inicializada
 utilizando una distribución uniforme para los valores de los parámetros a sintonizar.
 
@@ -23,12 +23,14 @@ un cruzamiento uniforme considerando a los mejores elementos.
 %Mutación con intervalo 2*H
 
 Finalmente es necesario precisar que REVAC sólo necesitará un intervalo y precisión
-de los parámetros a sintonizar, con los cuales despues de cumplir todas las iteraciones,
+de los parámetros a sintonizar, con los cuales después de cumplir todas las iteraciones,
 o converger, nos entregará el valor e intervalo de los valores para cada parámetro.\\ 
 
-\textbf{Sintonizador}: \texttt{REVAC}\\
+\textbf{Prueba:} \blue{prueba5}\\
 
-\textbf{Parámetros a Sintonizar}:\\
+\textbf{Sintonizador:} \texttt{REVAC}\\
+
+\textbf{Parámetros a Sintonizar:}\\
 
 \begin{itemize}
 	\item \texttt{clonationRate} TASA\_CL \blue{[0,1]}
