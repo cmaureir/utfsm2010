@@ -1,0 +1,23 @@
+\subsection{Anexo I}
+Pseudocógido de REVAC.
+\label{sec:anexo1}
+
+\begin{tabular}{|p{12cm}|}
+\hline
+
+\begin{verbatim}
+    Procedure Revac
+    oP <- generar M configuraciones candidatas
+    Evaluar cada configuración en oP
+    While not max_evaluations do
+        oNew <- cruzamiento uniforme de los N mejores
+        oNew <- mutar oNew en intervalo 2*H
+        Evaluar configuración oNew
+        Reemplazar la configuración mas antigua en oPp por oNew
+        Calcular entropía para cada parámetro en oP
+    End while
+    Return media y entropía de cada parámetro en oP
+\end{verbatim}\\
+
+\hline
+\end{tabular}

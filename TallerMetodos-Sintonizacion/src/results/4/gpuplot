@@ -1,0 +1,14 @@
+gpuplot
+
+(guardar lista con espacios y una linea en blanco)
+x1 y1 valor
+x1 y2 valor
+...
+
+x2 y1 valor
+...
+
+plot ‘data.dat’ with pm3d
+
+set terminal pdf
+set output "name.pdf"

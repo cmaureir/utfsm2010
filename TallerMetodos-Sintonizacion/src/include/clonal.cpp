@@ -1,7 +1,6 @@
 #include "clonal.h"
 
 // Inicializacion de la problacion
-// Random.
 void initPopulation(bool type){
 	int i=0,j=0,k=0,counter=0;
 	int p[VARS];
@@ -257,9 +256,7 @@ void hypermutation(){
 	for(i=0;i<POP;i++){
 		if(!isNull(clonePop[i])){
 
-			// Cambiar a mutar solo por el indice
-			//for(j=0;j<round(mutRate * clonePop[i].fitness);j++){
-			//for(j=0;j<(i+1)*VARS*0.2;j++){
+			// se intercambian por su orden, el primero 2 veces, el segundo 3 veces...
 			for(j=0;j<(i+1);j++){
 	        // Generamos dos numeros para intercambiar los valores
 	        //  de nuestra solucion
@@ -274,7 +271,7 @@ void hypermutation(){
 	}
 }
 
-void cloneSelection(int n, struct cell popToSel[POP+1], bool type){
+void cloneSelection(struct cell popToSel[POP+1], bool type){
 	int i,j;
 	if(type){
 		// Sort population y clonalPop, juntarlos y obtener los mejores
@@ -304,11 +301,6 @@ void cloneSelection(int n, struct cell popToSel[POP+1], bool type){
 		    }
 
 	}
-	else{
-		selection(n,popToSel);
-	}
-
-
 }
 
 // Insertar los mejores entre population y clonePop

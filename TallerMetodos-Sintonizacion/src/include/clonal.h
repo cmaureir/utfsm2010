@@ -22,7 +22,7 @@ void clonation(struct cell *clonePop[POP+1]);
 void hypermutation();
 
 // Seleccion de los mejores clones
-void cloneSelection(int n, struct cell popToSel[POP+1], bool clonalSelType);
+void cloneSelection(struct cell popToSel[POP+1], bool clonalSelType);
 
 // Inserción de clones
 void cloneInsertion(int n);
