@@ -47,5 +47,31 @@ Con respecto a las restricciones, tenemos que:
 		deben estar presente en una secuencia determinada.
 \end{itemize}
 
+\subsection{Modelamiento}
 
+La presente representación, tiene un carácter simplista, y toma la esencia del modelo
+matemático señalado en la sección anterior, buscando en éste caso, dar prioridad a la satisfacción
+de la restricciones del problema, de una forma más apropiada.
 
+\begin{itemize}
+	\item Parámetros
+	\begin{itemize}
+		\item $cN$: Número total de autos.
+		\item $oN$: Número total de opciones disponibles.
+		\item $tN$: Número total de tipos/clases de autos.
+	\end{itemize}
+	\item Variables
+	\begin{itemize}
+		\item $nMax_{ij}$: Número máximo de autos con la opción $i$ en una subsecuencia $j$.
+		\item $n_{ij}$: Número de autos con la opción $i$ en una subsecuencia $j$.
+		\item $sMax_{i}$: Tamaño de la subsecuencia $j$ donde deben haber $nMax_{ij}$ autos.
+		\item $q_{k}$: Cantidad de autos del tipo/clase $k$.
+		\item $types_{il}$: Booleano que indica si la opción $i$ está presente en el auto $l$.
+	\end{itemize}
+	\item Función Objetivo
+	$$FO\ :\ Min\ \sum\limits_{i=1}^{oN} \sum\limits_{l=1}^{cN} \sum\limits_{j=0}^{sMax_{i}} types_{il}\cdot (n_{ij} - nMax_{ij}), \forall n_{ij} > nM_{ij}$$
+	\item Restricciones Duras
+	$$\sum\limits_{k=1}^{cN} q_{k} = cN$$
+	\item Restricciones Blandas
+	$$\sum\limits_{i=1}^{oN} \sum\limits_{l=1}^{cN} \sum\limits_{j=0}^{sMax_{i}} types_{il}\cdot n_{ij} \leq nMax_{ij}$$
+\end{itemize}
