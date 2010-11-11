@@ -1,103 +1,133 @@
 \begin{enumerate}
-\item Investigue y conteste. ¿Cuántos megabytes requieren las secuencias de los genomas de un ser
-humano, un choclo y una mosca de la fruta (Drosophila melanogaster)? (Admitiendo agrupar varias
-bases en un mismo byte de 8 bits, pero sin comprimir más allá de eso.) Si sólo nos interesan las
-secuencias que codifican proteínas (“CDS”), ¿cuántos megas necesitaríamos, en el caso humano?
+\item Investigue y conteste.
+	¿Cuántos megabytes requieren las secuencias
+	de los genomas de un ser humano, un choclo y una mosca
+	de la fruta (Drosophila melanogaster)?
+	(Admitiendo agrupar varias bases en un mismo byte de
+	8 bits, pero sin comprimir más allá de eso.)
+	Si sólo nos interesan las secuencias que codifican
+	proteínas (“CDS”), ¿cuántos megas necesitaríamos,
+	en el caso humano?
+	
+	\blue{Respuesta:}
+		Para responder, solo es necesario conocer el
+		numero de pares de base.
+		Debido a que el código genético consta de 4 letras,
+		podemos expresar cada base en 2 bits. Por lo que: \\
 
-Para responder, solo es necesario conocer el numero de pares de base. Debido a que el código genético
-consta de 4 letras, podemos expresar cada base en 2 bits. Por lo que: \\
+		$$\left\lceil \frac{\text{Numero de pares de base} \cdot 2}{8 \cdot 1024^2} \right\rceil = megabytes$$
 
-$ \lceil \frac{Numero \ de \ pares \ de \ base * 2}{8 * 1024^2} \rceil = megabytes$ \\
-
-\begin{tabular}{|l|l|l|}
-\hline
- & Numero de pares de base & Bytes \\
-\hline
-Ser humano        & 2858015675 & 682 MB\\
-Choclo            & 2500000000 & 597 MB\\
-Mosca de la fruta & 165000000  & 40 MB\\
-Solo CDS ser humano *  & 42870235   & 11 MB\\
-\hline
-\end{tabular}
-
-* Secuencias codificadoras de proteínas comprenden menos del 1,5\% del genoma humano
-
-\item Tenemos un cierto gen (humano) y queremos escoger un trocito de él (un segmento de N bases
-contiguas) que sea único dentro del genoma completo. Suponiendo que las bases del genoma fuesen
-equiprobables e independientes, ¿cuál es el menor valor de N que nos garantizaría una probabilidad
-menor a 0.01 de encontrar la misma secuencia en otro punto del genoma? Explique su cálculo y detalle
-cualquier supuesto adicional que haga.
-
-Si el largo del genoma humano es de L = 2858015675, además si el tamaño del trozo es de N, habría que buscar en
-L - N pares de bases, si nuestro trozo se encuentra.\\
-
-\begin{itemize}
-
-\item ¿ Cuántas veces encontraremos nuestro trozo en el resto del genoma (Casos favorables)?
-
-$(L - N) - N + 1$ (posiciones que podemos deslizar un string de largo N, entre L - N espacios, con $L > N$)
-
-\item ¿ Cuántos strings de 4 letras podemos formar con L - N casillas (Casos totales)?
-
-$4^{(L-N)}$
-
-\item ¿ Ecuación?
-
-$\frac{encontrar \ al \ menos \ una \ vez \ el \ trozo}{todos \ los \ trozos \ generables} < 0.01$\\
-$\leftrightarrow \frac{\sum_{i=1}^{L- 2N + 1} \frac{1}{L - 2N + 1}}{4^{(L-N)}} < 0.01$\\
-$\leftrightarrow \frac{1}{0.01} < 4^{(L-N)} \ \ \ / log_4$\\
-$\leftrightarrow N < L - log_4(100)$\\
-$\leftrightarrow N < L - 3.3219$
-
-%\red{TO DO:} Corroborar.
+		\begin{center}
+		\begin{tabular}{|l|l|l|}
+		\hline
+			\textbf{Especie}  & \textbf{Número de pares de base} & \textbf{Bytes} \\\hline
+			Ser humano        & 2858015675 & 682 MB\\
+			Choclo            & 2500000000 & 597 MB\\
+			Mosca de la fruta & 165000000  & 40 MB\\
+			Solo CDS ser humano~\footnote{Secuencias
+				codificadoras de proteínas comprenden menos del $1.5\%$ del genoma humano}
+							  & 42870235   & 11 MB\\\hline
+		\end{tabular}
+		\end{center}
 
 
-\end{itemize}
+\item Tenemos un cierto gen (humano) y queremos escoger un
+	trocito de él (un segmento de N bases contiguas) que sea
+	único dentro del genoma completo.
+	Suponiendo que las bases del genoma fuesen equiprobables e
+	independientes,
+	¿cuál es el menor valor de N que nos garantizaría una probabilidad
+	menor a $0.01$ de encontrar la misma secuencia en otro punto del
+	genoma? Explique su cálculo y detalle cualquier supuesto adicional
+	que haga.
 
-\item Pequeñas secuencias como la descrita en la parte anterior se usan en al menos dos tecnologías
-importantes, la PCR (reacción en cadena de polimerasa) y los microarrays. Averigue sobre esas
-tecnologías y explique qué tienen que ver con la parte (b); además comente sobre la necesidad (o no) de
-unicidad de la secuencia, en cada una.
+	\blue{Respuesta:}
 
-\begin{itemize}
-\item PCR \\
+		Si el largo del genoma humano es de $L = 2858015675$,
+		además si el tamaño del trozo es de $N$, habría que buscar en
+		$L - N$ pares de bases, si nuestro trozo se encuentra.\\
 
-La reacción en cadena de la polimerasa, conocida como PCR por sus siglas en inglés 
-(Polymerase Chain Reaction), es una técnica de biología molecular desarrollada en 
-1986 por Kary Mullis,1 cuyo objetivo es obtener un gran número de copias de un 
-fragmento de ADN particular, partiendo de un mínimo; en teoría basta partir de 
-una única copia de ese fragmento original, o molde.
+		\begin{itemize}
+			\item ¿Cuántas veces encontraremos nuestro trozo en el
+				resto del genoma (Casos favorables)?\\
 
-Esta técnica sirve para amplificar un fragmento de ADN; su utilidad es que tras 
-la amplificación resulta mucho más fácil identificar con una muy alta probabilidad
- virus o bacterias causantes de una enfermedad, identificar personas (cadáveres) o
- hacer investigación científica sobre el ADN amplificado. Estos usos derivados de 
-la amplificación han hecho que se convierta en una técnica muy extendida, con el 
-consiguiente abaratamiento del equipo necesario para llevarla a cabo.
+				$(L - N) - N + 1$
+				(posiciones que podemos deslizar un string de largo $N$,
+				entre $L - N$ espacios, con $L > N$)
 
-\item Microarrays \\
+			\item ¿Cuántos strings de 4 letras podemos formar con $L - N$
+				casillas (Casos totales)?\\
 
-Un chip de ADN (del inglés DNA microarrays) es una superficie sólida a la cual 
-se unen una serie de fragmentos de ADN. Las superficies empleadas para fijar el 
-ADN son muy variables y pueden ser vidrio, plástico e incluso chips de silicio. 
-Los arreglos de ADN son utilizadas para averiguar la expresión de genes, 
-monitorizándose los niveles de miles de ellos de forma simultanea.
+				$4^{(L-N)}$
 
-La tecnología del chip de ADN es un desarrollo de una técnica muy usada en biología 
-molecular, el Southern blot. Con esta tecnología podemos observar de forma casi
- instantánea la presencia de todos los genes del genoma de un organismo. De tal
- forma que suelen ser utilizados para identificar genes que producen ciertas 
-enfermedades mediante la comparación de los niveles de expresión entre células
- sanas y células que están desarrollando ciertos tipos de enfermedades
+			\item ¿Ecuación?\\
 
-\item Relacion con parte (b) \\
-
-En tanto PCR como microarrays, se hace necesario partir de un fragmento único de ADN, ya 
-que las técnicas tratan de identificar el funcionamiento de tanto de virus, bacterias o 
-el origen de ciertas enfermedades, por lo que un trozo que sea único, garantiza de cierta
- forma que el fragmento es el responsable
-de dichos organismos o enfermedades
+				\begin{eqnarray}
+					\frac{\text{encontrar al menos una vez el trozo}}{\text{todos los trozos generables}} &<& 0.01\\
+					\frac{\sum_{i=1}^{L- 2N + 1} \frac{1}{L - 2N + 1}}{4^{(L-N)}} &<& 0.01\\
+					\frac{1}{0.01} &<& 4^{(L-N)} \ \ \ / log_{4}\\
+					N &<& L - log_{4}(100)\\
+					N &<& L - 3.3219\\
+				\end{eqnarray}
 
 \end{itemize}
+
+\item Pequeñas secuencias como la descrita en la parte anterior
+	se usan en al menos dos tecnologías importantes, la PCR
+	(reacción en cadena de polimerasa) y los microarrays.
+	Averigue sobre esas tecnologías y explique qué tienen que
+	ver con la parte (b); además comente sobre la necesidad (o no)
+	de unicidad de la secuencia, en cada una.
+
+	\begin{itemize}
+		\item PCR \\
+
+			La reacción en cadena de la polimerasa, conocida como
+			PCR por sus siglas en inglés (Polymerase Chain Reaction),
+			es una técnica de biología molecular desarrollada en 
+			1986 por Kary Mullis, cuyo objetivo es obtener un gran
+			número de copias de un fragmento de ADN particular,
+			partiendo de un mínimo; en teoría basta partir de 
+			una única copia de ese fragmento original, o molde.
+			
+			Esta técnica sirve para amplificar un fragmento de ADN;
+			su utilidad es que tras la amplificación resulta mucho más
+			fácil identificar con una muy alta probabilidad virus o
+			bacterias causantes de una enfermedad, identificar personas
+			(cadáveres) o hacer investigación científica sobre el ADN
+			amplificado. Estos usos derivados de la amplificación han
+			hecho que se convierta en una técnica muy extendida, con el 
+			consiguiente abaratamiento del equipo necesario para
+			llevarla a cabo.
+
+		\item Microarrays \\
+
+			Un chip de ADN (del inglés DNA microarrays) es una superficie
+			sólida a la cual se unen una serie de fragmentos de ADN.
+			Las superficies empleadas para fijar el ADN son muy variables
+			y pueden ser vidrio, plástico e incluso chips de silicio. 
+			Los arreglos de ADN son utilizadas para averiguar la expresión
+			de genes, monitorizándose los niveles de miles de ellos de
+			forma simultanea.
+			
+			La tecnología del chip de ADN es un desarrollo de una técnica
+			muy usada en biología molecular, el Southern blot.
+			Con esta tecnología podemos observar de forma casi instantánea
+			la presencia de todos los genes del genoma de un organismo.
+			De tal forma que suelen ser utilizados para identificar genes
+			que producen ciertas enfermedades mediante la comparación de
+			los niveles de expresión entre células sanas y células que
+			están desarrollando ciertos tipos de enfermedades
+
+		\item Relación con parte (b) \\
+
+			En tanto PCR como microarrays, se hace necesario partir de un
+			fragmento único de ADN, ya que las técnicas tratan de identificar
+			el funcionamiento de tanto de virus, bacterias o el origen de
+			ciertas enfermedades, por lo que un trozo que sea único,
+			garantiza de cierta forma que el fragmento es el responsable
+			de dichos organismos o enfermedades
+
+	\end{itemize}
 
 \end{enumerate}
