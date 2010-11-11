@@ -72,7 +72,7 @@ la cual solo posee una mayor disponibilidad de máquinas para realizar las opera
 de encontrar una ubicación de cada operación y definir las secuencias de éstas en cada máquina, tratando de utilizar el mínimo
 tiempo posible.
 
-La técnica de \emph{stretching} fue propuesta por M. N. Vrahatis (referencia),
+La técnica de \emph{stretching} fue propuesta por M. N. Vrahatis~\cite{stretching},
 %M. Vrahatis, G. Androulakis and M. Manoussakis, “A new unconstrained optimization method for Imprecise function andgradient values,”
 %Journal of Mathematical Analysis and Applications, 1996, pp. 586–607.
 y su idea principal es realizar dos etapas de transformación sobre la forma de la función objetivo,
@@ -118,8 +118,12 @@ donde cada procesador trabaja con su propio conjunto de anticuerpos.
 Lo llamativo surge al existir mecanismos de ``migración'' que permite un intercambio de conocimiento entre los 
 distintos procesos, los cuales son elegidos mediante una ``selección de torneo''.
 
-Finalmente la selección clonal se sobrepone a \emph{Tabu search} en todas las instancias,
+Por lo tanto la selección clonal se sobrepone a \emph{Tabu search} en todas las instancias,
 llegando a la conclusión que aunque no posea un operador de cruzamiento, la selección clonal
 es una forma fácil de implementar un algoritmo de optimización.
 %%
 
+
+Finalmente los algoritmos inmunes, en especial los algoritmos de ``selección clonal'' suelen ser una buena aproximación
+para poder solucionar problemas de optimización y gracias a los estudios analizados en el estado del arte del problema,
+podemos decir que es una buena solución para el ``Car Sequencing Problem''.

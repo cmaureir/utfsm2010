@@ -49,8 +49,8 @@ Siendo la explicación de los pasos de la figura~\ref{fig:algoritmo} la siguient
 \begin{enumerate}
     \item Generar un conjunto (P) de soluciones candidatas, compuesto de células de memoria (M) añadidas a la población restante (Pr), teniendo entonces $P = Pr + M$
     \item Determinar los $n$ mejores individuos (Pn) de la población (P), basado en una medida de afinidad.
-    \item Clonar (reproducir) estos $n$ mejores individuos de la población, dando origen a una población temporal de clones (C).
-    \item Someter la población de clones a un esquema de hiper-mutación (proporcional a la afinidad del anticuerpo). Una población de anticuerpos maduros es generada (C*).
+    \item Clonar (reproducir) estos $n$ mejores individuos de la población, proporcional al fitness, dando origen a una población temporal de clones (C).
+    \item Someter la población de clones a un esquema de hiper-mutación (inversamente proporcional a la afinidad del anticuerpo). Una población de anticuerpos maduros es generada (C*).
     \item Seleccionar nuevamente los mejores individuos de (C*) para componer el conjunto de memoria. (Algunos reemplazos desde (C*) a (P), debido a la mejora)
     \item Reemplazar los $d$ anticuerpos con menor afinidad de la población, manteniendo la diversidad.
 \end{enumerate}

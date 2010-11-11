@@ -1,6 +1,61 @@
-%Debe identificar el algoritmo sintonizador que elegirá y los parámetros que serán sintonizados por éste. Utilize la siguiente estructura: \\ \\
-%\textbf{Sintonizador}: \\
-%\textbf{Parámetros a Sintonizar}:\\
-%\textbf{Detalles del sintonizador}: Todo lo que tenga que ver con la configuración usada del sintonizador (veáse en la materia los parámetros de cada sintonizador: iteraciones, individuos, tiempo, tipo de busqueda... etc.)\\ 
-%
-%Debe finalmente entregar el resultado del sintonizador para cada instancia analizada, junto con el resultado (fitness) de la ejecución del algoritmo con estos parámetros.
+%Debe identificar el algoritmo sintonizador que elegirá
+% y los parámetros que serán sintonizados por éste.
+Luego del proceso manual anterior, es tiempo de automatizar el proceso,
+que para algoritmos mucho más complejos y elaborados puede ser realmente un alivio,
+a la hora de buscar los valores adecuados para los parámetros utilizados.
+
+En la presente sección, utilizaremos un algoritmo sintonizador basado en búsqueda,
+muy similar a un algoritmo genético, nos referimos a REVAC~\cite{REVAC},
+el cual fue propuesto por Eiben y Nannen hace 3 años. (véase pseudocódigo en Anexo I~\ref{sec:anexo1})
+
+La idea principal de REVAC es que nos entrega una herramienta de estimación
+de distribución, la cual va a requerir un rango determinado de valores para
+cada parámetro que deseemos sintonizar
+
+Su parentesco con los algoritmos genéticos es que al comienzo utiliza un
+conjunto de configuraciones de parámetros como población, la cual es inicializada
+utilizando una distribución uniforme para los valores de los parámetros a sintonizar.
+
+Algunas otras características son que en cada iteración del algoritmo, genera sólo
+un hijo, a diferencia de los algoritmos evolutivos comunes, por otra parte posee
+un cruzamiento uniforme considerando a los mejores elementos.
+%Entropía → Relevancia de un parámetro
+%Mutación con intervalo 2*H
+
+Finalmente es necesario precisar que REVAC sólo necesitará un intervalo y precisión
+de los parámetros a sintonizar, con los cuales después de cumplir todas las iteraciones,
+o converger, nos entregará el valor e intervalo de los valores para cada parámetro.\\ 
+
+\textbf{Prueba:} \blue{prueba5}\\
+
+\textbf{Sintonizador:} \texttt{REVAC}\\
+
+\textbf{Parámetros a Sintonizar:}\\
+
+\begin{itemize}
+	\item \texttt{clonationRate} TASA\_CL \blue{[0,1]}
+	\item \texttt{clonationFactor} FACT\_CL \blue{[0,1]}
+	\item \texttt{replaceRate} TASA\_RP \blue{[0,1]}
+\end{itemize}
+
+\textbf{Detalles del sintonizador:}\\
+
+\begin{itemize}
+	\item Iteraciones: \blue{200}
+	\item Tamaño de población (M): \blue{18}
+	\item Cantidad de padres (N): \blue{6}
+	\item Intervalo de mutación (H) : \blue{3}
+	\item Tipo de búsqueda: Algoritmo genético.
+\end{itemize}
+
+\textbf{Resultados:}
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|}
+	\hline
+	\textbf{Instancia} & \textbf{clonationRate} & \textbf{clonationFactor} & \textbf{replaceRate} & \textbf{Fitness} & \textbf{Tiempo [s]} \\\hline
+	\texttt{pb\_200\_01.txt} & 0.56 & 0.65 & 0.57 & 203 & 161 \\\hline
+	\texttt{pb\_200\_09.txt} & 0.95 & 0.60 & 0.13 & 189 & 195 \\\hline
+	\texttt{pb\_200\_10.txt} & 0.80 & 0.66 & 0.60 & 159 & 169\\\hline
+\end{tabular}
+\end{center}

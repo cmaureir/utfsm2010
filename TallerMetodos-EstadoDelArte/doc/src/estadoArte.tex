@@ -77,7 +77,7 @@ debido a las grandes mejoras en el proceso de solución.
 Teniendo en consideración el \emph{Car Sequencing Problem}, podemos construir una secuencia
 en una forma \emph{Voraz (Greedy)}, eligiendo el siguiente vehículo de la secuencia
 considerando una función heurística de optimización.
-El primero acercamiento utilizando la forma \emph{Voraz (Greedy)} fue propuesto por
+El primero acercamiento utilizando \emph{Greedy} fue propuesto por
 Hindi and Ploszaski en 1994~\cite{HP94}. Volviendo al procedimiento anteriormente descrito, la idea
 central que nos plantea Gottlieb et al. en \cite{GPS03}. Claramente, ahora la elección que podemos
 realizar en cada paso de nuestro algoritmo, debe ser la más óptima, en otras palabras,
@@ -122,7 +122,7 @@ En enfoque que entrega el trabajo previamente señalado~\cite{Sol00} con respect
 al \emph{Car Sequencing Problem} es el siguiente:
 Recordando nuestro problema principal, sabemos que consiste
 en realizar la óptima planificación de los vehículos en una línea de ensamblaje,
-donde tenemos $n$ vehículos para ser producir, que están agrupados en $k$ tipos
+donde tenemos $n$ vehículos para producir, que están agrupados en $k$ tipos
 de autos~\footnote{
 Cada conjunto de autos de un mismo tipo tienen las mismas opciones
 }, y sabemos también que cada opción $i$ está asociada con una restricción de capacidad
@@ -180,7 +180,7 @@ una solución, y que de la misma forma, es válido para cualquier acercamiento a
 mencionado.
 \begin{enumerate}
 	\item \emph{shift}: Puede realizarse con repecto a la izquierda o derecha, y avanzando una cantidad determinada de espacios,
-		es decir, Tomamos nuestra secuencia numérica, y la movemos para alguno de los dos lados. El hecho de que sea a la izquierda
+		es decir, tomamos nuestra secuencia numérica, y la movemos para alguno de los dos lados. El hecho de que sea a la izquierda
 		o derecha y la cantidad de espacios que se mueve, se puede elegir de manera aleatoria.
 
 		\emph{e.g:} 1 0 1 0 0 1, aplicamos shift-right 2 veces y nos queda 0 1 1 0 1 0.
@@ -206,7 +206,7 @@ mencionado.
 		que los movimientos descritos anteriormente.
 \end{enumerate}
 
-\subsection{Acercamientos exactos}
+\subsection{Acercamientos completos}
 \subsubsection{Integer Lineal Programming}
 En el trabajo de Grevel et al.~\cite{4} se propone un acercamiento utilizando
 \emph{Programación Lineal Entera}, ILP por sus siglas en inglés,  para una variante
@@ -283,7 +283,7 @@ $m_{j,t} = \left\{ \begin{array}{l}
 \subsubsection{Constraint Programming}
 
 El método \emph{Constraint Programming} es una herramienta genérica para poder resolver problemas
-del tipo \emph{Constraint  Sarisfaction Problem (CSP)}~\footnote{No confundir con Car Sequencing Problem},
+del tipo \emph{Constraint  Satisfaction Problem (CSP)}~\footnote{No confundir con Car Sequencing Problem},
 por lo tanto cualquier problema de \emph{scheduling} puede ser resuelto mediante ésta forma,
 ya que conjunto de restricciones que debemos satisfacer son una relación entre varias variables desconocidas,
 y otras variables conocidas~\cite{Tsa93}.

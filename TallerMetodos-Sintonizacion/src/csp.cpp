@@ -19,11 +19,9 @@ int main(int argc, const char *argv[])
 		return 0;
 
 	changeParam(argv);
-
-	cout << "ClonationFactor: "<<clonationFactor << endl;
-	cout << "ClonationRate: " << clonationRate << endl;
-	cout << "ReplaceRate: " << replaceRate << endl;
-
+//	cout << "ClonationFactor: "<<clonationFactor << endl;
+//	cout << "ClonationRate: " << clonationRate << endl;
+//	cout << "ReplaceRate: " << replaceRate << endl;
 	
 	inputReading(argv[1]);
 	generation = 0;
@@ -37,7 +35,7 @@ int main(int argc, const char *argv[])
 		clonation(tmpPop, cloneType);
 		hypermutation();
 		evaluation(clonePop, type);
-		cloneSelection(selRate, clonePop, cloneSelType);
+		cloneSelection(clonePop, cloneSelType);
 		cloneInsertion();
 		newGeneration(replaceRate, replaceType);
 		evaluation(population, type);
@@ -47,8 +45,8 @@ int main(int argc, const char *argv[])
 	clock_gettime(CLOCK_REALTIME, &te);
 
 //	printFile(argv[1],population[0].gene,population[0].fitness,(te.tv_sec-ts.tv_sec), (te.tv_nsec-ts.tv_nsec));
-	printFile(population[0].fitness);
-//	cout << population[0].fitness << endl;
+//	printFile(population[0].fitness);
+	cout << clonationFactor << " " << clonationRate/POP << " " << population[0].fitness << " " <<  (te.tv_sec-ts.tv_sec)<<"."<<(te.tv_nsec-ts.tv_nsec) << endl;
 
 	return 0;
 }

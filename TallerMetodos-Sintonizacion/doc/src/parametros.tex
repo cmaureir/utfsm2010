@@ -4,21 +4,39 @@
 %Puede incluir diagramas o todo lo que sea necesario para dejar claras las caracteristicas y función que cumple el parámetro en su algoritmo.
 
 \begin{itemize}
-	\item \texttt{POP} \blue{(20)}, Parámetro que define el tamaño de cada población al momento de comenzar
+	\item \texttt{POP} \blue{[10,210]}, Parámetro que define el tamaño de cada población al momento de comenzar
 			las iteraciones a través de la cantidad de generaciones.
 			Este parámetros influye notablemente en el tiempo que demora la ejecución de nuestro algoritmo,
 			pues si tenemos poblaciones muy grandes todo el tratamiento que le damos a los individuos,
 			como la hipermutación y la clonación tomará mucho más tiempo.
-	\item \texttt{GENS} \blue{(200)}, Parámetro que define el número total de generaciones en las cuales
+
+	\item \texttt{GENS} \blue{[10,2000,30]}, Parámetro que define el número total de generaciones en las cuales
 			el algoritmo se mantendrá en ejecución. Este parámetro es la actual condición de término
-			por lo cual es escencial a la hora de obtener buenos o malos resultados, ya que si tenemos
+			por lo cual es esencial a la hora de obtener buenos o malos resultados, ya que si tenemos
 			muy pocas generaciones, para muchas variables puede que no se alcance a cumplir bien los
 			objetivos del algoritmo y que se termine no con los mejores resultados.
-	\item \texttt{selRate} POP*0.4  // Tasa para la cantidad de elementos seleccionados
-	\item \texttt{swap} VARS*0.4 // Cantidad de swap realizados en el movimiento
-	\item \texttt{mutRate} POP*0.02
 
-	\item \texttt{clonationFactor} = 0.0;//0.5 // Factor para calcular individuos clonados
-	\item \texttt{clonationRate} = 0.0; //POP*0.4 // Tasa para realizar la clonación
-	\item \texttt{replaceRate} =  0.0; //POP*0.6  // Tasa para la cantidad de elementos reemplazados
+	\item \texttt{clonationFactor} \blue{[0,1]} \red{$(\beta)$}, Parámetro que sirve para define la cantidad de clones
+			que vamos a generar a partir de un elemento anteriormente seleccionado, considerando la esencia de la
+			fórmula fórmula propuesta por De Castro~\cite{decastro}, en el cual consideramos tres elementos:
+			``factor de clonación ($\beta$)'', ``Total de anticuerpos($N$)'' y ``Afinidad (ranking) ($a$)''.
+			
+			La relación está dada por un número $m$ que equivale a la cantidad de clones que se generarán
+            para cada anticuerpo ordenados por afinidad, partiendo del mejor al peor:
+
+            $$m\ =\ \left\lceil\frac{\beta \cdot N}{a}\right\rceil$$
+
+            Con ésto estamos siguiendo la idea central del algoritmo, pues estamos favoreciendo a que se clonen más
+            los mejores elementos de nuestra población.
+
+	\item \texttt{clonationRate}   \blue{[0,1]}, Parámetro que define la cantidad de elementos que seleccionaremos
+			para poder comenzar el proceso de clonación. Aquí se seleccionan \texttt{POP*clonationRate} elementos
+			de una población que ya se encuentra ordenada de acuerdo al \emph{fitness}, es decir, se los mejores
+			a los peores, por lo tanto nos aseguramos de que las futuras clonaciones sean a buenos individuos.
+
+	\item \texttt{replaceRate}     \blue{[0,1]}, Parámetro que define la cantidad de nuevos elementos que
+			integramos en nuestra población para poder así combatir el estancamiento en óptimos locales,
+			de ésta forma se generan una cantidad de \texttt{POP*replaceRate} nuevos individuos, en las posiciones
+			de los peores elementos, siendo éste el mecanismo para tener variación en nuestra población.
+
 \end{itemize}

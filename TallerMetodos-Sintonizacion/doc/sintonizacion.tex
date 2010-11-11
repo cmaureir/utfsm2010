@@ -6,10 +6,23 @@
 \usepackage[dvips]{graphicx}
 \usepackage{subfigure}
 \usepackage{url}
+\usepackage{hyperref}
+\usepackage{color}
 \usepackage[top=3cm,bottom=3cm,left=3.5cm,right=3.5cm,footskip=1.5cm,headheight=1.5cm,headsep=.5cm,textheight=3cm]{geometry}
+
+\definecolor{red}{rgb}{1,0,0}
+\definecolor{green}{rgb}{0,1,0}
+\definecolor{blue}{rgb}{0,0,1}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\green}{\textcolor{green}}
 
 
 \begin{document}
+\bibliographystyle{plain}
+\pagestyle{empty}
+
+
 \title{Taller de Modelos y Métodos Cuantitativos \\ \begin{Large}Sintonización: Algoritmo \emph{Clonal Selection} para el problema \emph{Car Sequencing Problem}\end{Large}}
 \author{Cristián D. Maureira Fredes.}
 \date{\today}
@@ -26,6 +39,7 @@
 \subsection{Sintonización Manual}
 \input{src/sintonizacionManual}
 
+\newpage
 \subsection{Sintonización Automática}
 \input{src/sintonizacionAutomatica}
 
@@ -33,6 +47,10 @@
 \input{src/conclusiones}
 
 \section{Bibliografía}
-Se debe referenciar todo paper citado. En caso de referenciar páginas web, debe incluir fecha.
+\bibliography{sintonizacion}.
+
+\newpage
+\section{Anexos}
+\input{src/anexos}
 
 \end{document} 

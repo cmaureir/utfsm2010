@@ -1,0 +1,56 @@
+\subsection{Anexo I}
+Pseudocódigo de REVAC.
+\label{sec:anexo1}
+
+\begin{tabular}{|p{12cm}|}
+\hline
+
+\begin{verbatim}
+    Procedure Revac
+    oP <- generar M configuraciones candidatas
+    Evaluar cada configuración en oP
+    While not max_evaluations do
+        oNew <- cruzamiento uniforme de los N mejores
+        oNew <- mutar oNew en intervalo 2*H
+        Evaluar configuración oNew
+        Reemplazar la configuración mas antigua en oPp por oNew
+        Calcular entropía para cada parámetro en oP
+    End while
+    Return media y entropía de cada parámetro en oP
+\end{verbatim}\\
+
+\hline
+\end{tabular}
+
+\subsection{Anexo II}
+Pseudocódigo del algoritmo de Selección Clonal.
+\label{sec:anexo2}
+
+\begin{tabular}{|p{12cm}|}
+\hline
+\begin{verbatim}
+    Inicio
+    g <- 0 // numero de generaciones
+    Leer datos de entrada
+    Población <- Generar población inicial
+    Evaluar población
+
+    Mientras g < GENS
+        Limpiar poblaciones
+        Seleccionar individuos a clonal (ruleta)
+        Clonación (fórmula)
+        Hipermutación mediante Swap
+        Evaluar población mutada
+        Selección de clones (Mejores)
+        Inserción de clones en nueva población
+        Generar elementos nuevos aleatorios
+        Inserción de elementos nuevos al población
+        g <- g + 1
+    Fin Mientras
+
+    Imprimir resultados
+    Fin
+\end{verbatim}\\
+
+\hline
+\end{tabular}

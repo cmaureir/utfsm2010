@@ -2,8 +2,8 @@ src=sintonizacion
 
 all:
 	pdflatex $(src).tex
-	#BIBINPUTS=. bibtex $(src)
-	#pdflatex $(src).tex
+	BIBINPUTS=. bibtex $(src)
+	pdflatex $(src).tex
 	pdflatex $(src).tex
 	@if [ -d bin ];then mv $(src).pdf bin/;else mkdir bin; mv $(src).pdf bin/;fi
 
@@ -15,4 +15,4 @@ distclean:
 	rm -f  src/*.{aux,log}        	
 	rm -f bin/$(src).pdf
 x:
-	evince -f bin/$(src).pdf
+	okular bin/$(src).pdf
