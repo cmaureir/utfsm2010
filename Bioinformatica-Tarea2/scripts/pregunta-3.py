@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from os import system
-
+import time
 bases = ["A","C","T","G"]
 
 def parse_file(file_name):
@@ -32,11 +32,11 @@ def is_palindrome(sec):
 		tmp_set.clear()	
 	return result
 
-def generate_subsequences_and_verify(sequence):
+def palin1(sequence):
 	top_ten = []
 	for i in range(2,len(sequence)-1):
-		system("clear")
-		print str(i)+"/"+str(len(sequence)-2)
+		#system("clear")
+		#print str(i)+"/"+str(len(sequence)-2)
 		for j in range(len(sequence)-1):
 			if len(sequence[j:j+i]) == i and i%2 == 0:
 				if is_palindrome(sequence[j:j+i]):
@@ -44,9 +44,40 @@ def generate_subsequences_and_verify(sequence):
 	print "Ten bigger palindromes:"
 	return top_ten[::-1][:10]
 
+def palin2(a):
+	pals = []
+	l = len(a)
+	c = 0
+	is_pal = False
+	while c < len(a)-1:
+	    for j in range(len(a)/2):
+	        if c -j >= 0 and c+1 +j <= l-1:
+	#           print "analizamos a: "+str(c-j)+ " y "+ str(c+1 +j)
+	            tmp1 = set(["a","t"]).issubset(set([a[c-j],a[c+1+j]]))
+	            tmp2 = set(["c","g"]).issubset(set([a[c-j],a[c+1+j]]))
+	            if not tmp1 and not tmp2:
+	                break
+	            else:
+	                ini = c-j
+	                end = c+1+j
+	                is_pal = True
+	#               print "palindromo"
+	    if is_pal:
+	#       print a[ini:end+1]
+	        pals.append(a[ini:end+1])
+	    is_pal = False
+	#   print "otro loop..."
+	    c = c + 1
+	return pals[::-1][:10]
+
 
 tmp_l = parse_file("secuencia.txt")
 #tmp_l = parse_file("sec.txt")
 raw_input("Press any key to start the palindrome search...")
-print generate_subsequences_and_verify(tmp_l)
+#s_time = time.time()
+#print palin1(tmp_l)
+#print time.time() - s_time, "sec"
 
+s_time = time.time()
+print palin2(tmp_l)
+print time.time() - s_time, "sec"
