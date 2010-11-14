@@ -24,7 +24,7 @@ Necesitará (al menos) funciones que hagan lo siguiente:
 
 Con esas funciones, hará lo siguiente:
 
-\red{Importante:} Las funciones se encuentran en el Anexo 1~\ref{sec:anexo1}.
+\red{Importante:} Las funciones y los algoritmos para cada pregunta se encuentran en el Anexo I~\ref{sec:anexo1}.
 
 \begin{enumerate}
 
@@ -78,7 +78,22 @@ Con esas funciones, hará lo siguiente:
 
 		\blue{Respuesta:}
 
-		\red{TO DO:} Completa
+		Tomando en cuenta de que cada pregunta tiene sólo la idea central en común,
+		es decir calcular la distancia de Levenshtein, pero después de todo,
+		los ejercicios son distintos, pues el primero tiene que ver en ir comparando
+		dos secuencias que van mutando en conjunto, y el segundo en 10000 pares de
+		secuencias independientes que van mutando.
+
+		En el caso de la parte \emph{(b)} podemos ver que hasta las \red{25 mutaciones}
+		hay una especie de crecimiento lineal, pero luego el comportamiento se torna
+		mucho más impreciso, por lo que vamos obteniendo valores en la distancia
+		sobre \blue{100}, pero una forma casi aleatoria.
+
+		Por otro lado, en \emph{(c)} nos podemos ver que la mayor cantidad de distancias
+		se encuentra entre \blue{130} y \blue{135}, por lo que podemos deducir, que
+		comparando estas distancias obtenidas con el gráfico de la parte \emph{(b)},
+		que sobre unas \red{100 mutaciones}, la distancia comienza a ser mayor,
+		por lo cual ya no podremos detectar fácilmente el parentesco entre las secuencias.
 
 
 \end{enumerate}

@@ -35,13 +35,10 @@ def is_palindrome(sec):
 def palin1(sequence):
 	top_ten = []
 	for i in range(2,len(sequence)-1):
-		#system("clear")
-		#print str(i)+"/"+str(len(sequence)-2)
 		for j in range(len(sequence)-1):
 			if len(sequence[j:j+i]) == i and i%2 == 0:
 				if is_palindrome(sequence[j:j+i]):
 					top_ten.append(sequence[j:j+i])
-	print "Ten bigger palindromes:"
 	return top_ten[::-1][:10]
 
 def palin2(a):
@@ -52,7 +49,6 @@ def palin2(a):
 	while c < len(a)-1:
 	    for j in range(len(a)/2):
 	        if c -j >= 0 and c+1 +j <= l-1:
-	#           print "analizamos a: "+str(c-j)+ " y "+ str(c+1 +j)
 	            tmp1 = set(["a","t"]).issubset(set([a[c-j],a[c+1+j]]))
 	            tmp2 = set(["c","g"]).issubset(set([a[c-j],a[c+1+j]]))
 	            if not tmp1 and not tmp2:
@@ -61,12 +57,9 @@ def palin2(a):
 	                ini = c-j
 	                end = c+1+j
 	                is_pal = True
-	#               print "palindromo"
 	    if is_pal:
-	#       print a[ini:end+1]
 	        pals.append(a[ini:end+1])
 	    is_pal = False
-	#   print "otro loop..."
 	    c = c + 1
 		return sorted(pals,lambda a,b: cmp(len(a),len(b)))[::-1][:10]
 

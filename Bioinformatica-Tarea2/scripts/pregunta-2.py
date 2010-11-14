@@ -95,13 +95,13 @@ if sys.argv[1] == "1":
 		d.append(distance)
 		d_matrix.append(matrix)
 		tmp2 = ""
-	
-	plot1 = p.plot(m_list,d,label='lala')
-	title('Distancia vs Numero de mutaciones')
-	legend((plot1),('lala'),loc='upper left')
+
+	p.show()
+	plot1 = p.plot(m_list,d)
+	title(u'Distancia vs Número de mutaciones')
 	grid(True)
-	p.axis([0,m,0,max(d)],0.01)
-	xlabel('Numero de mutaciones')
+	p.axis([0,m,0,max(d)+1],0.01)
+	xlabel(u'Número de mutaciones')
 	ylabel('Distancia')
 	p.show()
 
@@ -124,19 +124,19 @@ elif sys.argv[1] == "2":
 		tmp2 = ""
 	
 	plot2 = p.plot(m_list,d2)
-	title('Distancia entre secuencias vs Numero de mutaciones')
-	legend((plot2),loc='upper left')
+	title(u'Distancia entre secuencias vs Número de mutaciones')
 	grid(True)
 	p.axis([0,m,0,max(d2)+1],0.01)
-	xlabel('Numero de mutaciones')
+	xlabel(u'Número de mutaciones')
 	ylabel('Distancia entre secuencias')
 	p.show()
+
 
 # 3
 elif sys.argv[1] == "3":
 	print "Pregunta 3..."
 	s1, s2, d3, d3_matrix = [], [], [], []
-	for i in range(100):
+	for i in range(10000):
 		s1 = generar_secuencia()
 		s2 = generar_secuencia()
 		tmp1 = "".join(s1)
@@ -150,26 +150,12 @@ elif sys.argv[1] == "3":
 	print "Mean:" + str(distance_mean)
 	print "Std:" + str(distance_standard_deviation)
 	
-	d3_sort = []
-	for i in d3:
-		d3_sort.append(i)
-	d3_sort.sort()
-	
-	largo = 0
-	for i in d3:
-		if d3.count(i) > largo:
-			largo = d3.count(i)
 	# the histogram of the data
 	n, bins, patches = p.hist(d3, 50, normed=1, facecolor='green', alpha=0.75)
 	
 	p.xlabel('Distancia entre secuencias')
 	p.ylabel('Probabilidad')
-	p.title(r'$\mathrm{Histogram}$')
-	p.axis([min(d3),max(d3),0,4])
-	p.grid(True)
+	p.title('Histograma')
+	p.axis([min(d3),max(d3),0,0.16])
+	p.grid(True) 
 	p.show()
-
-
-# 4
-
-

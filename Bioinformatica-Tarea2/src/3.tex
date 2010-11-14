@@ -7,7 +7,7 @@
 
 		\blue{Respuesta:}
 		
-		Ver anexo 2~\ref{sec:anexo2}
+		Los algoritmos se encuentran en el Anexo II~\ref{sec:anexo2}
 
 	\item Vaya a~\footnote{\url{http://www.ncbi.nlm.nih.gov/genomes/genlist.cgi?taxid=2g\&type=0\&name=Complete\%20Bacteria}}
 		y elija un cromosoma de bacteria (en general corresponderán a genomas completos de las bacterias),
@@ -80,8 +80,6 @@
 
 			\blue{Respuesta:}
 
-			\red{TO DO:} Completar
-
 			Se propone el siguiente procedimiento para llevar a cabo la búsqueda
 			de palíndromos aproximada.
 
@@ -96,20 +94,30 @@
 					a realizar un alineamiento. Las sub-secuencias son generadas por el
 					paso anterior.
 				\item Por cada $2$ sub-secuencias, realizamos un alineamiento utilizando
-					\emph{Smith-Waterman} modificado, para que alinie con respecto al
+					\emph{Smith-Waterman} modificado, para que alinee con respecto al
 					complemento de una base determinada, por ejemplo un resultado sería
 					de la forma:
 					\begin{center}	
 					\texttt{ATTTGCCGGGA}\\
-					\texttt{TAA-CGGC--T}
-					\end{center}	
+					\texttt{TAA-CGGC--T}\\
+					\end{center}
+				
 				\item Como buscamos palíndromos aproximados, determinaremos un porcentaje
 					$P$, para aceptar o rechazar el alineamiento, por ejemplo, un $80\%$. 
 				\item Si el alineamiento pasa la prueba, entonces estamos en presencia
 					de un palíndromo aproximado, de lo contrario, se rechaza.
 				\item Aumentamos el valor de $n$ y seguimos iterando en nuestro algoritmo.
 			\end{enumerate}
+		
+
+			El poder utilizar una aproximación de \emph{Smith-Waterman} nos proveerá,
+			de un muy buen desempeño, en términos de eficiencia, pues el método es muy
+			utilizando a nivel mundial, lo que se pudo concluir por la cantidad de publicaciones
+			que existen en las distintas revistas científicas.
+
+			La motivación central del algoritmo es poder obtener alineamientos correctos
+			en regiones que se parescan muy poco, para así no entregar valores erróneos,
+			por lo que podríamos decir que es especial para secuencias que no tengan mucho
+			parentesco, pues se comporta bien cuando hay mucho ruido.
 			
-
-
 \end{enumerate}
