@@ -86,7 +86,28 @@
 			de palíndromos aproximada.
 
 			\begin{enumerate}
-				\item 
+				\item Contamos con una secuencia inicial de DNA, la cual utilizaremos
+					para realizar la búsqueda.
+				\item Dividimos la secuencia en $n$, donde $n$ es un número par entero
+					creciente, que va desde $2$ hasta $N$. (Con $N$ dependiente,
+					del tamaño de la $n$-ésima parte de la secuencia, donde ésta
+					no puede ser menor a $2$.
+				\item Vamos tomando de a $2$ sub-secuencias contiguas, para prepararnos
+					a realizar un alineamiento. Las sub-secuencias son generadas por el
+					paso anterior.
+				\item Por cada $2$ sub-secuencias, realizamos un alineamiento utilizando
+					\emph{Smith-Waterman} modificado, para que alinie con respecto al
+					complemento de una base determinada, por ejemplo un resultado sería
+					de la forma:
+					\begin{center}	
+					\texttt{ATTTGCCGGGA}
+					\texttt{TAA-CGGC--T}
+					\end{center}	
+				\item Como buscamos palíndromos aproximados, determinaremos un porcentaje
+					$P$, para aceptar o rechazar el alineamiento, por ejemplo, un $80\%$. 
+				\item Si el alineamiento pasa la prueba, entonces estamos en preciencia
+					de un palíndromo aproximado, de lo contrario, se rechaza.
+				\item Aumentamos el valor de $n$ y seguimos iterando en nuestro algoritmo.
 			\end{enumerate}
 			
 
