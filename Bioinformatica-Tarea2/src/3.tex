@@ -1,9 +1,9 @@
 \begin{enumerate}
 
 	\item Siga programando en su lenguaje favorito. Esta vez, haga un programa que reciba una
-		secuencia de DNA y encuentre en ella los 10 palíndromes más largos (un palíndrome, en
+		secuencia de DNA y encuentre en ella los 10 palíndromos más largos (un palíndromo, en
 		sentido clásico, es una palabra que se lee igual en orden inverso; en el caso de DNA, además se
-		complementan las bases, de modo que ACCTGATCAGGT es un palíndrome.).
+		complementan las bases, de modo que ACCTGATCAGGT es un palíndromo.).
 
 		\blue{Respuesta:}
 		
@@ -19,11 +19,11 @@
 		\begin{itemize}
 			\item Información General
 				\begin{itemize}
-					\item Organism: \emph{Anaplasma centrale str. Israel}~\footnote{\url{http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=574556}}
-					\item Name: \emph{chromosome}
+					\item Organismo: \emph{Anaplasma centrale str. Israel}~\footnote{\url{http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?id=574556}}
+					\item Nombre: \emph{chromosome}
 					\item Accession: \emph{NC\_013532}~\footnote{\url{http://www.ncbi.nlm.nih.gov/sites/entrez?db=genome&cmd=Retrieve&dopt=Overview&list_uids=25444}}
-					\item Lenght: \emph{1206806 nt}
-					\item Proteins:	\emph{923}~\footnote{\url{http://www.ncbi.nlm.nih.gov/sites/entrez?db=genome&cmd=Retrieve&dopt=Protein+Table&list_uids=25444}}
+					\item Largo: \emph{1206806 nt}
+					\item Proteínas:	\emph{923}~\footnote{\url{http://www.ncbi.nlm.nih.gov/sites/entrez?db=genome&cmd=Retrieve&dopt=Protein+Table&list_uids=25444}}
 					\item RNAs: \emph{40}~\footnote{\url{http://www.ncbi.nlm.nih.gov/sites/entrez?db=genome&cmd=Retrieve&dopt=Structural+RNA+Table&list_uids=25444}}
 					\item Genes: \emph{982}~\footnote{\url{http://www.ncbi.nlm.nih.gov/sites/gene?term=NC_013532[accn]}}
 					\item Create date: \emph{Nov 26 2009}
@@ -76,7 +76,7 @@
 		\end{itemize}
 
 	\item Sugiera una estrategia, basada en Smith-Waterman, para realizar esta tarea si nos interesaran
-		palíndromes aproximados, donde se permitan reemplazos o inserciones.
+		palíndromos aproximados, donde se permitan reemplazos o inserciones.
 
 			\blue{Respuesta:}
 
@@ -100,12 +100,12 @@
 					complemento de una base determinada, por ejemplo un resultado sería
 					de la forma:
 					\begin{center}	
-					\texttt{ATTTGCCGGGA}
+					\texttt{ATTTGCCGGGA}\\
 					\texttt{TAA-CGGC--T}
 					\end{center}	
 				\item Como buscamos palíndromos aproximados, determinaremos un porcentaje
 					$P$, para aceptar o rechazar el alineamiento, por ejemplo, un $80\%$. 
-				\item Si el alineamiento pasa la prueba, entonces estamos en preciencia
+				\item Si el alineamiento pasa la prueba, entonces estamos en presencia
 					de un palíndromo aproximado, de lo contrario, se rechaza.
 				\item Aumentamos el valor de $n$ y seguimos iterando en nuestro algoritmo.
 			\end{enumerate}
