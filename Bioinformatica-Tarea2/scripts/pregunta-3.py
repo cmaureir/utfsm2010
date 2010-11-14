@@ -68,13 +68,13 @@ def palin2(a):
 	    is_pal = False
 	#   print "otro loop..."
 	    c = c + 1
-	return pals[::-1][:10]
+		return sorted(pals,lambda a,b: cmp(len(a),len(b)))[::-1][:10]
 
 
 tmp_l = parse_file("secuencia.txt")
 #tmp_l = parse_file("sec.txt")
-raw_input("Press any key to start the palindrome search...")
 #s_time = time.time()
+
 #print palin1(tmp_l)
 #print time.time() - s_time, "sec"
 

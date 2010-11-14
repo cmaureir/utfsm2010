@@ -1,9 +1,5 @@
-SHELL=/bin/bash
 NAME=t2
 BIN=bin
-
-DEPENDENCIES=$(NAME).tex
-
 
 
 all:
@@ -18,9 +14,9 @@ clean:
 	@echo "Limpiando..."
 	@rm -f $(NAME).{aux,toc,log,bbl,blg,out} portada.aux *~ 
 
-distclean:
+distclean: clean
 	@echo "Limpiando todo!..."
-	@rm -f $(NAME).{pdf,aux,toc,log,bbl,blg,out} portada.aux 
+	@rm -f $(BIN)/$(NAME).pdf 
 
 x:
 	xpdf $(BIN)/$(NAME).pdf &> /dev/null
