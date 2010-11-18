@@ -17,8 +17,8 @@ if len(sys.argv) != 2:
 
 
 bases = ["A","C","G","T","B","D"]
-sec_size =20#0
-m = 30#0
+sec_size =200
+m = 300
 m_list = []
 for i in range(m+1):
 	m_list.append(i)
@@ -78,30 +78,33 @@ def distancia(s1,s2):
 				substitution += 1
 			d[i][j] = min(insertion, deletion, substitution)
 
-	return d,d[i-1][j-1]
+	norm = float(d[i-1][j-1]/((len(s1)+len(s2))/2.0))
+	return norm
 
 # 1
 if sys.argv[1] == "1":
 	print "Pregunta 1..."
 	sec_ini = generar_secuencia()
-	d, d_matrix, sec_mut  = [], [], []
+#	d, d_matrix, sec_mut  = [], [], []
+	d, sec_mut  = [], []
 	sec_mut = sec_ini
 	tmp1 = "".join(sec_ini)
 	for i in range(m+1):
 		sec_mut = mutacion(sec_mut,i)
 		tmp2 = "".join(sec_mut)
 		align = nw.global_align(tmp1,tmp2)
-		matrix,distance =distancia(align[0],align[1])
+		distance =distancia(align[0],align[1])
+#		matrix,distance =distancia(align[0],align[1])
 		d.append(distance)
-		d_matrix.append(matrix)
+#		d_matrix.append(matrix)
 		tmp2 = ""
-	
-	plot1 = p.plot(m_list,d,label='lala')
-	title('Distancia vs Numero de mutaciones')
-	legend((plot1),('lala'),loc='upper left')
+
+	p.show()
+	plot1 = p.plot(m_list,d)
+	title(u'Distancia vs Número de mutaciones')
 	grid(True)
-	p.axis([0,m,0,max(d)],0.01)
-	xlabel('Numero de mutaciones')
+	p.axis([0,m,0,max(d)+1],0.01)
+	xlabel(u'Número de mutaciones')
 	ylabel('Distancia')
 	p.show()
 
@@ -111,65 +114,55 @@ elif sys.argv[1] == "2":
 	sec_1 = generar_secuencia()
 	sec_2 = []
 	sec_2 = sec_1
-	d2 , d2_matrix = [], []
+#	d2 , d2_matrix = [], []
+	d2 = []
 	tmp1 = "".join(sec_1)
 	
 	for i in range(m+1):
 		sec_2 = mutacion(sec_2,i)
 		tmp2 = "".join(sec_2)
 		align = nw.global_align(tmp1,tmp2)
-		matrix,distance =distancia(align[0],align[1])
+#		matrix,distance =distancia(align[0],align[1])
+		distance =distancia(align[0],align[1])
 		d2.append(distance)
-		d2_matrix.append(matrix)
+#		d2_matrix.append(matrix)
 		tmp2 = ""
 	
 	plot2 = p.plot(m_list,d2)
-	title('Distancia entre secuencias vs Numero de mutaciones')
-	legend((plot2),loc='upper left')
+	title(u'Distancia entre secuencias vs Número de mutaciones')
 	grid(True)
 	p.axis([0,m,0,max(d2)+1],0.01)
-	xlabel('Numero de mutaciones')
+	xlabel(u'Número de mutaciones')
 	ylabel('Distancia entre secuencias')
 	p.show()
+
 
 # 3
 elif sys.argv[1] == "3":
 	print "Pregunta 3..."
-	s1, s2, d3, d3_matrix = [], [], [], []
-	for i in range(100):
+#	s1, s2, d3, d3_matrix = [], [], [], []
+	s1, s2, d3 = [], [], []
+	for i in range(10000):
 		s1 = generar_secuencia()
 		s2 = generar_secuencia()
 		tmp1 = "".join(s1)
 		tmp2 = "".join(s2)
 		align = nw.global_align(tmp1,tmp2)
-		matrix,distance =distancia(align[0],align[1])
+#		matrix,distance =distancia(align[0],align[1])
+		distance =distancia(align[0],align[1])
 		d3.append(distance)
-		d3_matrix.append(matrix)
+#		d3_matrix.append(matrix)
 	distance_mean = array(d3).mean()
 	distance_standard_deviation = array(d3).std()
 	print "Mean:" + str(distance_mean)
 	print "Std:" + str(distance_standard_deviation)
-	
-	d3_sort = []
-	for i in d3:
-		d3_sort.append(i)
-	d3_sort.sort()
-	
-	largo = 0
-	for i in d3:
-		if d3.count(i) > largo:
-			largo = d3.count(i)
+	print d3	
 	# the histogram of the data
-	n, bins, patches = p.hist(d3, 50, normed=1, facecolor='green', alpha=0.75)
-	
-	p.xlabel('Distancia entre secuencias')
-	p.ylabel('Probabilidad')
-	p.title(r'$\mathrm{Histogram}$')
-	p.axis([min(d3),max(d3),0,4])
-	p.grid(True)
-	p.show()
-
-
-# 4
-
-
+#	n, bins, patches = p.hist(d3, 50, normed=1, facecolor='green', alpha=0.75)
+#	
+#	p.xlabel('Distancia entre secuencias')
+#	p.ylabel('Probabilidad')
+#	p.title('Histograma')
+#	p.axis([min(d3),max(d3),0,0.16])
+#	p.grid(True) 
+#	p.show()

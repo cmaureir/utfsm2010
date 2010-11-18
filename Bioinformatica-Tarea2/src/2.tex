@@ -24,7 +24,7 @@ Necesitará (al menos) funciones que hagan lo siguiente:
 
 Con esas funciones, hará lo siguiente:
 
-\red{Importante:} Las funciones se encuentran en el Anexo 1~\ref{sec:anexo1}.
+\red{Importante:} Las funciones y los algoritmos para cada pregunta se encuentran en el Anexo I~\ref{sec:anexo1}.
 
 \begin{enumerate}
 
@@ -35,7 +35,7 @@ Con esas funciones, hará lo siguiente:
 		\blue{Respuesta:}
 
 		\begin{center}
-			\includegraphics[width=\textwidth]{scripts/pregunta-2-1.pdf}
+			\includegraphics[width=\textwidth]{scripts/pregunta-2-1-new.pdf}
 		\end{center}
 
 
@@ -46,7 +46,7 @@ Con esas funciones, hará lo siguiente:
 		\blue{Respuesta:}
 
 		\begin{center}
-			\includegraphics[width=\textwidth]{scripts/pregunta-2-2.pdf}
+			\includegraphics[width=\textwidth]{scripts/pregunta-2-2-new.pdf}
 		\end{center}
 
 
@@ -55,15 +55,58 @@ Con esas funciones, hará lo siguiente:
 
 		\blue{Respuesta:}
 
-		\red{TO DO:} Falta hacer histograma.
+		\begin{center}
+			\includegraphics[width=\textwidth]{scripts/pregunta-2-3-new.pdf}
+		\end{center}
 
+		La información correspondiente del histograma y la aplicación es la siguiente:
+
+		\begin{center}
+		\begin{tabular}{|l|c|}
+		\hline
+		Largo 			 & 10000   \\\hline
+		Media  			 & 0.517 \\\hline
+		$\sigma$ 		 & 0.014   \\\hline
+		Menor distancia  & 0.459   \\\hline
+		Mayor distancia  & 0.573   \\\hline
+		Tiempo ejecución & 4140.56 [sec] \\\hline
+		\end{tabular}
+		\end{center}
 
 	\item Considerando (b) y (c), ¿por sobre qué valor de M diría usted que el parentesco entre las
 		secuencias es indetectable?
 
 		\blue{Respuesta:}
 
-		\red{TO DO:} Completa
+		Tomando en cuenta de que cada pregunta tiene sólo la idea central en común,
+		es decir calcular la distancia de Levenshtein, pero después de todo,
+		los ejercicios son distintos, pues el primero tiene que ver en ir comparando
+		dos secuencias que van mutando en conjunto, y el segundo en 10000 pares de
+		secuencias independientes que van mutando.
+
+		La información que nos entregará cada ejercicio es la siguiente:
+		\begin{itemize}
+			\item \emph{(b):} Distancia entre dos secuencias a medida que se van mutando.
+			\item \emph{(c):} Distribución de las distancias obtenidas entre 10000 pares de
+				secuencias.
+		\end{itemize}
+
+		En el caso de la parte \emph{(b)} podemos ver que hasta las \red{30 mutaciones}
+		hay una especie de crecimiento lineal, pero luego el comportamiento se torna
+		mucho más impreciso, por lo que vamos obteniendo valores en la distancia
+		sobre \blue{0.4}, pero a pesar de ser valores distintos, van siguiendo un mismo
+		comportamiento, que es muy similar a la función de logaritmo, por lo que podríamos
+		decir que la distancia normalizada posee un comportamiento casi logarítmico.
+
+		Por otro lado, en \emph{(c)} nos podemos ver que la mayor cantidad de distancias
+		se encuentra entre \blue{0.49} y \blue{0.54}, por lo que podemos deducir, que
+		comparando estas distancias obtenidas con el gráfico de la parte \emph{(b)},
+		que sobre unas \red{40 mutaciones}, la distancia comienza a ser mayor,
+		por lo cual ya no podremos detectar fácilmente el parentesco entre las secuencias,
+		a pesar de que todas las distancias obtenidas son similares.
+
+		Finalmente nos damos cuenta de que las distancias en el caso \emph{(c)} siguen
+		una \emph{distribución normal}, a pesar de existir un valor extraño cercano al \emph{0.5}.
 
 
 \end{enumerate}
