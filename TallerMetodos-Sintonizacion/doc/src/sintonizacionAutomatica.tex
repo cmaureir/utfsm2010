@@ -78,6 +78,16 @@ Los resultados entregados por REVAC para cada instancia fueron los siguientes:
 
 \end{itemize}
 
+Para cada instancia, se escogió el valor determinado por REVAC,
+y como podemos apreciar los rangos son bastante precisos, lo que nos señala
+que el algoritmo convergió a un valor determinado.
+
+A continuación, se describe la tabla con los valores entregados
+por REVAC y el \emph{fitness} asociado a cada resultado, los cuales
+si bien poseen una mejora considerable, en comparación a la primera implementación,
+no son tan buenos como los conseguidos en la sintonización manual,
+pero esto puede deberse a que la configuración de REVAC es una simplificación de
+lo recomendado por los autores.
 
 \begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}
@@ -88,3 +98,8 @@ Los resultados entregados por REVAC para cada instancia fueron los siguientes:
 	\texttt{pb\_200\_10.txt} & 0.80 & 0.66 & 0.60 & 159 & 169\\\hline
 \end{tabular}
 \end{center}
+
+Si nos damos cuenta, los valores del ``Factor de Clonación'' son bastante parecidos,
+por lo que podríamos decir que independiente de la instancia nuestro algoritmo siempre requerirá el mismo
+parametro para poder definir cuantos clones obtendremos de cada anticuerpo seleccionado.
+
