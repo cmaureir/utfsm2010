@@ -43,6 +43,11 @@ int sizeMaxCarOptSeq[N];	// Tamaño de la subsecuencia donde debe haber un numMa
 int types[N][N];			// Arreglo bidimensional que posee [tipoDeAuto(indice)][N]
 							//  donde N es tipoDeAuto(indice), demandaDeAuto (int), tieneOpcion_i (1 o 0)
 
+double cellAverage = 0.0; // Promedio de los fitness de la poblacion inicial
+double newCellAverage = 0.0; // Promedio de los fitness de la nueva problacion
+int bestCellFitness = 0;
+int bestNewCellFitness = 0;
+
 int generation; 	    // Numero de generaciones
 
 // Funcion encargada de la interpretacion del archivo de entreda

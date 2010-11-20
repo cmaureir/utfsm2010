@@ -29,14 +29,27 @@ int main(int argc, const char *argv[])
 		srand(generation);
 		cout << generation << endl;
 		cleanPops();
+		// calcular promedio de los fitness de la pop
+		averageFitness(true);
+		// obtener mejor fitness
+		saveBest(true);
 		selection(clonationRate, population);
 		clonation(tmpPop, cloneType);
+		// OJO calcular C, numero de clones
 		hypermutation();
 		evaluation(clonePop, type);
+		// fitness del mejor anticuerpo de clones
 		cloneSelection(clonePop, cloneSelType);
+		saveBest(false);
+		// calcular promedio de los fitness de la tmpPop
+		averageFitness(false);
+		// Calcular success measure
+		// Calcular stuck measure
+		// CONDICIONES 
 		cloneInsertion();
 		newGeneration(replaceRate, replaceType);
 		evaluation(population, type);
+		
 		generation++;
 	}
 	

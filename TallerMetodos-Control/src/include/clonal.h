@@ -3,6 +3,9 @@
 
 #include "extra.cpp"
 
+void averageFitness(bool option);
+void saveBest(bool option);
+
 // Funcion encargada de la inicializacion de la poblacion
 void initPopulation(bool type);
 

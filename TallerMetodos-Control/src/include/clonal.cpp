@@ -1,5 +1,34 @@
 #include "clonal.h"
 
+void saveBest(bool option){
+
+	if(option)
+		bestCellFitness = population[0].fitness;
+	else
+		bestNewCellFitness = tmpPop[0].fitness;		
+
+}
+
+void averageFitness(bool option){
+	// True: Cells
+	// Faslse: NewCells
+	double av = 0.0;
+	int i = 0;
+	if(option){
+	    for (i=0;i<POP;i++){
+			av += population[POP].fitness;
+		}
+		cellAverage = av/POP;	
+	}
+	else{
+	    for (i=0;i<POP;i++){
+			av += clonePop[POP].fitness;
+		}
+		newCellAverage = av/POP;	
+	}
+}
+
+
 // Inicializacion de la problacion
 void initPopulation(bool type){
 	int i=0,j=0,k=0,counter=0;
