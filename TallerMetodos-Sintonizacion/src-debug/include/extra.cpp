@@ -88,7 +88,7 @@ void printFile(int failCon){
 
 bool checkFile(int argc, const char *argv[]){
 	//if (argc != 6){
-	if (argc != 4){
+	if (argc != 5){
 		cout << "Cantidad de parametros incorrecto:\n Ejecucion: ./csp archivo.txt" << endl;
 		return false;
 	}
@@ -103,5 +103,6 @@ bool checkFile(int argc, const char *argv[]){
 void changeParam(const char *argv[]){
 
 	clonationFactor = atof(argv[2]); //0.5 // Factor para calcular individuos clonados
-	clonationRate = atof(argv[3]); //POP*0.4 // Tasa para realizar la clonación
+	clonationRate = POP*atof(argv[3]); //POP*0.4 // Tasa para realizar la clonación
+	replaceRate =  POP*atof(argv[4]); //POP*0.6  // Tasa para la cantidad de elementos reemplazados
 }

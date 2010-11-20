@@ -1,6 +1,6 @@
 all:
-	g++ -c include/extra.cpp
-	g++ -c include/clonal.cpp
+	g++ -c include/extra.cpp 
+	g++ -c include/clonal.cpp 
 	g++ csp.cpp -o csp -lrt -Wall
 
 clean:

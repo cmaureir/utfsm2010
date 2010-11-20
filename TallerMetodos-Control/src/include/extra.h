@@ -21,8 +21,8 @@ using namespace std;
 #define GENS 1900  // Numero maximo de generaciones
 
 float clonationFactor = 0.6;// Factor para calcular individuos clonados
-float clonationRate = 0.8;  // Tasa para realizar la clonación
-float replaceRate =  0.6;   // Tasa para la cantidad de elementos reemplazados
+float clonationRate = POP*0.8;  // Tasa para realizar la clonación
+float replaceRate =  POP*0.6;   // Tasa para la cantidad de elementos reemplazados
 
 struct cell {  		// Individuo de la poblacion
     int gene[VARS];     // Automoviles

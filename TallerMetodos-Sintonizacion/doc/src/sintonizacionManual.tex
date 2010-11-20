@@ -52,6 +52,24 @@ Las instancias son:
 
 \textbf{Configuración escogida:}\\
 
+La siguiente tabla, proporciona la información pertinente del mejor resultado obtenido,
+de las $200$ iteraciones en las que consistió la presente prueba por cada instancia.
+
+Gracias a la figura~\ref{fig:1}, podemos darnos cuenta del comportamiento que nuestro
+algoritmo va teniendo a medida que vamos aumentando el tamaño de la población.
+
+En un comienzo podemos ver el pésimo comportamiento que posee, pues como la cantidad de
+la población es muy pequeña, los anticuerpos no van a poder variar mucho, ya que al
+momento de clonar o introducir diversidad, no cumplen su objetivo principal, pues
+como estos procedimiento van a depender netamente del tamaño de la población, no serán
+del todo útiles.
+
+Cabe señalar que en realidad el comportamiento que está tomando el algoritmo, es más
+bien siempre trabajar con soluciones aleatorias, pues la hipermutación de los clones
+está determianda por el índice de la población, por lo que el mayor individuo se mutará
+muy poco, lo que llevará a obtener pocas mejoras en nuestros anticuerpos.
+
+
 \begin{center}
 \begin{tabular}{|l|c|c|c|c|}
 	\hline
@@ -62,6 +80,14 @@ Las instancias son:
 \end{tabular}
 \end{center}
 
+Las iteraciones luego de un tamaño en la población sobre $100$ aproximadamente,
+se comienzan a comportar de una forma más normalizada, y la pendiente de la curva que aproxima
+al comportamiento del algoritmo, se vuelve cada vez menor, lo cual está representado en la tabla,
+ya que claramente los mejores rendimientos por cada instancia están sobre una población de
+tamaño $100$.
+
+A pesar de lo distinta que son cada instancia, en nivel de complejidad, los tiempos que toman
+cada una están bien parecidas, entre $11$ y $15$ segundos, por lo que no hay mayor diferencia.
 \newpage
 \subsubsection{Número de generaciones}
 
@@ -119,6 +145,23 @@ para poder hacer el siguiente análisis.\\
 \end{figure}
 
 \textbf{Configuración escogida:}\\
+
+La siguiente tabla, proporciona la información pertinente del mejor resultado obtenido,
+de las $100$ iteraciones en las que consistió la presente prueba por cada instancia.
+
+En éste caso, como se probaba la ``Tasa de reemplazo'' los valores posible son $0.1, 0.2, \ldots, 1.0$,
+por lo que se realizó $10$ pruebas por cada valor.
+
+Gracias a la figura~\ref{fig:3} nos podemos dar cuenta que los mejores valores se encuentran
+para valores pequeños de la ``Tasa de reemplazo'' para las dos instancias finales, en cambio
+para la primera instancia es un valor de $0.4$.
+
+Podríamos ingenuamente decir, nuestro algoritmo no necesita ingresar diversidad y que por lo tanto
+sólo nos dedicamos a \emph{explotar}, pero los resultados obtenidos se deben a que las iteraciones
+que utilizamos como configuración básica son muy pocas, son sólo $200$, por lo que nuestro algoritmo
+no alcanza a desarrollarse para poder tener la necesidad de salir de los ``óptimos locales'',
+y así poder necesitar insertar diversidad, es por ésto que los valores de las dos últimas instancias,
+es 0, pues el algoritmo no alcanza a necesitar diversidad.
 
 \begin{center}
 \begin{tabular}{|l|c|c|c|c|}

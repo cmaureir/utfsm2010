@@ -12,7 +12,7 @@ La idea principal de REVAC es que nos entrega una herramienta de estimación
 de distribución, la cual va a requerir un rango determinado de valores para
 cada parámetro que deseemos sintonizar
 
-Su parentesco con los algoritmos genéticos es que al comienzo utiliza un
+El ser un algoritmo genético, lo guía a utilizar un
 conjunto de configuraciones de parámetros como población, la cual es inicializada
 utilizando una distribución uniforme para los valores de los parámetros a sintonizar.
 
@@ -49,6 +49,35 @@ o converger, nos entregará el valor e intervalo de los valores para cada parám
 \end{itemize}
 
 \textbf{Resultados:}
+
+Los resultados entregados por REVAC para cada instancia fueron los siguientes:
+
+\begin{itemize}
+	\item \texttt{pb\_200\_01.txt}\\
+
+		\begin{verbatim}
+		TASA_CL         56      [55 .. 56]
+        FACT_CL         65      [64 .. 65]
+        TASA_RP         57      [56 .. 57]
+		\end{verbatim}
+	\item \texttt{pb\_200\_09.txt}\\
+
+		\begin{verbatim}
+        TASA_CL         95      [95 .. 95]
+        FACT_CL         6       [6 .. 6]
+        TASA_RP         13      [13 .. 14]
+		\end{verbatim}
+
+	\item \texttt{pb\_200\_10.txt}\\
+
+		\begin{verbatim}
+        TASA_CL         80      [80 .. 80]
+        FACT_CL         66      [66 .. 66]
+        TASA_RP         60      [59 .. 60]
+		\end{verbatim}
+
+\end{itemize}
+
 
 \begin{center}
 \begin{tabular}{|l|c|c|c|c|c|}

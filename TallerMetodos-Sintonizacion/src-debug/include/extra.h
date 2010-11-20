@@ -15,19 +15,14 @@ using namespace std;
 // Variables establecidas a mano
 // cambiar antes de ejecutar cada test
 #define VARS 200    // Numero de autos
-
-
-// Variables Problema
-#define POP  20    // Tamaño poblacion
-#define GENS 10  // Numero maximo de generaciones
 #define N 128	   // Variable para crear arreglos determinados
-#define selRate POP*0.4  // Tasa para la cantidad de elementos seleccionados
-#define replaceRate POP*0.6  // Tasa para la cantidad de elementos reemplazados
-#define swap VARS*0.4 // Cantidad de swap realizados en el movimiento
-#define mutRate POP*0.02
+// Variables Problema
+#define POP 195   // Tamaño poblacion
+#define GENS 1810  // Numero maximo de generaciones
 
 float clonationFactor = 0.0;//0.5 // Factor para calcular individuos clonados
 float clonationRate = 0.0; //POP*0.4 // Tasa para realizar la clonación
+float replaceRate =  0.0; //POP*0.6  // Tasa para la cantidad de elementos reemplazados
 
 struct cell {  		// Individuo de la poblacion
     int gene[VARS];     // Automoviles

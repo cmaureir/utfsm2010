@@ -16,9 +16,9 @@
 			muy pocas generaciones, para muchas variables puede que no se alcance a cumplir bien los
 			objetivos del algoritmo y que se termine no con los mejores resultados.
 
-	\item \texttt{clonationFactor} \blue{[0,1]} \red{$(\beta)$}, Parámetro que sirve para define la cantidad de clones
-			que vamos a generar a partir de un elemento anteriormente seleccionado, considerando la esencia de la
-			fórmula fórmula propuesta por De Castro~\cite{decastro}, en el cual consideramos tres elementos:
+	\item \texttt{clonationFactor} \blue{[0,1]} \red{$(\beta)$}, Parámetro que sirve para definir la cantidad de clones
+			que vamos a generar a partir de un elemento anteriormente seleccionado, considerando la
+			fórmula propuesta por De Castro~\cite{decastro}, en el cual consideramos tres elementos:
 			``factor de clonación ($\beta$)'', ``Total de anticuerpos($N$)'' y ``Afinidad (ranking) ($a$)''.
 			
 			La relación está dada por un número $m$ que equivale a la cantidad de clones que se generarán
@@ -29,9 +29,12 @@
             Con ésto estamos siguiendo la idea central del algoritmo, pues estamos favoreciendo a que se clonen más
             los mejores elementos de nuestra población.
 
+			Adicionalmente, cabe señalar que es posible considerar un $\beta > 1$, dependiendo del nivel
+			de clonación que estemos interesados en utilizar.
+
 	\item \texttt{clonationRate}   \blue{[0,1]}, Parámetro que define la cantidad de elementos que seleccionaremos
 			para poder comenzar el proceso de clonación. Aquí se seleccionan \texttt{POP*clonationRate} elementos
-			de una población que ya se encuentra ordenada de acuerdo al \emph{fitness}, es decir, se los mejores
+			de una población que ya se encuentra ordenada de acuerdo al \emph{fitness}, es decir, de los mejores
 			a los peores, por lo tanto nos aseguramos de que las futuras clonaciones sean a buenos individuos.
 
 	\item \texttt{replaceRate}     \blue{[0,1]}, Parámetro que define la cantidad de nuevos elementos que

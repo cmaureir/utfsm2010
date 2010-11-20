@@ -1,7 +1,6 @@
 from os import system
 
-#instancias = ["pb_200_01.txt","pb_200_09.txt","pb_200_10.txt"]
-instancias = ["pb_200_09.txt","pb_200_10.txt"]
+instancias = ["pb_200_01.txt","pb_200_09.txt","pb_200_10.txt"]
 
 for j in instancias:
 	for i in range(10,2001,30):

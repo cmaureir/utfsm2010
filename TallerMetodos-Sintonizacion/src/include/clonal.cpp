@@ -6,7 +6,7 @@ void initPopulation(bool type){
 	int p[VARS];
 	// Inicializacion de la semilla para generar numeros
 	//  pseudo-aleatorios
-	srand(time(0));
+	//srand(time(0));
 	
 	if(type){
 		// Inicializamos en p[] la cantidad requerida por cada tipo
@@ -315,7 +315,7 @@ void cloneInsertion(){
 void newGeneration(int counter, bool type){
     int i=0,j=0,k=0,c=0,temp=0,r=0;
     int p[VARS];
-    srand(time(0));
+//    srand(time(0));
 	// Inicializamos en p[] la cantidad requerida por cada tipo
 	//  de autos, satisfaciendo asi las restricciones duras
 	for (j = 0; j < typeNumber; j++){

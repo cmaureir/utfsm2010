@@ -32,7 +32,7 @@ shift 3
 
 TASA_CL=0
 FACT_CL=0
-
+TASA_RP=0
 
 while [ $# != 0 ]; do
     flag="$1"
@@ -41,21 +41,20 @@ while [ $# != 0 ]; do
               arg="$2"
               shift
 	      TASA_CL=$arg
-              #echo "You supplied an argument for the -pm flag: $arg"
-            #else
-              #echo "You did not provide an argument for the -pm flag"
             fi
             ;;
 	-FACT_CL) if [ $# -gt 1 ]; then
               arg="$2"
               shift
 	      FACT_CL=$arg
-              #echo "You supplied an argument for the -pm flag: $arg"
-            #else
-              #echo "You did not provide an argument for the -pm flag"
             fi
             ;;
-
+	-TASA_RP) if [ $# -gt 1 ]; then
+              arg="$2"
+              shift
+	      TASA_RP=$arg
+            fi
+            ;;
         *) echo "Unrecognized flag or argument: $flag"
             ;;
         esac
@@ -64,10 +63,8 @@ done
 
 #linea de codigo a especificar
 for archivo in $( ls $input_filename |grep .txt); do
-  # ./acis ${repeticiones} ${tiempo_max} ${iteraciones} ${rep_size}} ${TASA_CL} ${FACT_CL} ${tasa_reem} ${fp_trip} ${fp_rep} ${sini} ${rl} ${fact_mut} ${ord} ${cnf_filename}/${archivo} ${output_filename} ${res} ${seed}
-	echo "./csp ${input_filename} ${FACT_CL} ${TASA_CL}"
-	./csp ${input_filename} ${FACT_CL} ${TASA_CL}
-	#echo ${FACT_CL} ${TASA_CL}
+	echo "./csp ${input_filename} ${FACT_CL} ${TASA_CL} ${TASA_RP}"
+	./csp ${input_filename} ${FACT_CL} ${TASA_CL} ${TASA_RP}
 done
 
 
