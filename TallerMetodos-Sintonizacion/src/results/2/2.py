@@ -9,7 +9,7 @@ total_time_1 = 0
 total_time_2 = 0
 total_time_3 = 0
 
-f1, f2, f3  = open("pb_200_01.res.2","r"),  open("pb_200_09.res.2","r"),  open("pb_200_10.res.2","r")
+f1, f2, f3  = open("pb_200_01.res","r"),  open("pb_200_09.res","r"),  open("pb_200_10.res","r")
 
 while 1:
 	line = f1.readline()
