@@ -2,10 +2,14 @@
 
 void saveBest(bool option){
 
-	if(option)
+	if(option){
 		bestCellFitness = population[0].fitness;
-	else
-		bestNewCellFitness = tmpPop[0].fitness;		
+//		cout << "bestCellFitness: " << bestCellFitness << endl;
+	}
+	else{
+		bestNewCellFitness = clonePop[0].fitness;		
+//		cout << "bestNewCellFitness: " << bestNewCellFitness << endl;
+	}
 
 }
 
@@ -16,15 +20,18 @@ void averageFitness(bool option){
 	int i = 0;
 	if(option){
 	    for (i=0;i<POP;i++){
-			av += population[POP].fitness;
+			av += population[i].fitness;
 		}
 		cellAverage = av/POP;	
+//		cout << "cellAverage: " << cellAverage << endl;
 	}
 	else{
 	    for (i=0;i<POP;i++){
-			av += clonePop[POP].fitness;
+			//av += clonePop[i].fitness;
+			av += tmpPop[i].fitness;
 		}
 		newCellAverage = av/POP;	
+//		cout << "newCellAverage: " << newCellAverage << endl;
 	}
 }
 
@@ -70,7 +77,7 @@ void initPopulation(bool type){
 			}
 
 			// Guardamos nuestros valores en la estructura de
-			//  la poblacion
+			// la poblacion
 	    	for (int c=0; c<VARS; c++) {
 	    	    population[counter].gene[c] = p[c];
 	    	}
@@ -128,6 +135,7 @@ void evaluation(struct cell evalPop[POP+1], bool type){
 
 	}
 
+// printPop(evalPop);
 }
 
 //Seleccion de un individuo
@@ -217,7 +225,7 @@ void sortPop(struct cell p[POP+1]){
 
 //void clonation(){
 void clonation(struct cell clone[POP+1], bool type){
-	int i=0,j=0,n=0, counter[POP], k=0,var=0;
+	int i=0,j=0,n=0, counter[POP], k=0,var=0, clones;
 	double m[POP+1], intPart, decPart;
 	if (type){
 		sortPop(clone);
@@ -228,7 +236,13 @@ void clonation(struct cell clone[POP+1], bool type){
 			n++;
 		}
 		for (i=0;i<n;i++){
-				m[i] = (float)(clonationFactor*n)/(float)(i+1);
+				clones = (float)(clonationFactor*n)/(float)(i+1);
+				if((int)clones + clone_control  > 2){
+					m[i] = clones + clone_control;
+				}
+				else{
+					m[i] = clones;
+				}
 				decPart = modf(m[i],&intPart);
 				if(decPart >= 0.5){
 					counter[i] = (int)(intPart + 1);

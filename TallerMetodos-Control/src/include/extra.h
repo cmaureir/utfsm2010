@@ -18,11 +18,24 @@ using namespace std;
 #define N 128	   // Variable para crear arreglos determinados
 // Variables Problema
 #define POP 158   // Tamaño poblacion
-#define GENS 1900  // Numero maximo de generaciones
+#define GENS 3000  // Numero maximo de generaciones
 
 float clonationFactor = 0.6;// Factor para calcular individuos clonados
-float clonationRate = POP*0.8;  // Tasa para realizar la clonación
-float replaceRate =  POP*0.6;   // Tasa para la cantidad de elementos reemplazados
+//float replaceRate =  POP*0.5;   // Tasa para la cantidad de elementos reemplazados
+
+// control
+int clonationRate = (int)(POP*0.8);  // Tasa para realizar la clonacion (será el n)
+//int replaceRate =  (int)POP - clonationRate;   // Tasa para la cantidad de elementos reemplazados
+int replaceRate =  (int)(POP*0.6);   // Tasa para la cantidad de elementos reemplazados
+int clone_control = 0;
+double pS[GENS];
+double sM[GENS];
+double cellAverage = 0.0; // Promedio de los fitness de la poblacion inicial
+double newCellAverage = 0.0; // Promedio de los fitness de la nueva problacion
+int bestCellFitness = 0;
+int bestNewCellFitness = 0;
+
+
 
 struct cell {  		// Individuo de la poblacion
     int gene[VARS];     // Automoviles
@@ -42,14 +55,7 @@ int numMaxCarOptSeq[N];		// Numero maximo de autos con la opcion i en una subsec
 int sizeMaxCarOptSeq[N];	// Tamaño de la subsecuencia donde debe haber un numMaxCarOptSeq
 int types[N][N];			// Arreglo bidimensional que posee [tipoDeAuto(indice)][N]
 							//  donde N es tipoDeAuto(indice), demandaDeAuto (int), tieneOpcion_i (1 o 0)
-
-double cellAverage = 0.0; // Promedio de los fitness de la poblacion inicial
-double newCellAverage = 0.0; // Promedio de los fitness de la nueva problacion
-int bestCellFitness = 0;
-int bestNewCellFitness = 0;
-
 int generation; 	    // Numero de generaciones
-
 // Funcion encargada de la interpretacion del archivo de entreda
 void inputReading(const char name[50]);
 
