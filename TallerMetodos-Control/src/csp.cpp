@@ -2,15 +2,6 @@
 
 int main(int argc, const char *argv[])
 {
-	// 'true' satisfaccion restricciones duras
-	bool type = true;
-	// 'true' selecciona mejores
-	bool cloneSelType = true;
-	// 'true' remplaza los mas malos
-	bool replaceType = true;
-	// 'true' Se clonan mediante formula
-	bool cloneType = true;
-
 	timespec ts, te;
 
 	clock_gettime(CLOCK_REALTIME, &ts);
@@ -22,8 +13,8 @@ int main(int argc, const char *argv[])
 	generation = 0;
 
 	srand(1925);
-	initPopulation(type);
-	evaluation(population, type);
+	initPopulation();
+	evaluation(population);
 
 	int bajos = 0, ceros = 0 , altos = 0;
 
@@ -40,12 +31,12 @@ int main(int argc, const char *argv[])
 		sortPop(population);
 		saveBest(true);
 		selection(clonationRate, population);
-		clonation(tmpPop, cloneType);
+		clonation(tmpPop);
 		// OJO calcular C, numero de clones
 		hypermutation();
-		evaluation(clonePop, type);
+		evaluation(clonePop);
 		// fitness del mejor anticuerpo de clones
-		cloneSelection(clonePop, cloneSelType);
+		cloneSelection(clonePop);
 		sortPop(clonePop);
 		saveBest(false);
 		// calcular promedio de los fitness de la tmpPop
@@ -62,8 +53,6 @@ int main(int argc, const char *argv[])
 			ceros++;
 		else if( pS[generation] < 0 )
 			bajos++;
-
-
 
 //		cout << "ps[]: " << pS[generation] << endl;
 //		cout << "sM[]: " << sM[generation] << endl;
@@ -100,8 +89,8 @@ int main(int argc, const char *argv[])
 ////			clonationRate += (int)(clonationRate/2);
 //		}
 		cloneInsertion();
-		newGeneration(replaceRate, replaceType);
-		evaluation(population, type);
+		newGeneration(replaceRate);
+		evaluation(population);
 //		
 		cout << "clone_control: " << clone_control << endl;
 		cout << "Fitness: " << bestCellFitness << endl;

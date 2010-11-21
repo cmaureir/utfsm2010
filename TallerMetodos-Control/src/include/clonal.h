@@ -7,10 +7,10 @@ void averageFitness(bool option);
 void saveBest(bool option);
 
 // Funcion encargada de la inicializacion de la poblacion
-void initPopulation(bool type);
+void initPopulation();
 
 // Funcion encargada de evaluar la poblacion
-void evaluation(bool type);
+void evaluation(struct cell evalPop[POP+1]);
 
 // Seleccion de los individuos mediante Ruleta
 // En la FO se minimiza
@@ -25,13 +25,13 @@ void clonation(struct cell *clonePop[POP+1]);
 void hypermutation();
 
 // Seleccion de los mejores clones
-void cloneSelection(struct cell popToSel[POP+1], bool clonalSelType);
+void cloneSelection(struct cell popToSel[POP+1]);
 
 // Inserción de clones
 void cloneInsertion(int n);
 
 // Creación de nuevos elementos e inserción en los peores lugares de la poblacion
-void newGeneration(int counter, bool replaceType);
+void newGeneration(int counter);
 
 void printPop(struct cell tmp[POP]);
 void cleanPops();

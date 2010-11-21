@@ -37,51 +37,34 @@ void averageFitness(bool option){
 
 
 // Inicializacion de la problacion
-void initPopulation(bool type){
+void initPopulation(){
 	int i=0,j=0,k=0,counter=0;
 	int p[VARS];
 	
-	if(type){
-		// Inicializamos en p[] la cantidad requerida por cada tipo
-		//  de autos, satisfaciendo asi las restricciones duras
-		for (j = 0; j < typeNumber; j++){
-			while(k < types[j][1]){
-		        p[i] = j;
-				k++;i++;
-			}
-			k = 0;
+	// Inicializamos en p[] la cantidad requerida por cada tipo
+	//  de autos, satisfaciendo asi las restricciones duras
+	for (j = 0; j < typeNumber; j++){
+		while(k < types[j][1]){
+	        p[i] = j;
+			k++;i++;
 		}
-
-		// Generamos la poblacion inicial, tomando p[] y comenzando
-		//  a desordenarlos aleatoriamente para generar los individuos
-		for (counter = 0; counter < POP; counter++) {
-				for (i=0; i<(VARS-1); i++) {
-		            int r = i + (rand() % (VARS-i));
-		            int temp = p[i];
-					p[i] = p[r];
-					p[r] = temp;
-		        }
-				// Guardamos nuestros valores en la estructura de
-				//  la poblacion
-    			for (int c=0; c<VARS; c++) {
-    			    population[counter].gene[c] = p[c];
-    			}
-		}
+		k = 0;
 	}
-	else{
-		for (counter = 0; counter < POP; counter++) {
-			for (i=0; i<VARS; i++) {
-				int r = i + (rand() % typeNumber);
-				r = r % typeNumber;
-				p[i] = r;
-			}
 
+	// Generamos la poblacion inicial, tomando p[] y comenzando
+	//  a desordenarlos aleatoriamente para generar los individuos
+	for (counter = 0; counter < POP; counter++) {
+			for (i=0; i<(VARS-1); i++) {
+	            int r = i + (rand() % (VARS-i));
+	            int temp = p[i];
+				p[i] = p[r];
+				p[r] = temp;
+	        }
 			// Guardamos nuestros valores en la estructura de
-			// la poblacion
-	    	for (int c=0; c<VARS; c++) {
-	    	    population[counter].gene[c] = p[c];
-	    	}
-		}
+			//  la poblacion
+			for (int c=0; c<VARS; c++) {
+			    population[counter].gene[c] = p[c];
+			}
 	}
 }
 
@@ -101,7 +84,7 @@ bool isNull(struct cell p){
 
 // Evaluacion
 // Verificar las restricciones Blandas.
-void evaluation(struct cell evalPop[POP+1], bool type){
+void evaluation(struct cell evalPop[POP+1]){
 	int mem=0, i=0, j=0, m=0, tmp=0, badness=0 ;
 
 	for (mem = 0; mem < POP; mem++){
@@ -223,65 +206,42 @@ void sortPop(struct cell p[POP+1]){
 	}
 }
 
-//void clonation(){
-void clonation(struct cell clone[POP+1], bool type){
-	int i=0,j=0,n=0, counter[POP], k=0,var=0, clones;
+void clonation(struct cell clone[POP+1]){
+	int i=0,j=0,n=0, counter[POP], k=0, clones;
 	double m[POP+1], intPart, decPart;
-	if (type){
-		sortPop(clone);
-		
-		for (i=0;i<POP;i++){
-			if(isNull(clone[i]))
-				break;
-			n++;
-		}
-		for (i=0;i<n;i++){
-				clones = (float)(clonationFactor*n)/(float)(i+1);
-				if((int)clones + clone_control  > 2){
-					m[i] = clones + clone_control;
-				}
-				else{
-					m[i] = clones;
-				}
-				decPart = modf(m[i],&intPart);
-				if(decPart >= 0.5){
-					counter[i] = (int)(intPart + 1);
-				}
-				else{
-					counter[i] = (int)intPart;
-				}
-		}
-		
-		k=n;
-		for(i=0;i<n;i++){
-			for (j=0; j<counter[i]; j++){
-				clone[k] = clone[i];
-				k++;
-				if (k >= POP){
-					k = 0;
-				}
+	sortPop(clone);
+	
+	for (i=0;i<POP;i++){
+		if(isNull(clone[i]))
+			break;
+		n++;
+	}
+	for (i=0;i<n;i++){
+			clones = (float)(clonationFactor*n)/(float)(i+1);
+			if((int)clones + clone_control  > 2){
+				m[i] = clones + clone_control;
+			}
+			else{
+				m[i] = clones;
+			}
+			decPart = modf(m[i],&intPart);
+			if(decPart >= 0.5){
+				counter[i] = (int)(intPart + 1);
+			}
+			else{
+				counter[i] = (int)intPart;
+			}
+	}
+	
+	k=n;
+	for(i=0;i<n;i++){
+		for (j=0; j<counter[i]; j++){
+			clone[k] = clone[i];
+			k++;
+			if (k >= POP){
+				k = 0;
 			}
 		}
-	}
-	else{
-		sortPop(clone);
-
-		for (i=0;i<POP;i++){
-			if(isNull(clone[i]))
-				break;
-			n++;
-		}
-		k=n;
-		var = (int)((POP-n)*0.5);
-        for(i=0;i<n;i++){
-            for (j=0; j<var; j++){
-                clone[k] = clone[i];
-                k++;
-            }
-			var = var - (int)(POP*0.1);
-			
-        }
-		
 	}
 	
 	for (i = 0; i < POP; i++) {
@@ -311,36 +271,34 @@ void hypermutation(){
 	}
 }
 
-void cloneSelection(struct cell popToSel[POP+1], bool type){
+void cloneSelection(struct cell popToSel[POP+1]){
 	int i,j;
-	if(type){
-		// Sort population y clonalPop, juntarlos y obtener los mejores
-		bool change = false;
+	// Sort population y clonalPop, juntarlos y obtener los mejores
+	bool change = false;
 
-		for (i = 0; i < POP; i++) {
-			if(!change)
-				tmpPop[i] = population[i];
-			else
-				tmpPop[i+POP] = popToSel[i];
+	for (i = 0; i < POP; i++) {
+		if(!change)
+			tmpPop[i] = population[i];
+		else
+			tmpPop[i+POP] = popToSel[i];
 
-			if(i == POP-1 && !change){
-				i=-1;
-				change = true;
-			}	
-		}
-		struct cell tmp;
-		    //Bubble Sort
-		    for (i = 0; i < 2*(POP+1); i++) {
-		        for (j = i+1; j < 2*(POP+1); j++) {
-		            if (tmpPop[i].fitness > tmpPop[j].fitness && !isNull(tmpPop[i]) &&  !isNull(tmpPop[j])){
-		                tmp = tmpPop[i];
-		                tmpPop[i] = tmpPop[j];
-		                tmpPop[j] = tmp;
-		            }
-		        }
-		    }
-
+		if(i == POP-1 && !change){
+			i=-1;
+			change = true;
+		}	
 	}
+	struct cell tmp;
+	    //Bubble Sort
+	    for (i = 0; i < 2*(POP+1); i++) {
+	        for (j = i+1; j < 2*(POP+1); j++) {
+	            if (tmpPop[i].fitness > tmpPop[j].fitness && !isNull(tmpPop[i]) &&  !isNull(tmpPop[j])){
+	                tmp = tmpPop[i];
+	                tmpPop[i] = tmpPop[j];
+	                tmpPop[j] = tmp;
+	            }
+	        }
+	    }
+
 }
 
 // Insertar los mejores entre population y clonePop
@@ -352,7 +310,7 @@ void cloneInsertion(){
 
 }
 
-void newGeneration(int counter, bool type){
+void newGeneration(int counter){
     int i=0,j=0,k=0,c=0,temp=0,r=0;
     int p[VARS];
 	// Inicializamos en p[] la cantidad requerida por cada tipo
