@@ -1,0 +1,170 @@
+%Debe identificar el algoritmo sintonizador que elegirá
+% y los parámetros que serán sintonizados por éste.
+Luego del proceso manual anterior, es tiempo de automatizar el proceso,
+que para algoritmos mucho más complejos y elaborados puede ser realmente un alivio,
+a la hora de buscar los valores adecuados para los parámetros utilizados.
+
+En la presente sección, utilizaremos un algoritmo sintonizador basado en búsqueda,
+muy similar a un algoritmo genético, nos referimos a REVAC~\cite{REVAC},
+el cual fue propuesto por Eiben y Nannen hace 3 años.
+
+La idea principal de REVAC es que nos entrega una herramienta de estimación
+de distribución, la cual va a requerir un rango determinado de valores para
+cada parámetro que deseemos sintonizar
+
+El ser un algoritmo genético, lo guía a utilizar un
+conjunto de configuraciones de parámetros como población, la cual es inicializada
+utilizando una distribución uniforme para los valores de los parámetros a sintonizar.
+
+Algunas otras características son que en cada iteración del algoritmo, genera sólo
+un hijo, a diferencia de los algoritmos evolutivos comunes, por otra parte posee
+un cruzamiento uniforme considerando a los mejores elementos.
+%Entropía → Relevancia de un parámetro
+%Mutación con intervalo 2*H
+
+Finalmente es necesario precisar que REVAC sólo necesitará un intervalo y precisión
+de los parámetros a sintonizar, con los cuales después de cumplir todas las iteraciones,
+o converger, nos entregará el valor e intervalo de los valores para cada parámetro.\\ 
+
+\textbf{Prueba:} \blue{prueba5}\\
+
+\textbf{Sintonizador:} \texttt{REVAC}\\
+
+\textbf{Parámetros a Sintonizar:}\\
+
+\begin{itemize}
+	\item \texttt{clonationRate} TASA\_CL \blue{[0,1]}
+	\item \texttt{clonationFactor} FACT\_CL \blue{[0,1]}
+	\item \texttt{replaceRate} TASA\_RP \blue{[0,1]}
+\end{itemize}
+
+\textbf{Detalles del sintonizador:}\\
+
+\begin{itemize}
+	\item Iteraciones: \blue{200}
+	\item Tamaño de población (M): \blue{18}
+	\item Cantidad de padres (N): \blue{6}
+	\item Intervalo de mutación (H) : \blue{3}
+	\item Tipo de búsqueda: Algoritmo genético.
+\end{itemize}
+
+\textbf{Resultados:}
+
+Los resultados entregados por REVAC para cada instancia fueron los siguientes:
+
+\begin{itemize}
+	\item \texttt{pb\_200\_01.txt}\\
+
+		\begin{verbatim}
+		TASA_CL         56      [55 .. 56]
+        FACT_CL         65      [64 .. 65]
+        TASA_RP         57      [56 .. 57]
+		\end{verbatim}
+	\item \texttt{pb\_200\_09.txt}\\
+
+		\begin{verbatim}
+        TASA_CL         95      [95 .. 95]
+        FACT_CL         6       [6 .. 6]
+        TASA_RP         13      [13 .. 14]
+		\end{verbatim}
+
+	\item \texttt{pb\_200\_10.txt}\\
+
+		\begin{verbatim}
+        TASA_CL         80      [80 .. 80]
+        FACT_CL         66      [66 .. 66]
+        TASA_RP         60      [59 .. 60]
+		\end{verbatim}
+
+\end{itemize}
+
+Para cada instancia, se escogió el valor determinado por REVAC,
+y como podemos apreciar los rangos son bastante precisos, lo que nos señala
+que el algoritmo convergió a un valor determinado.
+
+A continuación, se describe la tabla con los valores entregados
+por REVAC y el \emph{fitness} asociado a cada resultado, los cuales
+si bien poseen una mejora considerable, en comparación a la primera implementación,
+no son tan buenos como los conseguidos en la sintonización manual,
+pero esto puede deberse a que la configuración de REVAC es una simplificación de
+lo recomendado por los autores.
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|}
+	\hline
+	\textbf{Instancia} & \textbf{clonationRate} & \textbf{clonationFactor} & \textbf{replaceRate} & \textbf{Fitness} & \textbf{Tiempo [s]} \\\hline
+	\texttt{pb\_200\_01.txt} & 0.56 & 0.65 & 0.57 & 203 & 161 \\\hline
+	\texttt{pb\_200\_09.txt} & 0.95 & 0.60 & 0.13 & 189 & 195 \\\hline
+	\texttt{pb\_200\_10.txt} & 0.80 & 0.66 & 0.60 & 159 & 169\\\hline
+\end{tabular}
+\end{center}
+
+Si nos damos cuenta, los valores del ``Factor de Clonación'' son bastante parecidos,
+por lo que podríamos decir que independiente de la instancia nuestro algoritmo siempre requerirá el mismo
+parametro para poder definir cuantos clones obtendremos de cada anticuerpo seleccionado.
+
+Por otra parte, los parametros utilizados por el sintonizador, no son
+los recomendados por los autores, pues, si utilizamos los parámetros
+que corresponden, es decir:
+
+\textbf{Detalles del sintonizador:}\\
+
+\begin{itemize}
+	\item Iteraciones: \blue{900}
+	\item Tamaño de población (M): \blue{100}
+	\item Cantidad de padres (N): \blue{50}
+	\item Intervalo de mutación (H) : \blue{10}
+	\item Tipo de búsqueda: Algoritmo genético.
+\end{itemize}
+
+\textbf{Resultados:}
+
+Los resultados entregados por REVAC para cada instancia fueron los siguientes:
+
+\begin{itemize}
+	\item \texttt{pb\_200\_01.txt}\\
+
+		\begin{verbatim}
+        TASA_CL         80      [77 .. 81]
+        FACT_CL         79      [65 .. 83]
+        TASA_RP         49      [49 .. 50]
+		\end{verbatim}
+	\item \texttt{pb\_200\_09.txt}\\
+
+		\begin{verbatim}
+        TASA_CL         99      [98 .. 99]
+        FACT_CL         69      [59 .. 77]
+        TASA_RP         72      [70 .. 73]
+		\end{verbatim}
+
+	\item \texttt{pb\_200\_10.txt}\\
+
+		\begin{verbatim}
+        TASA_CL         92      [91 .. 93]
+        FACT_CL         75      [62 .. 81]
+        TASA_RP         23      [20 .. 24]
+		\end{verbatim}
+
+\end{itemize}
+
+Si nos damos cuenta, los rangos obtenidos para poder determinar el valor de los parámetros que queremos sintonizar
+no son tan precisos como el caso anterior, es decir, acá no hay una convergencia notoria, lo que a primera vista
+puede ser provocado por el notable aumento de la cantidad de iteraciones, y a la vez los factores $M$, $N$ y $H$.
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|}
+	\hline
+	\textbf{Instancia} & \textbf{clonationRate} & \textbf{clonationFactor} & \textbf{replaceRate} & \textbf{Fitness} & \textbf{Tiempo [s]} \\\hline
+	\texttt{pb\_200\_01.txt} & 0.80 & 0.79 & 0.49 & 123 & 676 \\\hline
+	\texttt{pb\_200\_09.txt} & 0.99 & 0.69 & 0.72 & 115 & 819 \\\hline
+	\texttt{pb\_200\_10.txt} & 0.92 & 0.75 & 0.23 & 92 & 710\\\hline
+\end{tabular}
+\end{center}
+
+En comparación a los factores anteriores, podemos darnos cuenta que no son iguales, y que la diferencia entre algunos factores
+es diminuta, pero en  otro grande, por ejemplo, para el \texttt{clonationRate} de la primera prueba de REVAC era $0.56$ para la instancia \texttt{pb\_200\_01.txt}
+y en la segunda prueba, con los parámetros recomendados el valor es $0.80$, en el otro extremo tenemos el mismo parámetro,
+pero para la instancia \texttt{pb\_200\_10.txt}.
+
+Si nos ponemos a pensar en cual prueba escogeremos, claramente si miramos los \emph{fitness}, los resultados obtenidos en la segunda prueba son más beneficiosos,
+y en gran magnitud.

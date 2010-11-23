@@ -1,0 +1,96 @@
+\documentclass[letter, 10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[dvips]{graphicx}
+\usepackage{subfigure}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage[top=3cm,bottom=3cm,left=3.5cm,right=3.5cm,footskip=1.5cm,headheight=1.5cm,headsep=.5cm,textheight=3cm]{geometry}
+\usepackage{alltt}
+
+\definecolor{red}{rgb}{1,0,0}
+\definecolor{green}{rgb}{0,1,0}
+\definecolor{blue}{rgb}{0,0,1}
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\green}{\textcolor{green}}
+
+\begin{document}
+\bibliographystyle{plain}
+\pagestyle{empty}
+
+
+
+\title{
+Taller de Modelos y Métodos Cuantitativos \\
+\Large{
+Proyecto Implementación Algoritmo \emph{``Clonal Selection''} para el \emph{``Car Sequencing Problem''}
+}
+}
+\author{Cristián D. Maureira Fredes}
+\date{\today}
+\maketitle
+
+\section{Introducción}
+%Una explicación breve de lo que consiste el informe. Introducción al problema y la técnica con que se abordó, \textbf{motivación}. Estructura del documento. 
+\input{src/introduccion}
+
+\section{Definición del Problema}
+%Descripción del problema, su complejidad, en que consiste, cuales son sus objetivos, restricciones, variantes más conocidas. Modelo matemático.
+\input{src/definicionProblema}
+
+\subsection{Estado del arte problema}
+%Debe contener: técnicas usadas en su resolución (en general las que han sido mas efectivas a la fecha), mejores resultados, estrategias mas usadas en su resolución, representacion, movimientos, penalización, etc..
+\input{src/estadoArte}
+
+\section{Descripción de la Técnica}
+%Origen de la técnica, descripción de la metáfora, componentes, modelos que existen etc.
+\input{src/tecnica}
+
+\subsection{Estado del Arte Técnica}
+%Descripción de otras experiencias similares a la que se estudiará. Puede que ya existan trabajos que resuelvan el mismo problema con la técnica seleccionada, o puede que aún no se hayan realizado. Esta sección deberá contener la descripción de experiencias con el mismo problema/técnica (las mejores) o para problemas similares que puedan ayudarle como refrencia para su propuesta.
+\input{src/estadoArteTecnica}
+
+\section{Algoritmo Propuesto}
+
+\subsection{Representación y Función de Evaluación}
+%Descripción detallada de la representación elegida y la función de evaluación a utilizar incluyendo penalizaciones.
+\input{src/representacion}
+
+\subsection{Algoritmo Propuesto}
+%Explicación de \textbf{cada componente} del algoritmo final y pseudo código de. éste.
+\input{src/componentes}
+\newpage
+\input{src/algoritmo}
+ 
+\section{Sintonización}
+
+\subsection{Parámetros}
+%Definición y análisis de cada uno de los parámetros que posea su algoritmo. \\
+\input{src/parametros}
+
+\subsection{Pruebas de sintonización}
+%Debe incluir sus pruebas de sintonización manual y automática y \textbf{conclusiones} en base a las pruebas realizadas.
+\input{src/sintonizacionManual}
+\input{src/sintonizacionAutomatica}
+
+\section{Control de Parámetros}
+\input{src/control}
+
+
+\section{Resultados Generales}
+Incluir los mejores resultados obtenidos en terminos de fitness, utilizando una tabla y si es posible comparándolos con los mejores de la literatura. Análisis de tiempo requerido para lograr esos resultados.
+
+\section{Conclusiones}
+%Conclusiones generales con respecto a la implementación, sintonización y control. Trabajo futuro.
+\input{src/conclusiones}
+
+
+\section{Bibliografía}
+%Se debe referenciar todo paper citado. En caso de referenciar páginas web, debe incluir fecha.
+\bibliography{informe_final}
+
+\end{document} 
