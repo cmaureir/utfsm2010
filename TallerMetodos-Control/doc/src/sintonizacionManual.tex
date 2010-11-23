@@ -227,6 +227,20 @@ de los dos parámetros en todo tu dominio.\\
 \end{center}
 \end{figure}
 
+Si nos damos cuenta, cada una de los gráficos tiende a ser muy parecido,
+pues siguen el patrón de para valores pequeños de los dos parámetros a sintonizar
+el fitness es bastante alto, pero al momento de ir acercándose a valores que rodean a 1,
+el fitness comienza a ser mucho mejor.
+
+Es posible inferir que a medida que se aproximan los parametros a 1, el algoritmo
+comienza a a intensificar, razón por la cual comienza a entregar mejores generaciones y por ende
+un mejor resultado.
+
+Finalmente, sólo con la información del gráfico podemos darnos cuenta de que
+para la ``Tasa de clonación'' y el ``Factor de clonación'' cercanos a 1,
+el algoritmo se comporta de buena forma, por lo que a medida que vayamos aumentando
+la cantidad de iteraciones podremos obtener mejores resultados, pero las mejoras
+irán en disminución a medida que avancemos.
 
 \newpage
 %
