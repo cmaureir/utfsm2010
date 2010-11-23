@@ -1,7 +1,7 @@
 all:
 	g++ -c include/extra.cpp 
 	g++ -c include/clonal.cpp 
-	g++ csp.cpp -o csp2 -lrt -Wall
+	g++ csp.cpp -o csp -lrt -Wall
 
 clean:
 	rm -rf csp
