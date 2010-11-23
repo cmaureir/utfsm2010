@@ -2,13 +2,12 @@
 
 void saveBest(bool option){
 
+
 	if(option){
 		bestCellFitness = population[0].fitness;
-//		cout << "bestCellFitness: " << bestCellFitness << endl;
 	}
 	else{
 		bestNewCellFitness = clonePop[0].fitness;		
-//		cout << "bestNewCellFitness: " << bestNewCellFitness << endl;
 	}
 
 }

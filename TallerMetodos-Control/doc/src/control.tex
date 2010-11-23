@@ -1,0 +1,273 @@
+Antes de comenzar a describir y analizar los resultados del control efectuado,
+es necesario poder conocer un poco el comportamiento del algoritmo.
+
+Luego de la sintonización, se escogió la siguiente configuración para el problema:
+
+\begin{itemize}
+    \item \texttt{POP = 160}
+    \item \texttt{GENS = 2000}
+    \item \texttt{clonationFactor = 0.8}
+    \item \texttt{clonationRate = 0.8}
+    \item \texttt{replaceRate = 0.5}
+\end{itemize}
+
+Aparte de los cambios en la configuración básica, también el algoritmo fue modificado
+en términos de normalizar el funcionamiento de la generación de números aleatorios,
+pues anteriormente la generación de números aleatorios era completamente distinta en
+cada ejecución del algoritmo, por lo que ahora se estableció una forma para la población
+inicial y para caga iteración se va modificando la \emph{semilla} para generar
+los anticuerpos de la fase de diversidad.
+
+Teniendo en cuenta la configuración previa, se consideró importante centrar la atención
+para hacer el control en dos aspectos. Primero se realizó una función para determinar
+el \emph{promedio del fitness de una población} y otra función para determinar el
+\emph{mejor fitness de una población}.
+
+La razón para poder centrar la atención en esas dos funciones, es para poder
+determinar si la nueva generación es mejor o peor en términos de \emph{fitness},
+para que nos servirá el \emph{promedio}, por otro lado, al obtener al mejor individuo
+podemos darnos cuenta si ha habido alguna mejora, ya que si es el mejor, se clonará
+más veces en la siguiente iteración.
+
+Por lo tanto los resultados obtenidos con la configuración inicial, con respecto a la
+cantidad de veces en que la \textbf{diferencia} entre los \emph{promedios del fitness} y la \textbf{diferencia}
+de los \emph{mejores fitness} fue positiva, cero o negativa:
+
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|}
+\hline
+  & \multicolumn{3}{|c|}{\textbf{$\Delta$ promedios}} & \multicolumn{3}{|c|}{\textbf{$\Delta$ mejores}} & & \\\hline
+\textbf{Instancia} & $+\Delta$ & $0$ & $-\Delta$ & $+\Delta$ & $0$ & $-\Delta$ & \textbf{Fitness} & \textbf{Tiempo} \\\hline
+\texttt{pb\_200\_01.txt} & 0 & 0 & 2000 & 1624 & 289 & 87 & 77 & 104.451 \\\hline
+\texttt{pb\_200\_09.txt} & 0 & 0 & 2000 & 1605 & 324 & 71 & 71 & 104.833 \\\hline
+\texttt{pb\_200\_10.txt} & 0 & 0 & 2000 & 1442 & 486 & 72 & 55 & 102.377 \\\hline
+\end{tabular}
+\end{center}
+
+La anterior tabla nos da a entender su comportamiento,
+por ejemplo, el algoritmo está desarrollado de una forma que siempre
+la diferencia del promedio de los  fitness de la nueva generación de clones,
+con  el de la población actual será negativo, lo cual tiene una explicación
+en que la población de clones son los mejores individuos de la población
+y la hipermutación que se realiza no es mucha, como para crear individuos
+muy distintos, por lo tanto siempre el promedio de la población actual será
+mayor, es decir, más malo.
+
+Por otro lado, para la diferencia entre el fitness de los mejores individuos,
+tenemos que una gran cantidad de veces el comportamiento del algoritmo
+indica que el mejor individuo de la población de clones es peor que
+el mejor individuo de la población actual, lo cual se debe a la hipertmutación,
+recordemos que como cada individuo se clona una determinada cantidad de veces,
+pero tambien cada clon se muta, la mayoría de las veces el mejor individuo que
+mutamos se vuelve peor de lo que era.
+
+Pero tambien tenemos casos en que los mejores individuos son iguales
+y otros en que el mejor individuo de la población de clones es mejor
+que el de la población actual.
+
+Para continuar con las implementaciones de control de parámetros,
+tenemos los siguientes casos:
+\newpage
+\subsection{Primer Control}
+
+La primera implementación no está basada en alguna publicación determinada,
+si no que sigue la lógica de aumentar o disminuir la diversidad a medida
+que tenemos mejores o peores individuos.
+
+\begin{itemize}
+\item \textbf{Parámetro a controlar:}
+\begin{itemize}
+	\item Tasa de reemplazo (\texttt{replaceRate}) \blue{[0,1]}.
+
+	Éste parámetro va a determinar la cantidad de individuos que añadiremos a nuestra población,
+	de manera que sean una fuente de diversidad y se obtiene multiplicando una probabilidad obtenida por
+ el tamaño de la población
+\end{itemize}
+\item \textbf{Gatillador de cambio:} 
+	En cada iteración se calculará la diferencia entre el \emph{fitness} de los mejores
+	individuos, con la cual podremos tomar una determinada decisión.
+	La diferencia se calcula de la forma:
+	$$\text{Diferencia =  Mejor fitness de la población de clones - Mejor fitness de la población actual}$$
+\item \textbf{Velocidad y mecanismo de cambio:} 
+	A medida que calculamos la diferencia, vamos utilizando una variable que nos va indicando
+	la cantidad de veces que ésta es positiva, cero o negativa.
+
+	Para no realizar un cambio mínimo en cada iteración se estableció un valor de acumulación
+	del $0.2\%$ del total de generaciones totales, para poder cambiar el valor de la tasa de reemplazo.
+
+	Si la tasa es negativa, es decir si en la población de clones tenemos el mejor fitness, vamos a
+	introducir menos diversidad a nuestra nueva población por lo que disminuimos la tasa de reemplazo,
+	en una cantidad equivalente al $10\%$ de la población. Y para el caso contrario, se aumenta en la misma
+	cantidad.
+\newpage
+\item \textbf{Pseudocódigo:} 
+\begin{alltt}
+    Inicio
+    g <- 0 // numero de generaciones
+    Leer datos de entrada
+    Población <- Generar población inicial
+    Evaluar población
+
+    Mientras g < GENS
+        Limpiar poblaciones
+        \blue{Guardar mejor individuo de la población}
+        Seleccionar individuos a clonal (ruleta)
+        Clonación (fórmula)
+        Hipermutación mediante Swap
+        Evaluar población mutada
+        Selección de clones (Mejores)
+        \blue{Guardar mejor individuo de los clones
+        Calcular diferencia entre mejores individuos
+        Si diferencia < 0
+            aumentar contadorA
+            Si contador = 0.2\% GENS
+               Tasa de reemplazo = Tasa de reemplazo - 10\% POP
+               contadorA = 0
+        O Sino diferencia > 0
+            aumentar contadorB
+            Si contadorB = 0.2\% GENS y Tasa de reemplazo < 90\%POP
+               	Tasa de reemplazo = Tasa de reemplazo + 10\% POP
+                contadorB = 0
+        O Sino diferencia = 0
+            Tasa de reemplazo = 50\% POP
+            contadorA = 0
+            contadorB = 0 
+		}
+        Inserción de clones en nueva población
+        Generar elementos nuevos aleatorios
+        Inserción de elementos nuevos al población
+        g <- g + 1
+    Fin Mientras
+
+    Imprimir resultados
+    Fin
+\end{alltt}
+
+\end{itemize}
+\newpage
+\subsection{Segundo Control}
+
+La presente implementación se basa en la escencia de la técnica
+mostrada por Riff et al~\cite{riff}, ya que debido a que la implementación
+del algoritmo de selección clonal es distinta, pero se obtiene
+la idea central implementada y cambiando el enfoque en el sentido
+que en la publicación la función maximiza y la presente implementación
+minimiza.
+
+\begin{itemize}
+\item \textbf{Parámetro a controlar:}
+\begin{itemize}
+	\item Control de clonación (\texttt{clonation\_control}) \blue{[-90\% POP, 90\% POP]}
+
+		Factor que se le va a sumar a la cantidad de clones que generamos por cada
+		individuo seleccionado. Éste factor puede tanto disminuir como aumentar la cantidad
+		de clones de un individuo.		
+	\item Tasa de clonacion (\texttt{clonationRate}) \blue{[0,1]}
+
+		Parámetro que va a establecer la cantidad de individuos que pasan al proceso
+		de clonación y se obtiene multiplicando una probabilidad obtenida por el tamaño de la población.
+
+\end{itemize}
+\item \textbf{Gatillador de cambio:} 
+
+	En cada iteración se calculará la diferencia entre el \emph{fitness} de los mejores
+	individuos, y la diferencia entre el promedio de los fittness de ambas poblaciones,
+	con los cuales podremos tomar una determinada decisión.
+	Las diferencias se calculan de la forma:
+	$$\text{Diferencia Mejores =  Mejor fitness de la población de clones - Mejor fitness de la población actual}$$
+	$$\text{Diferencia Promedio =  Promedio fitness de la población de clones - Promedio fitness de la población actual}$$
+
+\item \textbf{Velocidad y mecanismo de cambio:}
+
+	A medida que calculamos las diferencias, vamos tomando una decisión dependiendo si
+	son positivas, cero o negativas.
+
+	En cada condición, controlamos que el control de clonación no se escape de los rangos
+	establecidos y de la misma forma, aumentarmos el control de clonación en una unidad si la diferencia
+	entre los mejores fitness de las poblaciones es menor, o sea si obtenemos un peor resultado,
+	y viceversa.
+	
+	Al aumentar el factor clonamos más cada elemento, lo que nos va a favorecer aumentando
+	la probabilidad de tener mejores individuos.
+
+	Por otro lado si la diferencia entre los mejores individuos es negativa y la diferencia
+	de los promedios es mayor, comenzamos a disminuir la tasa de clonación, para así
+	comentar a seleccionar menos pues estamos ya con buenos resultados. También se tiene
+	consideración para controlar la tasa de clonación, puesto que por ejemeplo seleccionar
+	sólo un individuo para clonar no tiene sentido.
+\newpage
+\item \textbf{Pseudocódigo:} 
+
+\begin{alltt}
+    Inicio
+    g <- 0 // numero de generaciones
+	control clonacion <- 0 
+    Leer datos de entrada
+    Población <- Generar población inicial
+    Evaluar población
+
+    Mientras g < GENS
+        Limpiar poblaciones
+        \blue{Obtener mejor individuo de la población
+        Obtener el promedio de los fitness de la población}
+        Seleccionar individuos a clonal (ruleta)
+        Clonación (fórmula)
+        Hipermutación mediante Swap
+        Evaluar población mutada
+        Selección de clones (Mejores)
+        \blue{Obtener mejor individuo de los clones
+        Obtener el promedio de los fitness de los clones
+        Calcular diferencia1 entre mejores individuos
+        Calcular diferencia2 entre los promedios
+
+        Si diferencia1 < 0 y control clonacion < 10\% POP
+            control clonacion ++ 
+        O Sino diferencia1 > 0 y control  clonacion > - 10\% POP
+            control clonacion --
+
+        Si diferencia1 < 0 y diferencia2 > 0 y Tasa de clonacion > 2
+            Tasa de clonacion --
+        O Sino Tasa de clonacion < 90\% POP
+            Tasa de clonacion ++
+		}
+        Inserción de clones en nueva población
+        Generar elementos nuevos aleatorios
+        Inserción de elementos nuevos al población
+        g <- g + 1
+    Fin Mientras
+
+    Imprimir resultados
+    Fin
+\end{alltt}
+\end{itemize}
+
+
+\newpage
+\subsection{Resultados Control}
+%Deberá realizar pruebas que comparen su algoritmo con y sin control, para eésto mantenga en ambos algoritmos los parámetros no controlados en un valor que usted considere bueno (utilizando la sección anterior), en el algoritmo sin control setee los parámetros elegidos para el control con los mejores valores encontrados. Compare los resultados en terminos de fitness y tiempo. 
+
+\begin{center}
+\begin{tabular}{|l|c|c|c|c|c|c|}
+\hline
+ & \multicolumn{2}{|c|}{Sin Control} & \multicolumn{2}{|c|}{1er Control} & \multicolumn{2}{|c|}{2do Control} \\\hline
+\textbf{Instancias} & \textbf{Fitness} & \textbf{Tiempo} & \textbf{Fitness} & \textbf{Tiempo} & \textbf{Fitness} & \textbf{Tiempo} \\\hline
+\texttt{pb\_200\_01.txt} & 77 & 104.734 & \red{75} & 101.152 & 76 & 105.692 \\ \hline
+\texttt{pb\_200\_09.txt} & 71 & 104.156 & 66 & 102.252 & \red{64} & 104.641 \\ \hline
+\texttt{pb\_200\_10.txt} & \red{55} & 103.314 & 63 & 102.146 & 63 & 105.684 \\ \hline
+\end{tabular}
+\end{center}
+
+Si nos damos cuenta de los resultados obtenidos,
+los dos mecanismos implementados no fueron 100\% útiles,
+ya que las mejoras son casi insignificantes.
+Ésto se puede deber a que falta un control sobre el resto de los parámetros
+del algoritmo o simplemente que la forma en la cual se desarrolla el algoritmo
+de selección clonal en sí, no es la más óptima, pues considerando la implementación
+de Riff et al.~\cite{riff}, se seleccionan subconjuntos de las poblaciones para
+poder calcular las diferencias de los promedios y de los mejores individuos.
+
+Los mejores valores encontrados se encuentran dentro de las tres categorías,
+por lo que no hay una preferencia determinada y lo mismo ocurre con el tiempo,
+pues la implementación de control era demasiado simple como para añadir
+un gran tiempo al total de tiempo de ejecución del algoritmo.

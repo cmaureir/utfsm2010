@@ -1,0 +1,139 @@
+%Descripción de otras experiencias similares a la que se estudiará.
+%Esta sección deberá contener la descripción de experiencias con el mismo problema/técnica
+%(las mejores) o para problemas similares que puedan ayudarle como refrencia para su propuesta.
+
+Desde que De Castro et al. publicó su trabajo \emph{`` Learning and optimization using clonal selection principle''}~\cite{decastro},
+distintos investigadores se han dedicado a poder utilizar dicha teoría para implementar algoritmos que buscan
+optimizar una tarea determinada, de hecho, la mayoría de los trabajos se centran en por ejemplo la \emph{optimización
+de funciones}, \emph{optimización multiobjetivo}, sin dejar de lado los problemas típicos de optimización como lo son
+\emph{path planning}, \emph{graph coloring}, \emph{vehicle routing}, \emph{entrenamiento de sistemas}, \emph{clasificadores},
+\emph{reconocimiento de patrones}, etc, pero la presente sección se centra netamente en problemas abordados que puedan
+tener una cierta relación a nivel de modelamiento, objetivos o tratamiento con el problema principal del presente trabajo,
+el \emph{Car Sequencing Problem}.\\
+
+
+% Clonal Selection based Mobile Robot Path Planning
+
+Respecto al área de la robótica, Xuanzi Hu~\cite{robotPlanning} a podido dar un enfoque a las problemáticas relacionadas
+con el \emph{Mobile Robot Path Planning}, realizando una comparativa con los algoritmos genéticos, en los cuales queda demostrado
+la eficiencia y superioridad de la selección clonal, ya que al ser dos metodologías generacionales, se basan en los mismo principios,
+y son fácilmente comparables al momento de realizar un \emph{benchmark} de ambas técnicas con parámetros lo más similar posible.
+Una característica especial de la presente implementación son sus operadores inmunes utilizados, en los que están el operador de mutación
+que consiste en elegir aleatoriamente un nodo del camino y reemplazarlo por otro nodo que no está en el camino original; el operador
+de inserción, que se utiliza para poder reparar los segmentos de un camino infactible, insertando un nodo entre el problema y por último
+el operador de supresión, que se aplica a los caminos factibles e infactibles. 
+
+Un punto importante en éste trabajo es que a nivel de programación algorítmica, la selección clonal presenta una superioridad también,
+al poder ser un algoritmo mucho más sencillo de  implementar que un algoritmo genético.\\
+%%
+
+
+% Scheduling Aircraft Landing Based on Clonal Selection Algorithm and Receding Horizon Control
+Por otro lado Xiaolan Jia et al.~\cite{aircraft} utiliza la selección clonal hibridamente en conjunto con un modelo
+de control predictivo llamado \emph{Receding Horizon Control (RHC)} para abordar el conocido problema de \emph{Scheduling Aircraft Landing},
+en el cual la selección clonal forma parte del algoritmo RHC, ocupándose de realizar el scheduling propiamente tal.
+
+Detalladamente las dos aproximaciones que plantea el presente trabajo de X. Jia, señala que una selección clonal con restricciones
+basado en ``grados de infactibilidad'' (IFD) programa los aviones en el \emph{receding horizon} actual, en cambio
+el RHC repite el proceso de optimización usando ``propagación de segmentos excelentes de genes'' (EGSS) hasta que todos los aviones
+han aterrizado.
+
+IFD maneja las restricciones de una buena manera y guía el proceso de optimización de manera efectiva,
+por otro lado EGSS mejora la velocidad de convergencia del algoritmo, demostrando empíricamente que la aproximación con RHC
+soluciona el problema de una manera mas efectiva y rápida.\\
+%%
+
+
+% Clonal Selection Algorithm for Vehicle Routing
+
+Otro problema de optimización conocido como \emph{Vehicle Routing Problem (VRP)} ha sido atacado utilizando la selección clonal
+también por varios autores, entre ellos destaca Jacek Dabrowski~\cite{vrp} pues soluciona una pequeña variación del
+problema en conjunto llamado \emph{Capacitated Vehicle Routing Problem (CVRP)} en el cual una flota fija de vehículos de repartición
+con una capacidad uniforme debe atender la demanda de un cliente determinado para un solo producto de un sólo almacén, cumpliendo
+obviamente el mínimo costo de transito. Por lo que la única variación entre CVRP y VRP es que el primero añade la restricción
+de que todos los vehículos deben tener una capacidad uniforme de un sólo producto.
+
+Dabrowski señala que la selección clonal es una buena herramienta para la búsqueda de caminos múltiples,
+ya que cuando entregamos una instancia del programa se puede un conjunto de soluciones como un conjunto de anticuerpo,
+rankeando las soluciones mediante ``operadores de comparación'' y pero que existe un control sobre el ``operador de mutación''
+entre los cuales están; EXC, que elige esquinas del camino y las trata de unir; SUM, que intenta concatenar dos rutas sin violar
+restricciones; NEW, que construye nuevas ruta utilizando la heurística \emph{greedy} a partir de un vértice aleatorio.
+
+Finalmente el único problema es que el autor señala que sería correcto realizar un benchmark con otras técnicas,
+para poder comprobar que tan efectiva es la técnica.\\
+%%
+
+
+% Stretching Technique-based Clonal Selection Algorithm for Flexible Job-shop Scheduling
+Como ya se vio anteriormente, en muchas investigaciones se utiliza la mezcla entre la selección clona y otra técnica,
+y es el mismo casi que propone Lu Hong~\cite{jobshop} al utilizar una técnica de \emph{Stretching} al resolver
+una variación del \emph{Job-shop scheduling problem (JSP)} llamado \emph{Flexible Job-shop Scheduling Problem (FJSP)},
+la cual solo posee una mayor disponibilidad de máquinas para realizar las operaciones, es decir, sigue la dinámica
+de encontrar una ubicación de cada operación y definir las secuencias de éstas en cada máquina, tratando de utilizar el mínimo
+tiempo posible.
+
+La técnica de \emph{stretching} fue propuesta por M. N. Vrahatis~\cite{stretching},
+%M. Vrahatis, G. Androulakis and M. Manoussakis, “A new unconstrained optimization method for Imprecise function andgradient values,”
+%Journal of Mathematical Analysis and Applications, 1996, pp. 586–607.
+y su idea principal es realizar dos etapas de transformación sobre la forma de la función objetivo,
+basada en la información de los mínimos locales, es decir, si hay un mínimo se busca realizando un algoritmo
+de optimización convencional, y cuando se encuentra, la función objetivo se ``estira'' de acuerdo a unas expresiones determinadas.
+
+Utilizando la función de \emph{stretching} no se cambian los objetivos buscando, pero provee una forma de escape
+de los óptimos locales mejorando la convergencia global.
+
+Generalmente luego de los test, STCSA muestra ser mejor que una selección clonal normal,
+siendo una excelente aproximación para resolver problemas a larga escala cuando otros algoritmos fallan dando buenas soluciones.\\
+%%
+
+
+% Immune Clonal Selection Algorithm for Hybrid Flow-shop Scheduling Problem
+Feng Liu et al.~\cite{flowshop} para poder reducir la complejidad computacional del
+\emph{Hybrid Flow-shop Scheduling Problem} utiliza selección clonal.
+
+Éste problema es una aplicación importante en las empresas manufactureras, ya que es un problema NP-completo,
+y actualmente las tecnologías de optimización y algunas heurísticas como \emph{branch and bound}, \emph{genetic algorithm}
+han sido utilizadas pero sin tanto éxito, ya que tienen distintos inconvenientes al momento de trabajar con problemas
+de alto tamaño.
+
+Liu realiza ésta elección, pues la selección clonal propone mecanismos especiales como la habilidad de mantener la diversidad
+de los anticuerpos, mecanismos de auto-adaptación y funciones de memoria. Además para mejorar la exploración y explotación
+se agrupan estrategias y operadores de multi-mutación (mutación clonal, cruzamiento clonal y selección clonal).\\
+%%
+
+
+% Computer Experiments with a Parallel Clonal Selection Algorithm for the Graph Coloring Problem
+Finalmente, existen trabajos dignos de destacar, como la aproximación que entrega Jacek Dabrowski~\cite{graph}
+al realizar experimentos con selección clonal pero utilizando conceptos de paralelismo para un problema básico como lo es
+el \emph{Graph Coloring Problem}, comparandolo contra un algoritmo \emph{Tabu search} en paralelo.
+
+Los anticuerpos son inicializados utilizando una asignación aleatorias de colores o utilizando una heurística \emph{greedy},
+por otro lado, la selección clonal se enfoca a minimizar la función objetivo, siendo ésta el numero de conflictos de colores.
+
+El mecanismo de hiper-mutación cambia la asignación de colores a los vértices del gráfico.
+
+Para mejorar el desempeño de la versión paralela que se ha creado se utilizada el modelo de ``isla'' (asincrónico),
+donde cada procesador trabaja con su propio conjunto de anticuerpos.
+
+Lo llamativo surge al existir mecanismos de ``migración'' que permite un intercambio de conocimiento entre los 
+distintos procesos, los cuales son elegidos mediante una ``selección de torneo''.
+
+Por lo tanto la selección clonal se sobrepone a \emph{Tabu search} en todas las instancias,
+llegando a la conclusión que aunque no posea un operador de cruzamiento, la selección clonal
+es una forma fácil de implementar un algoritmo de optimización.
+%%
+
+Con respecto a los componentes que cada implementación revisada proponen, podemos decir que algunos procedimientos
+van a depender netamente con el tipo de problema que queremos resolver. Una de las formas es poder implementar
+una suerte de \emph{operadores inmunes} los cuales nos pueden servir para insertar diversidad a nuestra población,
+reparar poblaciones poco beneficiosas y finalmente el aspecto de mutación, para poder obtener nuestra nueva
+población.
+Otra forma explicada en un trabajo revisado, es la implementación de un \emph{operador de comparación}, que va
+a tener relación con un ranking a cada solución obtenida.
+Siguiendo con los buenos componenetes, al momento de ingresar diversidad a nuestra población, varios investigadores
+lo hacen generando soluciones aleatorias, pero éste proceso podría ser mejorando utilizando técnicas como Greedy.
+
+
+Finalmente los algoritmos inmunes, en especial los algoritmos de ``selección clonal'' suelen ser una buena aproximación
+para poder solucionar problemas de optimización y gracias a los estudios analizados en el estado del arte del problema,
+podemos decir que es una buena solución para el ``Car Sequencing Problem''.

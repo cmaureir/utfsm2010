@@ -1,0 +1,84 @@
+Debido a la cantidad de elementos que varían para probar el desempeño
+del algoritmo, se ha establecido un conjunto de parámetros que hacen
+referencia a la ejecución "base" del algoritmo.
+\begin{itemize}
+	\item Repertorio Inicial: Arreglado (Cumpliendo restricciones duras).
+	\item Selección de Clones: Mejores (Considerando la población actual y la de clones).
+	\item Movimiento: Swap al 40\%.
+	\item Reemplazo: Peores.
+	\item Clonación: Mediante fórmula (explicada más adelante).
+\end{itemize}
+
+\begin{enumerate}
+	\item \textbf{Repertorio Inicial}
+
+		El repertorio inicial, se ha generado de dos formas para poder establecer una mejor opción.
+		\begin{itemize}
+			\item \emph{Arreglado:} 
+				
+				Se ha generado la población inicial con una lista de vehículos que contiene
+				la cantidad exacta de los tipos necesitados por el problema, los cuales
+				han sido desordenados, para dejar satisfechas en todo momento las restricciones
+				blandas.
+		\end{itemize}
+
+	\item \textbf{Operador de Selección}
+		\begin{itemize}
+			\item \emph{Roulette wheel:}
+ 
+				Al momento de seleccionar individuos para realizar la clonación, se utilizó la conocida técnica llamada
+				\emph{roulette wheel}, para una Función Objetivo que minimiza.
+				
+				El procedimiento es bien simple, sólo tenemos que considerar el \emph{fitness} de cada linfocito y calcular un
+				\emph{fitness relativo} de la siguiente forma:
+				
+				$$relativeFitness_{i}\ = \frac{f_{min} + f_{max} - f_{i}}{\sum\limits_{i=0}^{sizePop} (f_{min} + f_{max} - f_{i}}$$
+				
+				Donde $f_{max}$ equivale al \emph{fitness} del mejor linfocito,
+				$f_{min}$ equivale al \emph{fitness} del peor linfocito y
+				$f_{i}$ equivale al \emph{fitness} del i-ésimo linfocito de nuestra población.
+				
+				La suma de todos los \emph{fitness relativo} equivale a $1$.
+					
+				Luego de que cada linfocito posee su \emph{fitness relativo}, se procede a calcular un \emph{fitness acumulativo},
+				es decir, ir sumando las probabilidades para generar un rango entre $0$ y $1$ con todas nuestras probabilidades.
+					
+				Una vez se tiene el \emph{fitness acumulativo} listo, se procede a obtener un número aleatorio entre $0$ y $1$,
+				para que luego sea ubicado en nuestro rango, y así el linfocito que salga escogido con éste número aleatorio, será
+				elegido para pasar ahora a la transformación.
+		
+		\end{itemize}
+	\item \textbf{Operador de Clonación}
+		\begin{itemize}
+			\item \emph{Fórmula:}
+
+				Se ha tomado la esencia de la fórmula propuesta por De Castro~\cite{decastro},
+				en el cual consideramos tres elementos: ``factor de clonación ($\beta$)~\footnote{$clonationRate$
+				corresponde al tamaño del $40\%$ de la población}'', ``Total de anticuerpos($N$)'' y
+				``Afinidad (ranking) ($a$)''.
+				La relación está dada por un número $m$ que equivale a la cantidad de clones que se generarán
+				para cada anticuerpo ordenados por afinidad, partiendo del mejor al peor.
+				$$m\ =\ \lceil\frac{\beta \cdot N}{a}\rceil$$
+
+				Con ésto estamos siguiendo la idea central del algoritmo, pues estamos favoreciendo a que se clonen más
+				los mejores elementos de nuestra población.
+				
+		\end{itemize}
+	\item \textbf{Operador de Reemplazo}
+		Para mantener la diversidad en nuestra población e intentar escapar de los óptimos locales,
+		se utiliza un $replaceRate$ que corresponde a la cantidad del $60\%$ del tamaño de la población.
+
+		Los nuevos elementos son generados cumpliendo las restricciones duras, para obtener nuevos
+		elementos un poco mejores en comparación a la creación aleatoria.
+		\begin{itemize}
+			\item \emph{Peores:}
+				Se realiza el reemplazo en los peores elementos de la nueva población a utilizar.
+
+		\end{itemize}
+		% Tabla comparativa
+	\item \textbf{Movimiento}
+		En éste caso se realiza un \emph{swap}, pero como cada individuo es del orden de $200$, $300$ y $400$ autos,
+		se realiza una cantidad de \emph{swap} equivalente al $40\%$ de la cantidad de autos.
+	
+		Para ver que elementos hacen el \emph{swap}, se eligen aleatoriamente dos elementos para intercambiar.
+\end{enumerate}
