@@ -1,0 +1,82 @@
+\documentclass{beamer}
+\usepackage[spanish,activeacute]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{color}
+\usepackage{alltt}
+
+
+\definecolor{gray2}{rgb}{100,100,100}
+\definecolor{red}{rgb}{255,0,0}
+\definecolor{green}{rgb}{0,1,0} 
+\definecolor{blue}{rgb}{0,0,1} 
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\green}{\textcolor{green}}
+
+\usetheme[pageofpages=of,% String used between the current page and the
+                         % total page count.
+          alternativetitlepage=true,% Use the fancy title page.
+          titlepagelogo=img/1,% Logo for the first page.
+          watermark=,% Watermark used in every page.
+          watermarkheight=150px,% Height of the watermark.
+          watermarkheightmult=4,% The watermark image is 4 times bigger
+                                % than watermarkheight.
+          ]{Torino}
+
+\usecolortheme{nouvelle}
+
+\author{\large Cristián D. Maureira Fredes}
+\title{\huge Car Sequencing Problem}
+\subtitle{\large \textit{``Una aproximación utilizando Selección Clonal''}}
+\institute{\textbf{Taller de Métodos y Modelos Cuantitativos}\\ Departamento de Informática\\ (UTFSM)}
+\date{\today}
+
+\begin{document}
+
+\include{src/cover}
+
+\section{Introducción}
+\include{src/introduccion}
+
+\section{Definición del Problema}
+\include{src/definicionProblema}
+
+\subsection{Estado del arte problema}
+\include{src/estadoArte}
+
+\section{Descripción de la Técnica}
+\include{src/tecnica}
+
+\subsection{Estado del Arte Técnica}
+%\include{src/estadoArteTecnica}
+
+\section{Algoritmo Propuesto}
+
+\subsection{Representación y Función de Evaluación}
+\include{src/representacion}
+
+\subsection{Algoritmo Propuesto}
+\include{src/componentes}
+\include{src/algoritmo}
+
+\section{Sintonización}
+
+\subsection{Parámetros}
+\include{src/parametros}
+
+\subsection{Pruebas de sintonización}
+\subsubsection{Sintonización Manual}
+\include{src/sintonizacionManual}
+\subsubsection{Sintonización Automática}
+\include{src/sintonizacionAutomatica}
+\section{Control de Parámetros}
+\include{src/control}
+
+\section{Resultados Generales}
+\include{src/resultados}
+
+\section{Conclusiones}
+\include{src/conclusiones}
+
+\end{document}

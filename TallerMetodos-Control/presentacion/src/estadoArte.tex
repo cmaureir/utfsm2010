@@ -1,0 +1,101 @@
+\frame
+{
+\frametitle{Estado del Arte}
+\framesubtitle{Existencia del acercamiento}
+\begin{itemize}
+    \item Actualmente en las grandes fuentes de publicaciones, como lo son:
+    \begin{itemize}
+        \item ACM.
+        \item Springerlink.
+        \item IEEE.
+        \item Google Scholar.
+    \end{itemize}
+    \item \textbf{NO} existe un acercamiento utilizando \emph{Clonal Selection}
+        para la resolución del \emph{Car Sequencing Problem}.
+    \item Estado del arte del \emph{ROADEF}.
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Estado del Arte}
+\framesubtitle{Experiencias Similares}
+\begin{block}{Mobile Robot Path Planning}
+\begin{itemize}
+    \item Operadores Inmunes:
+     \begin{itemize}
+        \item \emph{Operador de Mutación:}
+            consiste en elegir aleatoreamente un nodo del camino y \textbf{reemplazarlo} por otro nodo que no esté en el camino original. (intercambio de opciones válidas)
+        \item \emph{Operador de Inserción:}
+            se utiliza para poder \textbf{reparar} los segmentos de un camino infactible, insertando un nodo entre el problema. (cambiar el elemento inválido por otro)
+        \item \emph{Operador de Supresión:}
+            se aplica a los caminos factibles e infactibles, para \textbf{disminuir costos}. (formas de disminuir el fitness por orden)
+     \end{itemize}
+\end{itemize}
+\end{block}
+}
+
+\frame
+{
+\frametitle{Estado del Arte}
+\framesubtitle{Experiencias Similares}
+\begin{block}{Scheduling Aircraft Landing}
+\begin{itemize}
+    \item Basar la selección clonal en:
+    \begin{itemize}
+        \item \emph{Infeasibility Degree (IFD):}
+            maneja las restricciones de una buena manera y guía el proceso de optimización de manera efectiva.
+        \item \emph{Excellent Gene Segment Spread (EGSS):}
+            mejora la velocidad de convergencia del algoritmo.
+    \end{itemize}
+\end{itemize}
+\end{block}
+}
+
+\frame
+{
+\frametitle{Estado del Arte}
+\framesubtitle{Experiencias Similares}
+\begin{block}{Vehicle Routing Problem}
+\begin{itemize}
+    \item Operadores de Mutación:
+    \begin{itemize}
+        \item \emph{EXC:}
+            elige \textbf{esquinas} del camino y las trata de \textbf{unir}. (no sirve mucho)
+        \item \emph{SUM:}
+            que intenta \textbf{concatenar} dos rutas sin violar restricciones. (tipo de cruzamiento en un punto)
+        \item \emph{NEW:}
+            que \textbf{construye} nuevas ruta utilizando la heurística greedy a partir de un vértice aleatorio. (mejorar individuos particulares)
+    \end{itemize}
+\end{itemize}
+\end{block}
+}
+
+\frame
+{
+\frametitle{Estado del Arte}
+\framesubtitle{Experiencias Similares}
+\begin{block}{Job-shop scheduling problem}
+\begin{itemize}
+    \item Variar la función objetivo en caso de encontrar mínimos locales, para escapar de los \emph{óptimos locales}.
+    \begin{itemize}
+        \item Primero, aumenta la función objetivo para hacer desaparecer los mínimos locales. (sumándole un factor con constantes positivas)
+        \item Segundo, estira el vecindario de la variable auxiliar. (del paso anterior)
+    \end{itemize}
+\end{itemize}
+\end{block}
+}
+
+\frame
+{
+\frametitle{Estado del Arte}
+\framesubtitle{Experiencias Similares}
+\begin{block}{Parallel Graph Coloring Problem}
+\begin{itemize}
+    \item Inicializar anticuerpos de forma aleatoria o utilizando \emph{greedy}.
+    \item Utilizar conceptos de paralelismo.
+    \item Concepto de \emph{migración}.
+\end{itemize}
+\end{block}
+}
+

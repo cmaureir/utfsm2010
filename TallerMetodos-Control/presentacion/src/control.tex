@@ -1,0 +1,200 @@
+\frame
+{
+\frametitle{Control de Parámetros}
+\framesubtitle{Configuración del problema}
+\begin{itemize}
+    \item \texttt{POP = 160}
+    \item \texttt{GENS = 2000}
+    \item \texttt{clonationFactor = 0.8}
+    \item \texttt{clonationRate = 0.8}
+    \item \texttt{replaceRate = 0.5}
+\end{itemize}
+
+}
+
+\frame
+{
+\frametitle{Control de Parámetros}
+\framesubtitle{Cambios}
+\begin{itemize}
+	\item Semilla de números aleatorios.
+	\item Promedio del fitness de un población.
+	\item Mejor individuo de cada población.
+	\item Diferencias.
+\end{itemize}
+}
+\frame
+{
+\frametitle{Control de Parámetros}
+\framesubtitle{Comportamiento}
+\begin{center}
+\small{
+\begin{tabular}{|l|c|c|c|c|c|c|c|c|}
+\hline
+  & \multicolumn{3}{|c|}{\textbf{$\Delta$ promedios}} & \multicolumn{3}{|c|}{\textbf{$\Delta$ mejores}} & & \\\hline
+\textbf{Instancia} & $+\Delta$ & $0$ & $-\Delta$ & $+\Delta$ & $0$ & $-\Delta$ & \textbf{Fitness} & \textbf{Tiempo} \\\hline
+\texttt{pb\_200\_01.txt} & 0 & 0 & 2000 & 1624 & 289 & 87 & 77 & 104.451 \\\hline
+\texttt{pb\_200\_09.txt} & 0 & 0 & 2000 & 1605 & 324 & 71 & 71 & 104.833 \\\hline
+\texttt{pb\_200\_10.txt} & 0 & 0 & 2000 & 1442 & 486 & 72 & 55 & 102.377 \\\hline
+\end{tabular}
+}
+\end{center}
+}
+\frame
+{
+\frametitle{Control de Parámetros}
+\framesubtitle{Comportamiento}
+\begin{itemize}
+	\item Diferencia de promedios negativa $\rightarrow$ Mejores clones.
+	\item Diferenci de mejores $\rightarrow$
+	\begin{itemize}
+		\item Positivas, peores individuos.
+		\item Cero, iguales individuos.
+		\item Negativas, mejores individuos.
+	\end{itemize}
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Control de Parámetros}
+\framesubtitle{Primer control}
+\begin{itemize}
+	\item Parámetros a controlar.
+	\begin{itemize}
+		\item Tasa de reemplazo (\texttt{replaceRate}) \blue{[0,1]}. 
+	\end{itemize}
+	\item Gatillador de cambio.
+	\begin{itemize}
+		\item Diferencia entre los mejores individuos.
+	\end{itemize}
+	\item Velocidad y mecanismo de cambio.
+	\begin{itemize}
+		\item Acumulación del $0.2\% GENS$
+	\end{itemize}
+\end{itemize}
+}
+
+\begin{frame}[t,fragile]
+\frametitle{Control de Parámetros}
+\framesubtitle{Primer control}
+\begin{itemize}
+	\item Pseudocódigo.
+\tiny{
+\begin{alltt}
+    Inicio
+    ...
+    Mientras g < GENS
+        Limpiar poblaciones
+        \blue{Guardar mejor individuo de la población}
+        Seleccionar individuos a clonal (ruleta)
+        ...
+        Selección de clones (Mejores)
+        \blue{Guardar mejor individuo de los clones
+        Calcular diferencia entre mejores individuos
+        Si diferencia < 0
+            aumentar contadorA
+            Si contador = 0.2\% GENS
+               Tasa de reemplazo = Tasa de reemplazo - 10\% POP
+               contadorA = 0
+        O Sino diferencia > 0
+            aumentar contadorB
+            Si contadorB = 0.2\% GENS y Tasa de reemplazo < 90\%POP
+                Tasa de reemplazo = Tasa de reemplazo + 10\% POP
+                contadorB = 0
+        O Sino diferencia = 0
+            Tasa de reemplazo = 50\% POP
+            contadorA = 0
+            contadorB = 0
+        }
+        Inserción de clones en nueva población
+        ...
+    Fin
+\end{alltt}
+}
+\end{itemize}
+\end{frame}
+
+\frame
+{
+\frametitle{Control de Parámetros}
+\framesubtitle{Segundo control}
+Basado en ``Homeostatic Regulation of CLONALG with online Parameters Calibration''
+\begin{itemize}
+	\item Parámetros a controlar.
+	\begin{itemize}
+		\item Control de clonación (\texttt{clonation\_control}) \blue{[-90\% POP, 90\% POP]}
+		\item Tasa de clonacion (\texttt{clonationRate}) \blue{[0,1]} 
+	\end{itemize}
+	\item Gatillador de cambio.
+	\begin{itemize}
+		\item Diferencia entre promedios de individuos.
+		\item Diferencia entre mejores individuos.
+	\end{itemize}
+	\item Velocidad y mecanismo de cambio.
+	\begin{itemize}
+		\item Aumento de control de clonacion (1) si diferencia entre mejores es negativa y viceversa.
+		\item Disminuir la tasa de clonación (1) si diferencia entre mejores negativa y promedios positiva.
+		\item Controlando límites.
+	\end{itemize}
+\end{itemize}
+}
+
+\begin{frame}[t,fragile]
+\frametitle{Control de Parámetros}
+\framesubtitle{Segundo control}
+\begin{itemize}
+	\item Pseudocódigo:
+\tiny{
+\begin{alltt}
+    Inicio
+	...
+    Mientras g < GENS
+        Limpiar poblaciones
+        \blue{Obtener mejor individuo de la población
+        Obtener el promedio de los fitness de la población}
+        Seleccionar individuos a clonal (ruleta)
+		...
+        Selección de clones (Mejores)
+        \blue{Obtener mejor individuo de los clones
+        Obtener el promedio de los fitness de los clones
+        Calcular diferencia1 entre mejores individuos
+        Calcular diferencia2 entre los promedios
+
+        Si diferencia1 < 0 y control clonacion < 10\% POP
+            control clonacion ++
+        O Sino diferencia1 > 0 y control  clonacion > - 10\% POP
+            control clonacion --
+
+        Si diferencia1 < 0 y diferencia2 > 0 y Tasa de clonacion > 2
+            Tasa de clonacion --
+        O Sino Tasa de clonacion < 90\% POP
+            Tasa de clonacion ++
+        }
+        Inserción de clones en nueva población
+		...
+    Fin
+\end{alltt}
+}
+\end{itemize}
+\end{frame}
+
+
+\frame
+{
+\frametitle{Control de Parámetros}
+\framesubtitle{Resultados Control}
+\begin{center}
+\footnotesize{
+\begin{tabular}{|l|c|c|c|c|c|c|}
+\hline
+ & \multicolumn{2}{|c|}{Sin Control} & \multicolumn{2}{|c|}{1er Control} & \multicolumn{2}{|c|}{2do Control} \\\hline
+\textbf{Instancias} & \textbf{Fitness} & \textbf{Tiempo} & \textbf{Fitness} & \textbf{Tiempo} & \textbf{Fitness} & \textbf{Tiempo} \\\hline
+\texttt{pb\_200\_01.txt} & 77 & 104.734 & \red{75} & 101.152 & 76 & 105.692 \\ \hline
+\texttt{pb\_200\_09.txt} & 71 & 104.156 & 66 & 102.252 & \red{64} & 104.641 \\ \hline
+\texttt{pb\_200\_10.txt} & \red{55} & 103.314 & 63 & 102.146 & 63 & 105.684 \\ \hline
+\end{tabular}
+}
+\end{center}
+
+}
