@@ -61,6 +61,31 @@ un valor determinado para cada parámetro, sino que nos entrega un rango de valo
 pero de la mano de ésto es que REVAC considera que los valores de nuestros parámetros siguen una distribución uniforme
 por lo que las mejores soluciones que nos entrega estaría todas cercanas al vecindario central de dicha distribución.
 
+% Extra
+Con respecto a los valores de los parámetros obtenidos, claramente podemos establecer que el algoritmo
+se comporta muy bien cuando tenemos una relación entre el \emph{``Tamaño de la población''} y el \emph{``Número de iteraciones''},
+de 1 es 10, es decir:
+
+\begin{center}
+\emph{Tamaño Población  $\approx$  10\% $\cdot$ Número de Generaciones}
+\end{center}
+
+Valores que serán aplicados para un posterior control.
+
+Respecto a los otros parámetros, podemos decir que la ``Tasa de reemplazo'' tiene un comportamiento
+bastante predecible, pues para pocas iteraciones el valor recomendable es cercano a 0,
+y para los casos donde la cantidad de iteraciones es similar a la relación señalada previamente,
+es cercano a $0.5$, por lo que como se mantiene en la mitad de la población, es un elemento importante
+para poder controlar posteriormente.
+
+Para los últimos dos parámetros, es decir, la ``Tasa de Clonación'' y el ``Factor de Clonación'',
+poseen un comportamiento que los relaciona directamente, pues a pesar de obtener valores más o menos
+distintos en la \emph{prueba4} y con \emph{REVAC}, siempre tienden a tener una diferencia de un valor de no más
+de $0.2$ y que también ambos sean mayores que $0.5$. Por la misma razón de la ``Tasa de reemplazo'',
+estos parámetros serán un objeto importante a la hora de controlar, para determinar su valor más correcto.
+
+
+
 %- Conclusiones en relación a su algoritmo, características de los parámetros, características de la búsqueda.\\
 Con respecto a la implementación del algoritmo de ``Selección Clonal'', es correcto apreciar que ha tenido una notable
 evolución respecto a sus origines, pues en el camino se han corregido bastantes errores de implementación y también
@@ -79,5 +104,3 @@ necesario poder variarlos un poco.
 Un problema que posee la implementación actual, es que indirectamente efectúa un \emph{elitismo} muy fuerte, lo que se ha
 podido mejorar respecto a las implementaciones pasadas, pero que es un factor importante que se podría seguir trabajando a futuro.
 
-
-%Conclusiones generales con respecto a la implementación, sintonización y control. Trabajo futuro.
