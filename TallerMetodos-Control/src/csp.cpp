@@ -12,7 +12,8 @@ int main(int argc, const char *argv[])
 	inputReading(argv[1]);
 	generation = 0;
 
-	srand(1925);
+//	srand(1925);
+	srand(time(0));
 	initPopulation();
 	evaluation(population);
 
@@ -21,15 +22,15 @@ int main(int argc, const char *argv[])
 
 	while(generation<GENS){
 		srand(generation);
-		cout << "---------------" << endl;
-		cout << "Iteracion: " << generation << endl;
+//		cout << "---------------" << endl;
+//		cout << "Iteracion: " << generation << endl;
 		//cout << "replaceRate: " << replaceRate << endl;
 		cleanPops();
 		// calcular promedio de los fitness de la pop
-		averageFitness(true);
+//		averageFitness(true);
 		// obtener mejor fitness
-		sortPop(population);
-		saveBest(true);
+//		sortPop(population);
+//		saveBest(true);
 		selection(clonationRate, population);
 		clonation(tmpPop);
 		// OJO calcular C, numero de clones
@@ -37,34 +38,34 @@ int main(int argc, const char *argv[])
 		evaluation(clonePop);
 		// fitness del mejor anticuerpo de clones
 		cloneSelection(clonePop);
-		sortPop(clonePop);
-		saveBest(false);
-		// calcular promedio de los fitness de la tmpPop
-		averageFitness(false);
-		// Calcular success measure
-		pS[generation] = bestNewCellFitness - bestCellFitness; 
-		// Calcular stuck measure
-		sM[generation] = newCellAverage - cellAverage;
-		// CONDICIONES
-
-		if( pS[generation] > 0 )
-			altos++;
-		else if( pS[generation] == 0 )
-			ceros++;
-		else if( pS[generation] < 0 )
-			bajos++;
-
+//		sortPop(clonePop);
+//		saveBest(false);
+//		// calcular promedio de los fitness de la tmpPop
+//		averageFitness(false);
+//		// Calcular success measure
+//		pS[generation] = bestNewCellFitness - bestCellFitness; 
+//		// Calcular stuck measure
+//		sM[generation] = newCellAverage - cellAverage;
+//		// CONDICIONES
+//
+//		if( pS[generation] > 0 )
+//			altos++;
+//		else if( pS[generation] == 0 )
+//			ceros++;
+//		else if( pS[generation] < 0 )
+//			bajos++;
+//
 //		cout << "ps[]: " << pS[generation] << endl;
 //		cout << "sM[]: " << sM[generation] << endl;
-		if ( pS[generation] > 0 && clone_control < POP/2){
-			clone_control += 1;
-		}
-		else if (pS[generation] < 0 ){
-			clone_control -= 5;
-		}
-		else if (pS[generation] == 0){
-			clone_control = 0;
-		}
+//		if ( pS[generation] > 0 && clone_control < POP/2){
+//			clone_control += 1;
+//		}
+//		else if (pS[generation] < 0 ){
+//			clone_control -= 5;
+//		}
+//		else if (pS[generation] == 0){
+//			clone_control = 0;
+//		}
 //
 //		if (sM[generation] < 0 && clonationRate < POP){
 //			clonationRate += 1;
@@ -92,14 +93,14 @@ int main(int argc, const char *argv[])
 		newGeneration(replaceRate);
 		evaluation(population);
 //		
-		cout << "clone_control: " << clone_control << endl;
-		cout << "Fitness: " << bestCellFitness << endl;
+//		cout << "clone_control: " << clone_control << endl;
+//		cout << "Fitness: " << bestCellFitness << endl;
 //		cout << "clonationRate: " << clonationRate << endl;
 //		cout << "replaceRate: " << replaceRate << endl;
 
-	cout << "Altos: " << altos << endl;
-	cout << "Ceros: " << ceros << endl;
-	cout << "Bajos: " << bajos << endl;
+//	cout << "Altos: " << altos << endl;
+//	cout << "Ceros: " << ceros << endl;
+//	cout << "Bajos: " << bajos << endl;
 		generation++;
 	}
 

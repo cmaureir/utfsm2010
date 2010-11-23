@@ -48,8 +48,8 @@ int main(int argc, const char *argv[])
 //	printFile(argv[1],population[0].gene,population[0].fitness,(te.tv_sec-ts.tv_sec), (te.tv_nsec-ts.tv_nsec));
 	printFile(population[0].fitness);
 //	cout << GENS << " " << population[0].fitness << " " <<  (te.tv_sec-ts.tv_sec)<<"."<<abs(te.tv_nsec-ts.tv_nsec) << endl;
-	cout << population[0].fitness <<  endl;
-//	cout << clonationRate << " " << clonationFactor << " "<< replaceRate << " " << population[0].fitness << " " <<  (te.tv_sec-ts.tv_sec)<<"."<<abs(te.tv_nsec-ts.tv_nsec) << endl;
+//	cout << population[0].fitness <<  endl;
+	cout << clonationRate/POP << " " << clonationFactor << " "<< replaceRate/POP << " " << population[0].fitness << " " <<  (te.tv_sec-ts.tv_sec)<<"."<<abs(te.tv_nsec-ts.tv_nsec) << endl;
 
 	return 0;
 }
