@@ -1,0 +1,70 @@
+%Incluir los mejores resultados obtenidos en terminos de fitness, utilizando una tabla y si es posible comparándolos con los mejores de la literatura. Análisis de tiempo requerido para lograr esos resultados.
+
+La siguiente tabla, posee los resultados de los siguientes procedimientos:
+\begin{itemize}
+	\item \textbf{Mejor resultado conocido}
+
+		Mejor resultado conocido según la CSPlib~\cite{CSP}.
+		Se entiende que éstas soluciones pueden contener los resultados de implementaciones de algoritmos completos,
+		por lo que al recorrer todo el espacio de búsqueda es más probable que lleguen al mejor óptimo,
+		pero quizás el tiempo les juega una mala pasada.
+
+	\item \textbf{Implementación Inicial}
+
+		Corresponden a los mejores resultados obtenidos cuando se realizó la primera implementación del algoritmo,
+		es decir, sin considerar ningún tipo de sintonización o control de parámetros, sólo se probaron
+		los desempeños de distintas técnicas para ciertos componentes del algoritmo.
+
+	\item \textbf{Sintonización de Parámetros por separado}
+
+		Los resultados de este procedimiento consisten en los mejores obtenidos con respecto a las distintas pruebas
+		que se realizaron en la sintonización. Corresponden a la elección del mejor valor de las pruebas determinadas,
+		es decir, por separado, ya que las mejoras de alguna prueba no se aplicaban a las demás.
+
+	\item \textbf{Sintonización de Parámetros en conjunto}
+
+		Corresponden a los resultados considerados en conjunto luego de la sintonización, considerando las mejores
+		combinaciones de las pruebas realizadas. También cabe señalar que acá se cambió el mecanismo de la generación
+		de números aleatorios, lo cual favoreció en enorme manera el desempeño del algoritmo.
+
+	\item \textbf{Control de Parámetros}
+
+		Los valores expuestos en este procedimiento, corresponden a los mejores valores obtenidos luego de realizar
+		un control de parámetros de dos formas distintas, controlando distintos parámetros. Realizado después de la sintonización.
+\end{itemize}
+
+\begin{center}
+
+\footnotesize{
+\begin{tabular}{|l|c|c|c|c|c|c|}
+\hline
+						    & \multicolumn{2}{|c|}{\texttt{pb\_200\_01.txt}} & \multicolumn{2}{|c|}{\texttt{pb\_200\_09.txt}} & \multicolumn{2}{|c|}{\texttt{pb\_200\_10.txt}} \\ \hline
+\textbf{Procedimiento} 		& \textbf{Fitness} & \textbf{Tiempo [s]} & \textbf{Fitness} & \textbf{Tiempo [s]} & \textbf{Fitness} & \textbf{Tiempo [s]} \\\hline 
+Mejor resultado conocido    & 0				   & -					 &  10				& 		-			  &		19			 & 		-			   \\\hline
+Implementación Inicial      & 199			   & 1.146				 &  185				& 		1.393		  &		160			 & 	1.139			   \\\hline
+Sint. de Parám. por separado &  167& 15.110				 &  152				& 		11.243		  &		126			 & 	11.210			   \\\hline
+Sint. de Parám. en conjunto &  	77 & 104.734			 &  71				& 		104.156		  &		55			 & 	103.314			   \\\hline
+Control de Parámetros       & 75			   & 101.152			 &  64				& 		104.641		  &		63			 & 	105.684			   \\\hline
+\end{tabular}
+}
+\end{center}
+
+Claramente se puede observar la evolución del algoritmo en términos de los distintos procedimientos que se han realizado,
+a lo largo del proyecto.
+
+Si bien es cierto, los resultados se fueron mejorando cada vez más, estos siguen estando muy alejados
+de los mejores resultados obtenidos a nivel mundial, pero se justifico anteriormente la diferencia
+que podría provocar esto, con respecto a la resolución del presente problema con algoritmos completos.
+
+De la misma forma que han mejorado los resultados, podemos ver que le tiempo de ejecución por cada procedimiento,
+ha ido en crecimiento notablemente, aumentando en casi un 10000\% los tiempos iniciales,
+pero a pesar de que el tiempo aumentó, no son grandes cantidades, como días o semanas, si no más bien unos pocos
+segundos, lo que insta a poder aumentar los valores de algunos parámetros para que el algoritmo se tome
+mucho más tiempo y pueda obtener soluciones un poco mejor.
+
+A pesar de utilizar instancias distintas, los valores de los parámetros fueron evolucionando casi al unísono,
+lo que habla bien del algoritmo, ya que no posee un comportamiento totalmente independiente de las
+instancias a utilizar, si no más bien, está bien estructurado para poder funcionar de una buena forma,
+independiente de la complejidad del problema.
+
+Un análisis de los procedimientos serán abarcados en la siguiente sección.

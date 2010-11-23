@@ -1,6 +1,13 @@
+El presente documento tiene como objetivo principal,
+poder explicar la experiencia de la implementación de un algoritmo
+de ``Selección Clonal'' para resolver el famoso problema del ``Car Sequencing''.
+Cuando nos referimos a implementación, estamos considerando los pasos naturales
+por los que la implementación de cualquier problema de optimización debe pasar,
+es decir, Implementación, Sintonización y Control de parámetros.
+
 %Una explicación breve de lo que consiste el informe.
 %Introducción al problema que se estudiará, motivación.
-Actualmente la tecnología juega un papel importante en el desarrollo mundial,
+Por otro lado, es necesario saber que actualmente la tecnología juega un papel importante en el desarrollo mundial,
 permitiendo tener avances en variados temas, ya sean en el área de la salud,
 las industrias, etc, pero por lo general el común de las personas asocia
 tecnología a elementos como computadoras, teléfonos celulares, cámaras fotográficas,
@@ -47,11 +54,15 @@ diferencia bastante notoria, la cual es que contiene además las restricciones d
 Además éste problema incluye casos reales con más de 1300 vehículos, por lo que su propuesta parece ser un modelo un poco
 más realista.
 
-Finalmente, el presente documento se encargará de mostrar distintas aproximaciones algoritmicas
-para solucionar el ``Car Sequencing Problem'', desde técnicas completas hasta incompletas;
-de la misma forma se describiran algunos problemas en los cuales la ``Selección Clonal'' cumple
-un papel importante, presentando una buena alternativa a la hora de buscar el algoritmo ideal.
-Por otra parte se explicará la implementación del algoritmo, para luego abordar la sintonización
-de los parámetros más relevantes y posteriormente su control determinado.
-
-\red{Estructura  y motivación arriba}
+Finalmente, el presente documento se encargará de realizar una definición del problema~\ref{sec:definicion}
+y de la misma forma mostrar distintas aproximaciones algorítmicas para solucionar el ``Car Sequencing Problem'',
+desde técnicas completas hasta incompletas~\ref{sec:estadoArte} de la misma forma se describirán algunos
+problemas en los cuales la ``Selección Clonal'' cumple un papel importante~\ref{sec:estadoArteTecnica},
+ presentando una buena alternativa a la hora de buscar el algoritmo ideal. Luego se pasará a realizar una
+descripción más técnica, explicando el algoritmo en sí~\ref{sec:algoritmo}, su representación~\ref{sec:representacion},
+considerando después una propuesta de la implementación~\ref{sec:propuesta}.
+Terminando la implementación inicial, se procederá a explicar la sintonización del algoritmo~\ref{sec:sintonizacion},
+describiendo los parámetros~\ref{sec:parametros} y las pruebas realizadas~\ref{sec:pruebasSintonizacion}.
+Para finalizar el procedimiento de implementación, se procederá a explicar el control de parámetros realizado~\ref{sec:control},
+de donde se obtienen los últimos detalles para la implementación final.
+Finalmente, se explicarán y mostrarán los resultados obtenidos~\ref{sec:resultados} en todo este largo procedimiento.

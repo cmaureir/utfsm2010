@@ -1,106 +1,50 @@
-%Las conclusiones deberían incluir:
+Desde el comienzo del presente proyecto el objetivo principal ha sido poder
+mejorar cada día la implementación del algoritmo, por lo que independiente de las pruebas
+señaladas, siempre existió la preocupación y constante mejora del código correspondiente.
 
-Luego de las dos aproximaciones previas para poder sintonizar nuestro algoritmo,
-en las cuales se obtuvieron bastantes mejoras, es necesario formalizar un poco
-el desempeño de cada forma, lo que puede ser posible comparando tiempos de ejecución,
-\emph{fitness}, etc.
+La primera parte del proyecto consistió netamente en una investigación tanto del problema
+como de la técnica a utilizar, la que sirvió enormemente para poder comprender en la realidad
+el verdadero funcionamiento de la ``Selección Clonal'', aplicado a distintos problemas,
+desde uno tan simple con un \emph{Crew Scheduling} hasta la resolución de problemas del área
+de la robótica para determinar los caminos de ciertos robots. De la misma forma, se comprendió
+el impacto e importancia del ``Car Sequengin Problem'' en el mundo, lo que sirvió de motivación
+central para el trabajo.
 
-%- Comparación de resultados de la sintonización manual vs sintonización automática.\\
+La segunda parte del proyecto consistió en la primera implementación del algoritmo en sí,
+la cual se realizó buscando la mejor combinación de componentes para obtener buenos resultados.
+Cada procedimiento del algoritmo de ``Selección Clonal'' se probó realizándolo de al menos
+dos formas posibles, ya sea desde la creación de la población inicial, hasta la misma hipermutación.
+Esta parte fue esencial para el resto del proyecto, debido a que una elección incorrecta de algún
+componente, provocaría malos resultados más adelante.
+Los resultados obtenidos en ésta parte, fueron bastante malos, lo que se pudo mejorar con creces
+en las siguientes partes del proyecto.
 
-Primero que todo es necesario realizar una pequeña comparación entre los \emph{fitness}
-obtenidos en cada procedimiento por cada instancia.
+La tercera parte consistió en la sintonización de parámetros, ésta parte fue una de las más
+enriquecedoras para el algoritmo, pues los valores obtenidos mejoraron en gran cantidad,
+lo cual se puede deber a que se realizó una sintonización tanto manual como automática (REVAC~\cite{REVAC}),
+de ésta forma, no sólo se pudo obtener una batería de valores que poseían buenos resultados,
+sino que se pudo establecer una relación entre los parámetros utilizados por el algoritmo.
+La sintonización en sí, se hizo en dos partes, primero se hicieron pruebas por separado,
+para luego analizar las relaciones y poder establecer una configuración determinada, utilizada
+después para el control. Lo importante de la sintonización, es que gracias a ella los valores
+obtenidos pudieron disminuir en más de un 50\%.
 
-\begin{center}
-\begin{tabular}{|l|c|c|c|c|c|}
-    \hline
-    \textbf{Instancia} & \textbf{prueba1} & \textbf{prueba2} & \textbf{prueba3} & \textbf{prueba4} & \textbf{prueba5}\\\hline
-    \texttt{pb\_200\_01.txt} & \red{167} & 186 & 200 & 192 & 203\\\hline 
-    \texttt{pb\_200\_09.txt} & \red{152} & 166 & 178 & 180 & 189\\\hline
-    \texttt{pb\_200\_10.txt} & \red{126} & 144 & 164 & 160 & 159\\\hline
-\end{tabular}
-\label{Fitness de cada prueba}
-\end{center}
-
-Podemos notar que los mejores resultados fueron obtenidos al momento de variar el tamaño de la población,
-lo que claramente nos indica lo trascendental de su función dentro del algoritmo, pero de todas formas,
-esto puede ser debido a que la ``configuración base'' que se utilizó ya se encontraba un poco sintonizada
-y el único parámetro que faltaba mejorar era \texttt{POP}.
-
-%- Comparación en términos de tiempo utilizado.\\
-
-Luego es necesario tener presente el tiempo en total que demoró cada prueba por cada instancia.
-
-\begin{center}
-\begin{tabular}{|l|c|c|c|c|c|}
-    \hline
-    \textbf{Instancia} & \textbf{prueba1} & \textbf{prueba2} & \textbf{prueba3} & \textbf{prueba4} & \textbf{prueba5}\\\hline
-    \texttt{pb\_200\_01.txt} & 1608.853 & 256.177 & 13.246 & 132.608 & 161\\\hline 
-    \texttt{pb\_200\_09.txt} & 1593.739 & 262.906 & 12.027 & 132.068 & 195\\\hline
-    \texttt{pb\_200\_10.txt} & 1662.580 & 256.546 & 12.133 & 132.124 & 169\\\hline
-\end{tabular}
-\label{Tiempo total de cada prueba [s]}
-\end{center}
-
-Nos damos cuenta que claramente al realizar cambios en el tamaño de la población, el tiempo que tomó la prueba fue
-notablemente superior al resto por un un hecho totalmente predecible, ya que si consideramos poblaciones muy grandes
-todo el procedimiento y trabajo que se realiza con ella va a tomar mucho más tiempo.
-
-De la misma forma, hay que notar que el segundo lugar de los mejores \emph{fitness}, que lo tenía la \blue{prueba2},
-se demora bastante menos tiempo y los resultados no son tan malos en comparación con el primer lugar, lo que nos podría
-servir de consejo a la hora de buscar rapidez en la ejecución y buenos resultados, sólo cambiando la cantidad de generaciones
-con una población no tan grande.
+La curta parte y final, consistió en el Control de parámetros, donde se utilizaron dos
+aproximaciones, una propuesta en éste informa, y otra adaptando la idea principal que expone
+Riff et al~\cite{riff}, para controlar parámetros en problemas de selección clonal.
+Si bien es cierto los valores obtenidos acá fueron un poco mejor por casi nada,
+se obtuvo una mejora, lo cual sirve como motivación para poder trabajar más a fondo el control
+de los parámetros del algoritmo. Las dos implementaciones de control no fueron técnicas muy
+sofisticadas, por lo que no implicaron un gran aporte al tiempo en ejecución.
 
 
-%- Conclusiones con respecto a la utilidad del sintonizador usado, ventajas desventajas.\\
-Una de las ventajas principales al momento de utilizar REVAC es que no necesitamos una configuración inicial,
-sólo necesitamos establecer cuales son los parámetros a sintonizar y cual es el rango de sus valores, lo cual
-facilita mucho a la hora de poder sintonizar cualquier algoritmo, pues no es un gasto de tiempo muy significativo.
-
-El problema que surge a la hora de seleccionar este sintonizador es su resultado, debido a que no nos entrega
-un valor determinado para cada parámetro, sino que nos entrega un rango de valores en que nuestro algoritmo se comporta mejor,
-pero de la mano de ésto es que REVAC considera que los valores de nuestros parámetros siguen una distribución uniforme
-por lo que las mejores soluciones que nos entrega estaría todas cercanas al vecindario central de dicha distribución.
-
-% Extra
-Con respecto a los valores de los parámetros obtenidos, claramente podemos establecer que el algoritmo
-se comporta muy bien cuando tenemos una relación entre el \emph{``Tamaño de la población''} y el \emph{``Número de iteraciones''},
-de 1 es 10, es decir:
-
-\begin{center}
-\emph{Tamaño Población  $\approx$  10\% $\cdot$ Número de Generaciones}
-\end{center}
-
-Valores que serán aplicados para un posterior control.
-
-Respecto a los otros parámetros, podemos decir que la ``Tasa de reemplazo'' tiene un comportamiento
-bastante predecible, pues para pocas iteraciones el valor recomendable es cercano a 0,
-y para los casos donde la cantidad de iteraciones es similar a la relación señalada previamente,
-es cercano a $0.5$, por lo que como se mantiene en la mitad de la población, es un elemento importante
-para poder controlar posteriormente.
-
-Para los últimos dos parámetros, es decir, la ``Tasa de Clonación'' y el ``Factor de Clonación'',
-poseen un comportamiento que los relaciona directamente, pues a pesar de obtener valores más o menos
-distintos en la \emph{prueba4} y con \emph{REVAC}, siempre tienden a tener una diferencia de un valor de no más
-de $0.2$ y que también ambos sean mayores que $0.5$. Por la misma razón de la ``Tasa de reemplazo'',
-estos parámetros serán un objeto importante a la hora de controlar, para determinar su valor más correcto.
-
-
-
-%- Conclusiones en relación a su algoritmo, características de los parámetros, características de la búsqueda.\\
-Con respecto a la implementación del algoritmo de ``Selección Clonal'', es correcto apreciar que ha tenido una notable
-evolución respecto a sus origines, pues en el camino se han corregido bastantes errores de implementación y también
-se ha considerado la posibilidad de ir realizando mejoras sustanciales de acuerdo a ciertos procedimiento internos,
-pues como ya bien se sabe, los algoritmos de optimización poseen una estructura ``recomendable'' pero no es una regla
-fundamental, por lo que cada implementación será distinta, y si no es en la estructura, será en la implementación de cada
-paso del algoritmo, por ejemplo en el presente algoritmo se modifico más de tres veces la forma de realizar la hipermutación
-de los individuos seleccionados, pasando de utilizar un factor, una constante hasta la guía actual que posee respecto
-del índice del individuo en la población determinada.
-
-Los parámetros utilizados podrían mejorarse en el sentido de  ampliar o modificar los rangos de sus valores, sobre todo
-en el caso del tamaño de la población y de la cantidad de generaciones debido a que son parámetros esenciales al momento
-de su ejecución. Por otro lado los demás parámetros fueron probado dentro de todo su rango posible, por lo que no sería
-necesario poder variarlos un poco.
-
-Un problema que posee la implementación actual, es que indirectamente efectúa un \emph{elitismo} muy fuerte, lo que se ha
-podido mejorar respecto a las implementaciones pasadas, pero que es un factor importante que se podría seguir trabajando a futuro.
-
+Finalmente, como trabajo futuro sería muy aconsejable poder estudiar la estructura básica
+del algoritmo, pensando en poder mejorar el movimiento de la hipermutación, ya que actualmente
+consiste en realizar una cantidad determinada de swaps al individuo en cuestión, proceso que podría ser
+mejorado. Por otro lado, la forma de selección de individuos se encuentra actualmente desarrollada
+por la ruleta, y la de los clones considerando sólo los mejores, quizás buscar otros mecanismo
+de selección podrían ayudar al algoritmo, de la misma forma se podría utilizar otra técnica para poder
+realizar una sintonización automática, como por ejemplo \emph{ParamILS}.
+Por último y no menos importante, poder repasar el control de parámetros sería beneficioso para
+la implementación, pues con un estudio más profundo se podrían llegar a mejores resultados que los obtenidos
+en el presente informe.

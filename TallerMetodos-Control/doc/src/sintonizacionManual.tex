@@ -111,6 +111,22 @@ cada una están bien parecidas, entre $11$ y $15$ segundos, por lo que no hay ma
 
 \textbf{Configuración escogida:}\\
 
+El gráfico~\ref{fig:2} nos muestra un comportamiento bastante adecuado a lo que debió pasar
+en la realidad, si nos damos cuenta los primeros fitness son muy altos debido a que la cantidad
+de iteraciones del algoritmo es muy poca, por lo que no se alcanza a desarrollar en su totalidad.
+
+A medida que vamos aumentando la cantidad de generaciones nos vamos percatando que el fitness
+comienza a disminuir casi como una exponencial inversa, lo cual tiene sentido pues mientras
+más iteraciones tengamos, el algoritmo va a poder desarrollarse mucho más y llevar a cabo
+un buen tratamiento de individuos.
+
+Pero todo este procedimiento no consiste sólo en poder aumentar la cantidad de generaciones,
+ya que si nos damos cuenta, pasado la mitad del gráfico el fitness sigue disminuyendo pero
+en mucha menor cantidad que en un principio, lo uqe está perfecto para poder realizar
+un control de parámetros en lo que són el número de generaciones, para saber
+hasta que punto mi algoritmo se va a comportar de la misma forma.
+
+
 \begin{center}
 \begin{tabular}{|l|c|c|c|c|}
 	\hline
@@ -120,6 +136,17 @@ cada una están bien parecidas, entre $11$ y $15$ segundos, por lo que no hay ma
 	\texttt{pb\_200\_10.txt} & 1630 & 144 & 7.562 & 256.546 \\\hline
 \end{tabular}
 \end{center}
+
+Luego de ver los valores, podemos darnos cuenta que el algoritmo se comporta bien con mas de 1500 generaciones,
+por lo que podriamos considerar que desde ese punto el comportamiento es casi horizontal y que las mejoras
+son muy pocas, con respecto al tiempo, este aumento bastante, lo que es obvio si pensamos que mientras
+más iteraciones el problema se tomará más tiempo para hacer las mismas actividades muchas más veces.
+
+Pero independiente del tiempo que aumento bastante, en términos generales el tiempo de ejecución sigue siendo
+poco, sólo un par de segundos, lo que insita a poder probar el algoritmo con muchas más generaciones para
+ver que tanto es el costo que debemos pagar en sentidos de tiempos, para obtener una buena solución.
+
+
 
 \newpage
 \subsubsection{Tasa de reemplazo}
@@ -173,7 +200,6 @@ es 0, pues el algoritmo no alcanza a necesitar diversidad.
 \end{tabular}
 \end{center}
 
-
 \newpage
 \subsubsection{Factor de clonación y Tasa de clonación}
 
@@ -218,7 +244,6 @@ de los dos parámetros en todo tu dominio.\\
 \end{center}
 \end{figure}
 
-\newpage 
 \begin{figure}[h!]
 \begin{center}
 	\includegraphics[width=0.95\textwidth]{img/10-4.pdf}
@@ -242,10 +267,11 @@ el algoritmo se comporta de buena forma, por lo que a medida que vayamos aumenta
 la cantidad de iteraciones podremos obtener mejores resultados, pero las mejoras
 irán en disminución a medida que avancemos.
 
-\newpage
 %
 %
 %elegir una configuración para cada instancia
 %	-indicar el fitness
 %	-identificar claramente las características del algoritmo.
 %	-estimación del tiempo en realizarla.
+\newpage
+
