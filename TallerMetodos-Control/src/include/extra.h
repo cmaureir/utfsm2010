@@ -18,7 +18,7 @@ using namespace std;
 #define N 256	   // Variable para crear arreglos determinados
 // Variables Problema
 #define POP 160   // Tamaño poblacion
-#define GENS 2000  // Numero maximo de generaciones
+#define GENS 1000000  // Numero maximo de generaciones
 
 float clonationFactor = 0.8;// Factor para calcular individuos clonados
 //float replaceRate =  POP*0.5;   // Tasa para la cantidad de elementos reemplazados
@@ -26,7 +26,7 @@ float clonationFactor = 0.8;// Factor para calcular individuos clonados
 // control
 int clonationRate = (int)(POP*0.8);  // Tasa para realizar la clonacion (será el n)
 //int replaceRate =  (int)POP - clonationRate;   // Tasa para la cantidad de elementos reemplazados
-int replaceRate =  (int)(POP*0.5);   // Tasa para la cantidad de elementos reemplazados
+int replaceRate =  (int)(POP*0.9);   // Tasa para la cantidad de elementos reemplazados
 int clone_control = 0;
 double pS[GENS];
 double sM[GENS];

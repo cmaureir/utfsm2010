@@ -81,4 +81,62 @@ referencia a la ejecución "base" del algoritmo.
 		se realiza una cantidad de \emph{swap} equivalente al $40\%$ de la cantidad de autos.
 	
 		Para ver que elementos hacen el \emph{swap}, se eligen aleatoriamente dos elementos para intercambiar.
+\
 \end{enumerate}
+
+
+Respecto a los gráficos comparativos de cada situación,
+se ha realizado 5 configuraciones distintas, para ver la diferencia en el rendimiento:
+\begin{enumerate}
+    \item Normal:
+
+        \begin{itemize}
+            \item Generación de población: Cumpliendo restricciones duras.
+            \item Selección de clones: Selección de los mejores.
+            \item Reemplazo al término de iteración:  Se reemplazan los peores.
+            \item Tipo de clonación: Mediante fórmula.
+        \end{itemize}
+    \item Población aleatoria:
+
+        \begin{itemize}
+            \item Generación de población: \textbf{Rompiendo restricciones duras}.
+            \item Selección de clones: Selección de los mejores.
+            \item Reemplazo al término de iteración:  Se reemplazan los peores.
+            \item Tipo de clonación: Mediante fórmula.
+        \end{itemize}
+
+    \item Selección ruleta:
+
+        \begin{itemize}
+            \item Generación de población: Cumpliendo restricciones duras.
+            \item Selección de clones: \textbf{Selección mediante ruleta}.
+            \item Reemplazo al término de iteración:  Se reemplazan los peores.
+            \item Tipo de clonación: Mediante fórmula.
+        \end{itemize}
+
+    \item Reemplazo aleatorio:
+
+        \begin{itemize}
+            \item Generación de población: Cumpliendo restricciones duras.
+            \item Selección de clones: Selección de los mejores.
+            \item Reemplazo al término de iteración:  \textbf{Se reemplazan aleatoriamente}.
+            \item Tipo de clonación: Mediante fórmula.
+        \end{itemize}
+
+    \item Secuencia Fija:
+
+        \begin{itemize}
+            \item Generación de población: Cumpliendo restricciones duras.
+            \item Selección de clones: Selección de los mejores.
+            \item Reemplazo al término de iteración:  Se reemplazan los peores.
+            \item Tipo de clonación: \textbf{Secuencia fija}.
+        \end{itemize}
+
+\end{enumerate}
+
+Los resultados obtenidos y graficados corresponden al \emph{promedio}, \emph{desviación estándar},
+\emph{valores mínimos}, \emph{valores máximos} y \emph{tiempo de ejecución}.
+
+
+Ver anexo~\ref{sec:anexo}.
+

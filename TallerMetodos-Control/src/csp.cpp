@@ -18,14 +18,13 @@ int main(int argc, const char *argv[])
 
 	int psBajos = 0, psCeros = 0 , psAltos = 0;
 	int smBajos = 0, smCeros = 0 , smAltos = 0;
-
 	while(generation<GENS){
 		srand(generation);
-//		cout << "-----" << endl;
-//		cout << "Iteracion: " << generation << endl;
+		cout << "-----" << endl;
+		cout << "Iteracion: " << generation << endl;
 		cleanPops();
-		averageFitness(true);
-		sortPop(population);
+//		averageFitness(true);
+//		sortPop(population);
 		saveBest(true);
 
 		selection(clonationRate, population);
@@ -34,9 +33,9 @@ int main(int argc, const char *argv[])
 		evaluation(clonePop);
 		cloneSelection(clonePop);
 	
-		sortPop(clonePop);
-		saveBest(false);
-		averageFitness(false);
+//		sortPop(clonePop);
+//		saveBest(false);
+//		averageFitness(false);
 
 		pS[generation] = bestNewCellFitness - bestCellFitness; 
 		sM[generation] = newCellAverage - cellAverage;
@@ -45,21 +44,21 @@ int main(int argc, const char *argv[])
 
 //Inicial
 
-		if( pS[generation] > 0 ){
-			psAltos++;
-		}
-		else if( pS[generation] == 0 ){
-			psCeros++;
-		}
-		else if( pS[generation] < 0 ){
-			psBajos++;
-		}
-		if( sM[generation] > 0 )
-			smAltos++;
-		else if( sM[generation] == 0 )
-			smCeros++;
-		else if( sM[generation] < 0 )
-			smBajos++;
+//		if( pS[generation] > 0 ){
+//			psAltos++;
+//		}
+//		else if( pS[generation] == 0 ){
+//			psCeros++;
+//		}
+//		else if( pS[generation] < 0 ){
+//			psBajos++;
+//		}
+//		if( sM[generation] > 0 )
+//			smAltos++;
+//		else if( sM[generation] == 0 )
+//			smCeros++;
+//		else if( sM[generation] < 0 )
+//			smBajos++;
 
 
 //// Forma 1		
@@ -109,24 +108,26 @@ int main(int argc, const char *argv[])
 		newGeneration(replaceRate);
 		evaluation(population);
 //		
-//		cout << "Fitness: " << bestCellFitness << endl;
+		cout << "Fitness: " << bestCellFitness << endl;
 //		cout << "clone_control: " << clone_control << endl;
 //		cout << "clonationRate: " << clonationRate << endl;
-//		cout << "replaceRate: " << replaceRate << endl;
-
-
+		cout << "replaceRate: " << replaceRate << endl;
+		if ( generation != 0 && generation%2000 == 0 && replaceRate >= (int)(POP*0.5))
+			replaceRate -= (int)(POP*0.1);
+		if (bestCellFitness == 0)
+			generation = GENS;
 		generation++;
 	}
 
-	cout << "PS" << endl;
-	cout << "Altos: " << psAltos << endl;
-	cout << "Ceros: " << psCeros << endl;
-	cout << "Bajos: " << psBajos << endl;
-
-	cout << "SM" << endl;
-	cout << "Altos: " << smAltos << endl;
-	cout << "Ceros: " << smCeros << endl;
-	cout << "Bajos: " << smBajos << endl;
+//	cout << "PS" << endl;
+//	cout << "Altos: " << psAltos << endl;
+//	cout << "Ceros: " << psCeros << endl;
+//	cout << "Bajos: " << psBajos << endl;
+//
+//	cout << "SM" << endl;
+//	cout << "Altos: " << smAltos << endl;
+//	cout << "Ceros: " << smCeros << endl;
+//	cout << "Bajos: " << smBajos << endl;
 
 	
 	clock_gettime(CLOCK_REALTIME, &te);
@@ -135,6 +136,10 @@ int main(int argc, const char *argv[])
 //	printFile(population[0].fitness);
 //	cout  << replaceRate << " " << (float)((float)replaceRate/(float)POP) << " "<<population[0].fitness << " " <<  (te.tv_sec-ts.tv_sec)<<"."<<abs(te.tv_nsec-ts.tv_nsec) << endl;
 	cout  << population[0].fitness << " " <<  (te.tv_sec-ts.tv_sec)<<"."<<abs(te.tv_nsec-ts.tv_nsec) << endl;
+	for (int cars = 0 ; cars < VARS ; cars ++ ){
+		cout << population[0].gene[cars] << " ";
+	}
+	cout << endl;
 
 	return 0;
 }
