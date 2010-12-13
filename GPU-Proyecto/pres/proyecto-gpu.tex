@@ -1,0 +1,47 @@
+\documentclass{beamer}
+\usepackage[spanish,activeacute]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{verbatim}
+\usepackage{color}
+\usepackage{alltt}
+
+
+\definecolor{gray2}{rgb}{100,100,100}
+\definecolor{red}{rgb}{255,0,0}
+\definecolor{green}{rgb}{0,1,0} 
+\definecolor{blue}{rgb}{0,0,1} 
+\newcommand{\blue}{\textcolor{blue}}
+\newcommand{\red}{\textcolor{red}}
+\newcommand{\green}{\textcolor{green}}
+
+\usetheme[pageofpages=of,% String used between the current page and the
+                         % total page count.
+          alternativetitlepage=true,% Use the fancy title page.
+          titlepagelogo=img/gpu,% Logo for the first page.
+          watermark=,% Watermark used in every page.
+          watermarkheight=150px,% Height of the watermark.
+          watermarkheightmult=4,% The watermark image is 4 times bigger
+                                % than watermarkheight.
+          ]{Torino}
+
+\usecolortheme{nouvelle}
+
+\author{\large Cristián D. Maureira Fredes}
+\title{\huge Multiplicación de Matrices en GPU}
+\subtitle{\large \textit{``Computación de Alto Desempeño en GPU''}}
+\institute{\textbf{Departamento de Informática\\ (UTFSM)}}
+\date{\today}
+
+\begin{document}
+
+\begin{frame}[t,plain]
+\titlepage
+\end{frame}
+
+\input{src/introduccion.tex}
+\input{src/problema.tex}
+\input{src/solucion.tex}
+\input{src/resultados.tex}
+\input{src/conclusiones.tex}
+
+\end{document}
