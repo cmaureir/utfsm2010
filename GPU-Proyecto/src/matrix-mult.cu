@@ -1,15 +1,21 @@
-// Thread block size:
-#include <stdio.h>
-#include <stdlib.h> 
 #include <iostream>
 #include <iomanip>
-#include <cstdlib>
+#include <time.h>
 #include <cuda_runtime_api.h>
 #include <fstream>
-using std::ifstream;
-#define BLOCK_SIZE 16
-
 using namespace std;
+using std::ifstream;
+#define BLOCK_SIZE  2
+
+// max 40
+// 32
+// 25
+// 20
+// 16
+// 10
+// 8
+// 4
+// min 2
 
 // Device multiplication function called by Mul()
 // Compute C = A * B
@@ -116,7 +122,7 @@ void Mul(const float* A, const float* B, int hA, int wA, int wB,float* C)
 	// Launch the device computation
 	Muld<<<dimGrid, dimBlock>>>(Ad, Bd, wA, wB, Cd);
 
-	cout << cudaGetErrorString(cudaGetLastError()) << endl;
+	//cout << cudaGetErrorString(cudaGetLastError()) << endl;
 
 	// Read C from the device
 	cudaMemcpy(C, Cd, size, cudaMemcpyDeviceToHost);
@@ -126,8 +132,6 @@ void Mul(const float* A, const float* B, int hA, int wA, int wB,float* C)
 	cudaFree(Ad);
 	cudaFree(Bd);
 	cudaFree(Cd);
-
-	cout << "End Mul" << endl;
 }
 
 void readFile(){
@@ -163,43 +167,19 @@ void readFile(){
     f.close();
 }
 
-
-
-
-//Main function.
 int main(int argc , char* argv[]){
-   
-   // float A[3][3] = { {2,3,4}, {1,3,5}, {2,8,7}};
-   // float B[3][3] = { {2,3,4}, {1,3,5}, {2,8,7}};
-    int i;
+    timespec ts, te;
+ 
     float *C;
-	//C = new float *[3];
     C = (float*)malloc(sizeof(float) * 1600 * 1600);
-//
-//    for(i = 0; i < 9; i++);
-//    {
-//        C[i] = (float*)malloc(3 * sizeof(float));
-////        memset(C[i], 0, 3 * sizeof(float));
-//    }
-//
-//
-////    //Call CPU version
-
+	
 	readFile();
-
+    clock_gettime(CLOCK_REALTIME, &ts);
     Mul(*A,*B,1600,1600,1600,C);
-	cout << "----" << endl;
-	for(i=0;i<1600;i++){
-			cout << C[i] << " ";
-	}
-	cout << endl;
-	cout << "----" << endl;
-//    //free memory from C
-//    for(i = 0; i <= 9; i++);
-//    {
-//        free(C[i]);
-//    }
+    clock_gettime(CLOCK_REALTIME, &te);
+    cout  << BLOCK_SIZE << " " <<  (te.tv_sec-ts.tv_sec)<<"."<<abs(te.tv_nsec-ts.tv_nsec) << endl;
+
 	free(C);
     return 0;
-}//end of main().
+}
 

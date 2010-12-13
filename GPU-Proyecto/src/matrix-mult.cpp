@@ -1,6 +1,5 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include <iostream>
+#include <time.h>
 #include <cstdlib>
 #include <fstream>
 using std::ifstream;
@@ -27,21 +26,18 @@ void Mul(int hA, int wA, int wB,float* C){
 
 void readFile(){
 
-    int i=0,j=0,tmp=0;
+    int i=0,j=0,tmp=0, num;
 	ifstream f;
-	int num;
 	bool t = true;
+
 	f.open("1");
 	f >> num;
 	tmp += 1;
 
-	while(!f.eof())
-     {
+	while(!f.eof()){
 		if(j == 1600){
 			j=0;
 			i++;
-			//cout << endl;
-			//getchar();
 		}
 		if(i == 1600){
 			t = false;
@@ -62,29 +58,16 @@ void readFile(){
 
 int main(int argc, const char *argv[])
 {
-    int i=0;
+	timespec ts, te;
     float *C;
     C = (float*)malloc(sizeof(float) * 1600 * 1600);
-	
 
 	readFile();
+
+    clock_gettime(CLOCK_REALTIME, &ts);
     Mul(1600,1600,1600,C);
+    clock_gettime(CLOCK_REALTIME, &te);
 
-
-    for(i=0;i<1600;i++){
-    	//for(j=0;j<1600;j++){
-		//	cout << A[i][j] << " ";
-			cout << A[0][i] << " ";
-		//}
-		//cout << endl;
-	}
-		cout << endl;
-
-	cout << "====================" << endl;
-
-    for(i=0;i<1600;i++){
-            cout << C[i] << " ";
-    }
-	cout << endl;
+    cout  << "CPU" << " " <<  (te.tv_sec-ts.tv_sec)<<"."<<abs(te.tv_nsec-ts.tv_nsec) << endl;
 	return 0;
 }

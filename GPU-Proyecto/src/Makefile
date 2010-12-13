@@ -1,7 +1,7 @@
 NVCC = nvcc
 CC = g++
 CUFLAGS = -G #--device-emulation
-CXXFLAGS = -Wall -lm -fopenmp
+CXXFLAGS = -Wall -lm -fopenmp -lrt
 
 # si trabaja en otro computador,
 # cambie esto al directorio donde tenga instalado CUDA
