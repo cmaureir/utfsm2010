@@ -13,23 +13,27 @@ Para este caso se ha considerado una multiplicación de matrices
 cuadradas, aunque la función sigue siendo válida para matrices
 no cuadradas.
 
-Procedimiento
-se cargan las dos matrices de la memoria global a la memoria compartida,
-cada hebra carga carga un elemento.
-cada hebra guarda resultado de multiplicación y se escriben en la memoria global una vez
-terminan todos.
+El procedimiento de la multiplicación es sencillo,
+primero se cargan las dos matrices de la memoria global a la memoria compartida,
+cada hebra carga un elemento y guarda resultado de multiplicación,
+luego se escriben en la memoria global una vez terminanados todos.
 
-Rapida memoria compartida, mejoramos el ancho de banda del acceso a la memoria global,
-solo se leen A y B (wA / block size) veces.
+Una de las fortalezas es el buen uso de la memoria compartida,
+donde se mejora el ancho de banda del acceso a la memoria global,
+ya que sólo se leen A y B $n$ veces, donde $n$ es el tamaño del ancho de la matriz
+A dividio por el tamaño del bloque (width A / block size).
 
-No es lo más optimo.
+En la documentación se señala también,
+que no es la implementación más óptima para éste problema,
+que sólo se trata de representar varios principios y mecanismos
+de la programación en GPU.
 
 \subsection{Implementación}
 
 Consta de una función en el \texttt{device},
 una función en el \texttt{host} y el \texttt{main}.
 
-La idea es:
+La idea es obtener la matriz C, de la multiplicación de las matrices A y B:
 $$C\ =\ A\ \cdot\ B$$
 
 \begin{itemize}
@@ -39,7 +43,7 @@ $$C\ =\ A\ \cdot\ B$$
 		\item Leer archivo con datos y crear matrices.
 		\item Llamar a \texttt{Mul()}
 	\end{itemize}
-	\item \texttt{Mul()}
+	\item \texttt{Mul()} (host)
 	\begin{itemize}
 		\item Cargar las matrices A y B, copiando sus valores.
 		\item Cargar la matriz vacia C en el device.
@@ -47,7 +51,7 @@ $$C\ =\ A\ \cdot\ B$$
 		\item Llamada al kernel \texttt{Muld()}
 		\item Leer C del device.
 	\end{itemize}
-	\item \texttt{Muld()}
+	\item \texttt{Muld()} (device)
 	\begin{itemize}
 		\item Calcular índices, para deteriminar la posición de inicio y fin de submatrices,
 		sin dejar de lado el tamaño del paso por cada iteración.
@@ -61,7 +65,7 @@ $$C\ =\ A\ \cdot\ B$$
 	\end{itemize}
 \end{itemize}
 
-\subsection{Pruebas}
+\section{Pruebas}
 
 Las pruebas se realizaron con 2 matrices de dimensiones,
 $1600x1600$, generando $2560000$ números aleatorios
@@ -96,12 +100,15 @@ sin utilizar programación paralela en C++.
 
 Los experimentos fueron realizados con distintos tamaños de
 valores para el \texttt{BLOCK\_SIZE} (ver tabla ~\ref{table:1}), cuidando de que fueran
-multiplos de el ancho de las matrices.
-Los valores no sobrepasaron a $40$ debido a que con números,
-mayores la compilación fallaba por utilizar muchos datos compartidos.
+múltiplos de el ancho de las matrices.
+
+Los valores no sobrepasaron a $40$ debido a que con números
+mayores, la compilación fallaba por utilizar muchos datos compartidos.
 
 Podemos ver en la figura~\ref{fig:1} que con \texttt{BLOCK\_SIZE} pequeño como es 2,
-el resultado no sirve casi de nada, en cambio luego que vamos aumentando,
+el resultado no sirve casi de nada, por el sentido de que sería practicamente hacer
+la misma multiplicación por cada elemento, sin ocupar paralelismo,
+en cambio luego que vamos aumentando el tamaño del bloque,
 notamos el aumento del desempeño de la implementación, llegando
 a 25 como un óptimo para éste ejemplo, puesto que despues se comporta
 muy similar.
@@ -111,18 +118,14 @@ debido a que no está paralelizado y sólo funciona en un procesador
 normal.
 
 Por otro lado, debido a que el ancho de cada matriz A y B
-son multiplos siempre del \texttt{BLOCK\_SIZE}, se asegura
-que no exista \emph{Memory Ensured}.
+son múltiplos siempre del \texttt{BLOCK\_SIZE}, el
+\emph{global memory coalescing} está asegurado.
 
-Tampoco hay Shared Memory Bank conflict, por que los indices
-de las hebras son los mismo y van variando de 0 a \texttt{BLOCK\_SIZE-1},
-entonces las hebras van accediendo a distintos BANK.
+Tampoco hay un conflicto \emph{Shared Memory Bank}, por que los índices
+de las hebras son los mismo y van variando de 0 a \texttt{(BLOCK\_SIZE-1)},
+entonces las hebras van accediendo a distintos espacios de memoria.
 
-La implementación cuida bien de no sufrir algún problema de divergencia,
+La implementación cuida bien de no sufrir algún problema de \emph{divergencia},
 pudiendo sincronizar las hebras en las 2 ocaciones más importantes
-del calculo, cuando se cargan las matrices de la memoria global a compartida,
+del cálculo, cuando se cargan las matrices de la memoria global a compartida,
 y luego de que se calculo la sub-matriz C en cada iteración.
-
-%hacer experimentos para medir
-%	speedup
-%	escalabilidad.
