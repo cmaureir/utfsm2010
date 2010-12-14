@@ -1,13 +1,13 @@
 src=proyecto
 
 all:
-	rubber -d $(src)
-	rubber --clean $(src)
+	@rubber -d $(src)
+	@rubber --clean $(src)
 
 clean:
-	rubber --clean
+	@rubber --clean
 
 distclean: 
-	rm -f $(src).pdf
+	@rm -f $(src).pdf
 x:
-	okular -f $(src).pdf
+	@okular $(src).pdf &> /dev/null &
