@@ -3,6 +3,28 @@
 \frametitle{Conclusiones}
 \framesubtitle{}
 \begin{itemize}
-	\item problemas
+	\item<1-> Valores de \texttt{BLOCK\_SIZE} \blue{[2,40]}.
+	\item<2-> Alto desempeño de la GPU sobre la CPU.
+	\item<3-> \emph{``Global Memory Coalescing''} asegurado.
+	\begin{itemize}
+		\item<4-> El ancho matriz es múltiplo de \texttt{BLOCK\_SIZE}.
+	\end{itemize}
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Conclusiones}
+\framesubtitle{}
+\begin{itemize}
+	\item<1-> No hay un conflicto con el \emph{``Shared Memory Bank''}.
+	\begin{itemize}
+		\item<2-> Índices de hebras de \texttt{0} a \texttt{(BLOCK\_SIZE - 1)}
+	\end{itemize}
+	\item<3-> No sufre problemas de \emph{``divergencia''}.
+	\begin{itemize}
+		\item <4-> Luego de que se carguen las matrices.
+		\item <5-> Luego del cálculo de \red{C}.
+	\end{itemize}
 \end{itemize}
 }

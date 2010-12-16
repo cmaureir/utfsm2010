@@ -3,6 +3,47 @@
 \frametitle{Solución}
 \framesubtitle{}
 \begin{itemize}
-	\item algoritmo
+	\item<1-> Main
+	\item<2-> Función en el \blue{host} para preparar los datos y variables.
+	\item<3-> Función en el \blue{device} para realizar las operaciones.
+\end{itemize}
+}
+
+
+\frame
+{
+\frametitle{Solución}
+\framesubtitle{Main}
+\begin{itemize}
+	\item<1-> Declaración y asignación de memoria de \red{C}.
+	\item<2-> Leer archivo de entrada y generar matrices (\red{A} y \red{B}).
+	\item<3-> Llamar a función en el \blue{host} (\texttt{Mul()}).
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Solución}
+\framesubtitle{Función en el \emph{Host} (\texttt{Mul()})}
+\begin{itemize}
+	\item<1-> Cargar las matrices \red{A} y \red{B}, copiando sus valores.
+	\item<2-> Cargar la matriz vacía \red{C} en el \blue{device}.
+	\item<3-> Calcular la dimensión del Bloque y del Grid.
+	\item<4-> Llamada al kernel \texttt{Muld()}.
+	\item<5-> Leer \red{C} del \blue{device}.
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Solución}
+\framesubtitle{Función en el \emph{Device} (\texttt{Muld()})}
+\begin{itemize}
+	\item<1->  Calcular índices
+	\begin{itemize}
+		\item<2-> Determinar la posición de \blue{inicio} y \blue{fin} de submatrices.
+		\item<3-> Determinar tamaño de \red{paso} por cada iteración.
+	\end{itemize}
+ 	\item<4-> Bucle de cálculo.
 \end{itemize}
 }

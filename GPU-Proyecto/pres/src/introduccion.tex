@@ -3,6 +3,34 @@
 \frametitle{Introducción}
 \framesubtitle{}
 \begin{itemize}
-	\item proyecto y origen
+	\item<1-> Ejemplo de paralelización.
+	\item<2-> Implementación básica.
+	\item<3-> Matrices cuadradas.
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Introducción}
+\framesubtitle{}
+\begin{itemize}
+	\item<1-> Procedimiento.
+	 \begin{itemize}
+	 	\item<2-> Cargar matrices de memoria \red{global} a \red{compartida}.
+		\item<3-> Cada \blue{hebra} posee un valor y guarda resultado de la multiplicación.
+		\item<4-> Se escriben en \blue{memoria global} cuando terminan todos.
+	 \end{itemize}
+\end{itemize}
+}
+
+\frame
+{
+\frametitle{Introducción}
+\framesubtitle{}
+\begin{itemize}
+	\item<1-> Se mejora el \blue{ancho de banda} del acceso a la memoria global.
+	\begin{itemize}
+		\item<2-> Se leen \red{A} y \red{B}, \texttt{width A / BLOCK\_SIZE} veces.
+	\end{itemize} 
 \end{itemize}
 }

@@ -5,7 +5,7 @@
 #include <fstream>
 using namespace std;
 using std::ifstream;
-#define BLOCK_SIZE  2
+#define BLOCK_SIZE  16
 
 // max 40
 // 32
