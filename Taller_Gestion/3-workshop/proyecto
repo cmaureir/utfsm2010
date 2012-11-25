@@ -1,0 +1,59 @@
+Sampling system gui
+-Requerimientos
+-Screenshots
+-Trabajo futuro
+
+
+-TRAC
+	-Wiki
+		-Anotar informacion del proyecto
+			-Requerimientos
+			-Introduccion
+			-Links de interes
+		-Fichas de usuarios
+	-Tickets
+		-Asignar tareas
+-Planner (por cada grupo)
+	-Pasar requerimientos a una carta gantt
+	-Generar carta gantt en PDF
+-Git (varios trabajan, hacen commits, etc)
+	-Codigo fuente de informes y programa.
+	-Programa
+		-Hacer el .h (plot)
+		-Hacer el .c (plot)
+		-Hacer el main (ssg)
+-LateX
+	-Informes
+		-Tener template base a cagar
+		-Hacer partes del src.
+			-Introduccion
+			-Asignacion de tareas en una tabla (con tiempo, nombres, tarea)
+			-Poner los screenshots (como anexo)
+	-Presentacion (extra)
+		-Lo del informe, pero en diapos.
+-Skype
+	-Telefono de conferencias (conectividad)
+	-Llamar a numeros normales
+	-Hacer conferencias y videoconferencias.
+	-Mic + skype
+=====================
+TRAC integrado con un git publico (CSRG)
+	-usuario Taller
+->Phifo
+
+Computadores con Linux
+	-Dojo
+-> uSCI ?
+
+Cosas extras
+	-Microfonos
+-> Cristian (2), Rodrigo (1), Gabriel(2min)
+
+
+Software instalado
+	-Planner
+	-git
+	-latex
+	-firefox
+	-skype
+-> uSCI?

@@ -1,0 +1,28 @@
+% Definimos tamaño hoja, tamaño letra, tipo de documento.
+\documentclass[letter, 10pt]{article}
+% Utilizamos utf8 para soportar tildes y ñ.
+\usepackage[utf8]{inputenc}
+% Definimos el idioma del documento
+\usepackage[spanish]{babel}
+% Paquete para cambiar fuentes.
+\usepackage{amsfonts}
+% Paquete para utilizar fórmulas matemáticas.
+\usepackage{amsmath}
+
+\begin{document}
+
+\title{Título Informe}
+\author{Autor}
+\date{\today}
+\maketitle
+
+\section{Descripción Proyecto}
+\input{src/descripcion}
+
+\section{Requerimientos}
+\input{src/requerimientos}
+
+\section{Información}
+\input{src/informacion}
+
+\end{document} 

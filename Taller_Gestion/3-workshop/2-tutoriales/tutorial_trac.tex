@@ -1,0 +1,106 @@
+\documentclass[letter, 10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[dvips]{graphicx}
+\usepackage{url}
+\usepackage[top=3cm,bottom=3cm,left=3.5cm,right=3.5cm,footskip=1.5cm,headheight=1.5cm,headsep=.5cm,textheight=3cm]{geometry}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{fancyvrb}
+\usepackage{fancyhdr}
+
+\pagestyle{fancyplain}
+
+\lhead{Workshop Taller de Gestión} %Parte superior izquierda
+\rhead{\bf \it Tutoriales} %Parte superior derecha
+\lfoot{} %Parte inferior izquierda.
+\cfoot{} %Parte inferior central
+\rfoot{\bf \thepage} %Parte inferior derecha
+\renewcommand{\footrulewidth}{0.4pt} %Linea de separacion inferior
+
+
+\begin{document}
+
+\title{Tutorial Trac}
+\author{Rodrigo Fernández \and Cristián Maureira \and Gabriel Zamora\\ \small{\texttt{\{rfernand,cmaureir,gzamora\}@inf.utfsm.cl}}}
+%\titlegraphic{\includegraphics[height=1cm]{img/logos}}
+\date{\today}
+
+\maketitle
+
+\section{Qué es Trac}
+Trac es un manejador de proyectos y bugs.
+Permite enlazar información entre una base de datos de errores de software, un sistema de control de versiones y el contenido de un wiki.\\
+Está escrito en Python y publicado bajo la licencia BSD modificada.
+
+\subsection{Características}
+\begin{itemize}
+    \item Administración de proyectos (Roadmap, Milestones, etc.).
+    \item Sistema de tickets (bug tracking, tareas, etc.).
+    \item Administración fina de permisos de acceso (desde la versión 0.11).
+    \item Linea de tiempo para toda la actividad reciente.
+    \item Wiki.
+    \item Reporte customizado.
+    \item Interfaz de web VCS.
+    \item RSS Feeds.
+    \item Soporte de múltiples proyectos.
+    \item Aumento de funcionalidades por extensiones o plugins.
+    \item Formato iCalendar.
+    \item Soporte de múltiples repositorios por ambiente (desde la 0.12)
+\end{itemize}
+
+
+\section{Instrucciones de uso}
+Crear una página wiki:
+  \begin{itemize}
+	\item Editamos una página y escribimos una ``WikiWord''. Al guardar la página, la WikiWord sera presentada como un link a una página nueva y, siguiendo este link, podrás pasar a editar la nueva página.
+	\item Otra forma de crear una página en la wiki es accediendo a ella a
+    través del navegador,por ejemplo\\
+    \url{http://csrg.inf.utfsm.cl/taller_trac/wiki/newpage}\\ y presionar en
+    ``Edit This page link'', o explicitando específicamente el nombre que
+    quieres que tenga el link visualizado en la página wiki:
+		\begin{center}\textbf{\lbrack wiki:NombreDePagina Nombre de Link\rbrack}\end{center}
+	\item Para evitar que Trac reconozca una WikiWord, se le antepone ! a la palabra.
+  \end{itemize}
+
+
+\section{Ejercicio}
+\begin{description}
+  \item[Creación de las Fichas de usuarios]:
+  \begin{itemize}
+	\item Creamos una página con la información personal de uno:\\
+    \url{http://csrg.inf.utfsm.cl/taller_trac/wiki/NombreApellido/}
+	\item Dentro de ella, llenamos nuestros datos utilizando la siguiente
+    plantilla:\\
+\begin{verbatim}
+== Nombre Apellido ==
+
+|| '''Nombre:''' || Nombre Apellido ||
+||'''Foto:'''|| [[Image(nombreimagen.png)]] ||
+|| '''Cumpleaños:''' || fecha de tu cumpleaños ||
+|| '''Celular:''' ||  ||
+|| '''Telefono:''' ||  ||
+||'''MSN:'''|| ||
+||'''SkypeID:'''||  ||
+||'''YahooID:'''||  ||
+||'''Dirección:'''|| ||
+||'''GMail:'''|| ||
+|| '''Mail:''' ||  ||
+\end{verbatim}
+	\item Crear un link a su página creada dentro de la página principal, de
+    la siguiente forma:
+		\begin{center}\textbf{\ \ \ *\ \lbrack wiki:NombreApellido Nombre Apellido\rbrack}\end{center}
+
+  \end{itemize}
+
+  \item[Asignación de tareas]:
+\begin{enumerate}
+    \item Cree 2 tareas cualquiera y asigne las a alguno de sus compañeros
+    (anotando el usuario de los responsables, separados por comas).
+    \item Pruebe diferentes atributos que puede asignarle a una tarea.
+\end{enumerate}
+
+\end{description}
+\end{document}

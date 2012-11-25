@@ -1,0 +1,146 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc} %Codificacion del texto (ISO Latin1 encoding)
+
+\usepackage{fancyhdr} %Permite acomodar a tu gusto la parte de arriba y
+\usepackage[spanish]{babel} %Permite definir el idioma del dcumento
+\usepackage{graphicx} %Permite exportar imagenes en formato eps
+\usepackage{url} %Tipo de fuente para correos y paginas
+\usepackage{hyperref}
+\usepackage{pgf}
+\usepackage{fleqn}
+\usepackage{verbatim}
+\usepackage{amssymb}
+\usepackage{fancyvrb}
+\usepackage{sectsty}
+\usepackage{makeidx}
+\usepackage{colortbl} %Permite colocar colores a las tablas
+\usepackage{booktabs}
+%Margenes%
+\parskip 1mm %Espacio entre parrafos
+
+\setlength{\topmargin}{0pt}
+
+\oddsidemargin	0.5cm  % Ancho Letter 21,59cm
+\evensidemargin 0.5cm  % Alto  Letter 27,81cm
+\textwidth	15.5cm
+\textheight	21.0cm
+\headsep	4 mm
+\parindent	0.5cm
+\pagestyle{fancyplain}
+\lhead{Informática y Sociedad} %Parte superior izquierda
+\rhead{\bf \it Informe Final} %Parte superior derecha
+\lfoot{\it Influencia de las tecnologías de la información en colaboraciones
+internacionales }
+\cfoot{} %Parte inferior central
+\rfoot{\bf \thepage} %Parte inferior derecha
+\renewcommand{\footrulewidth}{0.4pt} %Linea de separacion inferior
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{acknowledgement}[theorem]{Acknowledgement}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{case}[theorem]{Case}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{conclusion}[theorem]{Conclusion}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{criterion}[theorem]{Criterion}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{solution}[theorem]{Solution}
+\newtheorem{summary}[theorem]{Summary}
+\newenvironment{proof}[1][Proof]{\noindent\textbf{#1.} }{\ \rule{0.5em}{0.5em}}
+
+\newcommand{\primaria}[1]{
+	\textbf{\underline{#1}}
+}
+
+\newcommand{\foranea}[1]{
+	\textbf{\textsl{#1}}
+}
+
+\newcommand{\primyfor}[1]{
+	\underline{\foranea{#1}}
+}
+
+\makeatletter
+\newcommand\subsubsubsection{\@startsection {paragraph}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {1.5ex \@plus.2ex}%
+                                   {\normalfont\bfseries}}
+\newcommand\subsubsubsubsection{\@startsection {subparagraph}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {1.5ex \@plus.2ex}%
+                                   {\normalfont\bfseries}}
+
+
+\makeatother
+%\makeindex
+\bibliographystyle{plain}
+
+\begin{document}
+
+\input{src/portada}
+\tableofcontents
+\newpage
+
+\section{Introducción}
+\label{sec:introduccion}
+\input{src/introduccion}
+
+\newpage
+\section{Antecedentes}
+\label{sec:antecedentes}
+\input{src/antecedentes}
+
+\newpage
+\section{Análisis y Resultados de Antecedentes}
+\label{sec:analisis}
+\input{src/analisis}
+
+\newpage
+% Secciones nuevas
+\section{Estudio de Campo}
+\label{sec:estudio}
+\input{src/estudio}
+
+\newpage
+\section{Análisis de la relación entre ``público objetivo'' y ``tema tecnológico''}
+\label{sec:relacion}
+\input{src/relacion}
+
+\newpage
+\section{Resultados}
+\label{sec:resultados}
+\input{src/resultados}
+
+\newpage
+\section{Gestión de Proyectos}
+\label{sec:gestion}
+\input{src/gestion}
+
+\newpage
+\section{Conclusiones}
+\label{sec:conclusiones}
+\input{src/conclusiones}
+
+\newpage
+\bibliography{paper,url}
+
+\newpage
+\section{Anexos}
+\label{sec:anexos}
+\input{src/anexos}
+
+\newpage
+\section{Tutoriales}
+\label{sec:anexos2}
+\input{src/anexos2}
+\end{document}

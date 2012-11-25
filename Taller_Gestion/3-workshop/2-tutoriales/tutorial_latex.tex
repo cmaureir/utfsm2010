@@ -1,0 +1,68 @@
+\documentclass[letter, 10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[dvips]{graphicx}
+\usepackage{url}
+\usepackage[top=3cm,bottom=3cm,left=3.5cm,right=3.5cm,footskip=1.5cm,headheight=1.5cm,headsep=.5cm,textheight=3cm]{geometry}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{fancyvrb}
+\usepackage{fancyhdr}
+
+\pagestyle{fancyplain}
+
+\lhead{Workshop Taller de Gestión} %Parte superior izquierda
+\rhead{\bf \it Tutoriales} %Parte superior derecha
+\lfoot{} %Parte inferior izquierda.
+\cfoot{} %Parte inferior central
+\rfoot{\bf \thepage} %Parte inferior derecha
+\renewcommand{\footrulewidth}{0.4pt} %Linea de separacion inferior
+
+\begin{document}
+
+\title{Tutorial \LaTeX}
+\author{Rodrigo Fernández \and Cristián Maureira \and Gabriel Zamora\\ \small{\texttt{\{rfernand,cmaureir,gzamora\}@inf.utfsm.cl}}}
+\date{\today}
+
+\maketitle
+
+\section{Qué es Latex}
+Sistema de composición de textos, orientado especialmente a la
+creación de libros, documentos científicos y técnicos que contengan
+fórmulas matemáticas.
+
+\section{Instrucciones de uso}
+
+Para ésta herramienta sólo nos limitaremos a utilizar un archivo \textbf{tex},
+y un comando para compilarlo a \textbf{pdf}.
+Si nuestro archivo fuera \texttt{ejemplo.tex}, el procedimiento sería:
+\begin{verbatim}
+	$ pdflatex ejemplo.tex
+\end{verbatim}
+Donde finalmente podremos obtener un archivo \texttt{ejemplo.pdf}
+
+Explicación comandos dentro del documento:
+\begin{itemize}
+	\item \texttt{$\backslash$documentclass}: Declaración del documento.
+	\item \texttt{$\backslash$usepackage}: Uso de un paquete determinado (como un import, include, etc)
+	\item \texttt{$\backslash$title}: Declaración del título del documento.
+	\item \texttt{$\backslash$author}: Declaración de el o los autores.
+	\item \texttt{$\backslash$section}: Declaración de una nueva sección del documento.
+	\item \texttt{$\backslash$subsection}: Declaración de una nueva subsección del documento.
+\end{itemize}
+
+\section{Ejercicio}
+Generar un informe~\footnote{Archivo principal \texttt{informe.tex}} que contenga:
+
+\begin{itemize}
+	\item Descripción Proyecto. (\texttt{src/descripcion.tex})
+	\item Requerimientos. (\texttt{src/requerimientos.tex})
+	\item Información de cada desarrollador. (\texttt{src/informacion.tex})
+\end{itemize}
+
+
+
+
+\end{document}

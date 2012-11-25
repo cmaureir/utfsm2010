@@ -1,0 +1,95 @@
+\documentclass[letter, 10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[dvips]{graphicx}
+\usepackage{url}
+\usepackage[top=3cm,bottom=3cm,left=3.5cm,right=3.5cm,footskip=1.5cm,headheight=1.5cm,headsep=.5cm,textheight=3cm]{geometry}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{fancyvrb}
+\usepackage{fancyhdr}
+\usepackage{verbatim}
+
+\pagestyle{fancyplain}
+
+\lhead{Workshop Taller de Gestión} %Parte superior izquierda
+\rhead{\bf \it Tutoriales} %Parte superior derecha
+\lfoot{} %Parte inferior izquierda.
+\cfoot{} %Parte inferior central
+\rfoot{\bf \thepage} %Parte inferior derecha
+\renewcommand{\footrulewidth}{0.4pt} %Linea de separacion inferior
+
+
+\begin{document}
+
+\title{Tutorial Git}
+\author{Rodrigo Fernández \and Cristián Maureira \and Gabriel Zamora\\ \small{\texttt{\{rfernand,cmaureir,gzamora\}@inf.utfsm.cl}}}
+%\titlegraphic{\includegraphics[height=1cm]{img/logos}}
+\date{\today}
+
+\maketitle
+
+\section{Qué es GIT}
+
+GIT es un software de control de versiones (SCM) open source, diseñado por Linus Torvalds para ser utilizado de manera distribuida. Al ser descentralizado, posee
+la gran ventaja de poder trabajar sobre copias locales sin depender de un nodo central.
+
+\section{Instrucciones de uso}
+
+Existen una serie de comandos que son los más utilizados para trabajar con git, sin embargo por el tiempo solo se verán los que utilizaremos en el tutorial.
+
+\begin{itemize}
+	\item git init: Permite iniciar un repositorio git. No será utilizado en este tutorial.
+	\item git clone $<$repositorio$>$: Permite crear una copia local de un repositorio remoto.
+	\item git add $<$archivo$>$: Permite agregar bajo el control de git a un archivo.
+	\item git commit -sm 'Mensaje': Permite comprometer un cambio en el repositorio.
+	\item git pull: Obtiene cambios remotos en la copia local.
+	\item git push: Envía cambios locales a repositorio remoto.
+\end{itemize}
+
+
+\section{Ejercicio}
+\subsection{Objetivo}
+
+ En 3 equipos, se realizará un pequeño programa en lenguaje ANSI C de manera colaborativa. La estructura del código será:
+
+\begin{itemize}
+	\item ssg.c: Archivo principal, debe llamar a la función plot
+	\item plot.c: Definición de función plot, debe mostrar un mensaje del tipo: ``Plotting data...''. Incluye a su declaración (.h)
+	\item plot.h: Declaración del prototipo de la función plot
+	\item Makefile: Archivo makefile
+\end{itemize}
+
+\subsection{Desarrollo}
+
+\begin{enumerate}
+
+	\item Clonar repositorio git (git clone)
+	\item Desarrollo de código (disponible en la siguiente sección)
+
+		\begin{itemize}
+			\item Equipo 1: Desarrollo de ssg.c
+			\item Equipo 2: Desarrollo de plot.c y plot.h
+			\item Equipo 3: Desarrollo de Makefile
+		\end{itemize}
+
+	\item Agregar archivos bajo el control de git (git add)
+	\item Comprometer cambios locales (git commit)
+	\item Comprobar cambios globales (git pull)
+	\item Enviar cambios locales a rama principal (git push)
+
+\end{enumerate}
+
+\subsection{Código fuente}
+\subsubsection{ssg.c}
+\verbatiminput{../src/git/ssg.c}
+\subsubsection{plot.c}
+\verbatiminput{../src/git/plot.c}
+\subsubsection{plot.h}
+\verbatiminput{../src/git/plot.h}
+\subsubsection{Makefile}
+\verbatiminput{../src/git/Makefile}
+
+\end{document}

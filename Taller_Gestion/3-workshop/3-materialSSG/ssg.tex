@@ -1,0 +1,103 @@
+\documentclass[letter, 10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{url}
+\usepackage[top=3cm,bottom=3cm,left=3.5cm,right=3.5cm,footskip=1.5cm,headheight=1.5cm,headsep=.5cm,textheight=3cm]{geometry}
+\begin{document}
+
+\title{Sampling System GUI (SSG)}
+\author{ALMA-UTFSM Group\\\texttt{alma@inf.utfsm.cl}}
+\date{\today}
+\maketitle
+
+\section{Description}
+
+\subsection{About the Sampling System}
+The ACS Sampling System is a collection of objects designed to easily sample an
+ACS Component's Property value over time. For more information about ACS
+Components and Properties, please refer to Java references.
+
+The Sampling System is composed by two kind of entities: \textbf{Sampling\ Objects}
+and \textbf{Sampling\ Managers}. A Sampling Object is a distributed object which
+represents and manages one, and only one, sample. A Sampling Object is composed
+by the following elements:
+
+\begin{itemize}
+    \item The ACS \textbf{Characteristic} Component containing the desired property.
+    \item The Property to be sampled on the given Component.
+    \item A period of time between sampling intervals.
+\end{itemize}
+
+Sampling Objects manage the sampling of the given property. They communicate
+with the property by acquiring a direct CORBA reference of it, and sample it
+with the given frequency. The acquired values are then sent through a
+Notification Channel (for details refer to Notification Channel).
+Sampling Objects allow to start/pause/resume/stop the sampling process by
+making remote calls over them.
+
+The Sampling Manager is an ACS Component that offers the functionality to create
+Sampling Objects. This functionality, then, can be accessed by other ACS
+Components, or by ACS Clients. SSG is an example of such clients.
+
+\subsection{About SSG}
+
+SSG is a client to the Sampling System. It communicates with one or several
+Sampling Managers to create one or several Sampling Objects, group them as
+needed, in order to sample one or several properties, and finally plot the
+values in user-time (i.e., as they arrive through the Notification Channel).
+Therefore, it allows an easy, quick visualization of a system's behavior during
+a period of time, or under certain circumstances, and gives the possibility of
+visually correlate the values of different properties of the system.
+
+\section{Requeriments}
+\begin{tabular}{|l|p{9.5cm}|}
+\hline
+\textbf{Phase} & \textbf{Item} \\\hline
+Phase1& Initial implementation\\\hline
+ 	  & Implement a GUI\\\hline
+ 	  & Select sampling period\\\hline
+ 	  & Select sampling frequency\\\hline
+ 	  & Dump sampled data to file\\\hline
+ 	  & Select the sampling manager\\\hline
+ 	  & Save sampling status\\\hline
+ 	  & Improve read components performance\\\hline
+ 	  & Improve sampling thread performance\\\hline
+Phase 2& Provide plotting features\\\hline
+ 	   & Provide on-line plotting\\\hline
+ 	   & Plotting of several properties at the same time.\\\hline
+ 	   & Select time window or volume of data to plotted.\\\hline
+ 	   & Plotting has to be allowed at different frequencies.\\\hline
+ 	   & Change frequency dynamically.\\\hline
+ 	   & Plotting of two properties in the same plot.\\\hline
+ 	   & Automatically adjust the plotting range.\\\hline
+ 	   & Provide the capability to store data into a file.\\\hline
+ 	   & Show the actual state of the system.\\\hline
+Phase 3.1& Mission at the OSF.\\\hline
+ 	     & Replace jfreechart with jchart2d.\\\hline
+ 	     & Maximun trending window of 15 minutes.\\\hline
+ 	     & Make saving to a file optional, but on by default.\\\hline
+ 	     & Fix/change time windows.\\\hline
+ 	     & Script executor: Start along with the sampling a specified script, and when it returns (ends), finish the sampling.\\\hline
+ 	     & Save the sampling configuration (complete).\\\hline
+ 	     & Less is more (keep the UI clean and lean).\\\hline
+Phase 3.2& Nice to have features.\\\hline
+ 	     & Allow (de)activation of a specific trend (continue with samples, but does not present the whole trend).\\\hline
+ 	     & Zoom in/out, reset zoom.\\\hline
+ 	     & Pause: Allow to stop all trending, but not the data capture. Just to focus on details for a moment (or to use the crosshair function).\\\hline
+Phase 4& Documentation and Bugs.\\\hline
+ 	   & Bug fixes.\\\hline
+ 	   & Documentation with ALMA standars.\\\hline
+\end{tabular}
+
+\section{Links}
+
+\begin{itemize}
+	\item \url{https://csrg.inf.utfsm.cl/twiki4/bin/view/ACS/SamplingSystem}
+	\item \url{https://csrg.inf.utfsm.cl/twiki4/bin/view/ACS/SamplingSystemRequirements}
+	\item \url{http://csrg.inf.utfsm.cl/ssg/api}
+	\item \url{http://csrg.inf.utfsm.cl/ssg/doc/SamplingSystemGUI-Documentation.pdf}
+\end{itemize}
+
+\end{document} 
