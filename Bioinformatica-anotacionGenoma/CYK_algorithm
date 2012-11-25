@@ -1,0 +1,15 @@
+Let the input string consist of n letters, a1... an.
+Let the grammar contain r terminal and nonterminal symbols R1... Rr. 
+This grammar contains the subset Rs which is the set of start symbols.
+Let P[n,n,r] be an array of booleans. Initialize all elements of P to false.
+For each i = 1 to n
+  For each unit production Rj = ai, set P[i,1,j] = true.
+For each i = 2 to n -- Length of span
+  For each j = 1 to n-i+1 -- Start of span
+    For each k = 1 to i-1 -- Partition of span
+      For each production RA -> RB RC
+        If P[j,k,B] and P[j+k,i-k,C] then set P[j,i,A] = true
+If any of P[1,n,x] is true (x is iterated over the set s, where s are all the
+indices for Rs)
+  Then string is member of language
+  Else string is not member of language

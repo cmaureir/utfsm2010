@@ -1,0 +1,93 @@
+\documentclass[letter, 10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[top=1cm,bottom=1cm,left=2cm,right=2cm,footskip=1.5cm,headheight=1.5cm,headsep=.5cm,textheight=2cm]{geometry}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+\begin{document}
+\bibliographystyle{plain}
+
+
+\title{Bioinformática\\``Tarea: Predicción de estructura del RNA''}
+\author{
+Rodrigo Fernández \and Cristián Maureira \and Gabriel Zamora\\
+\hspace{-8.5cm}		\texttt{\{rfernand,cmaureir,gzamora\}@inf.utfsm.cl}
+}
+
+\date{\today}
+\maketitle
+
+\section{Problema}
+¿Que significa que los métodos de predicción de estructuras de RNA busquen
+palíndromos, como la minimización de energía libre afecta estos resultados?
+%Enviar a personaje.ts@gmail.com
+
+
+\section{Respuesta}
+
+\begin{itemize} 
+
+\item ¿Que significa que los métodos de predicción de estructuras de RNA busquen
+palíndromos? \\
+% palíndromos en predicción de estructuras de RNA
+%%%%%%%%%%%%%%%% PONER REFERENCIA http://genoma.unsam.edu.ar/trac/docencia/raw-attachment/wiki/Bioinformatica/Bibliografia/nbt1104-1457.pdf
+
+Un palíndromo es una palabra o frase que se lee hacia adelante y hacia atrás,
+por ejemplo ``aibohphobia''.
+
+El significado de la búsqueda de palíndromos es que buscan el apareamiento
+de bases de una estructura secundaria de RNA a través de la
+construcción de palíndromos biológicos \cite{palindrome}.
+
+Para ser más exactos, es necesario la construcción de 
+palíndromos para la predicción de estructuras de RNA a través de apareamiento 
+de los nucleótidos, por ejemplo \texttt{GGACU} emparejado con \texttt{ACUCC}.
+
+Sin embargo en la realidad el hecho de buscar palíndromos en el RNA no es tan
+simple, ``reengineer''  no es un palíndromo real, pero es análogo a que se
+encontrara cuatro pares de base de RNA (``reen''/``neer'') con dos ciclos
+basura (``gi''). ``Sniffinesses'' tampoco es un palíndromo, pero la totalidad
+de sus letras pueden ser pareadas en tres grupos 
+(``s''/``s'', ``nif''/``fin'' y ``es''/``se'').
+
+Esto conlleva a que los algoritmos de predicción de RNA recurran
+a la búsqueda de palíndromos no perfectos, ya que el procedimiento
+no es tan simple como parece y es necesario poder buscar de todas
+las formas posibles.
+
+% sobre la minimización de energía libre
+
+\item ¿Como la minimización de energía libre afecta estos resultados? \\
+
+La desventaja de los métodos que buscan encontrar la mayor cantidad de bases
+pareadas es que no necesariamente se encuentra la estructura más estable.~\cite{diapos}
+
+Como el RNA se plegará de tal forma de maximizar la estabilidad de su
+estructura, y la estabilidad de la misma depende directamente de la energía
+libre que posea el RNA, el buscar la minimización de energía libre es un
+método que aumente enormemente la precisión de la predicción realizada.
+
+Sabemos que cuando se produce un apareamiento de bases,
+la energía de molécula se reduce debido a las interacciones de atracción entre
+las dos cadenas, pero a su vez, la estructuras que forman ciclos internos se
+pueden definirse por la energía libre que contienen, por lo que para obtener la ``estabilidad'' nombrada anteriormente,
+los programas se diseñan para encontrar una estructura que minimice la suma de
+todos esos factores.
+
+El problema que posee la minimización de la energía libre, es que debe considerar
+una gran cantidad de variables, 
+%(temperatura, todas las combinaciones de los enlaces y subestructuras que se puedan formar, etc.)
+haciendo que el proceso sea de alto costo computacional.
+
+\end{itemize}
+
+\bibliography{tarea}
+
+\vfill\hfill
+RF/CM/GZ/\LaTeX
+\end{document} 
